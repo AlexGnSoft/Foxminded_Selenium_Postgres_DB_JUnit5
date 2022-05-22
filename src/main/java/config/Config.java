@@ -1,8 +1,6 @@
 package config;
 
 public class Config {
-//    public static final String BROWSER = "chrome";
-
     /**
      * Clear browser cookies after each iteration
      * if true - clear cookies

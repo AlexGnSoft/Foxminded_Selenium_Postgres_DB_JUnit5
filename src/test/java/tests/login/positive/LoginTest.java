@@ -6,8 +6,8 @@ import tests.base.BaseTest;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void open(){
+    public void openApplication(){
         openBrowser();
-        homePage.loginPageIsVisible();
+        loginPage.loginPageIsVisible();
     }
 }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import pageobjects.base.BasePage;
-import pageobjects.homePage.HomePage;
+import pageobjects.loginPage.LoginPage;
 import utils.WebDriverSetup;
 import static config.Config.CLEAR_COOKIES_AND_STORAGE;
 import static config.Config.HOLD_BROWSER_OPEN;
@@ -15,7 +15,7 @@ import static config.Config.HOLD_BROWSER_OPEN;
 public class BaseTest {
     protected static WebDriver driver = WebDriverSetup.createDriver();
     protected static BasePage basePage = new BasePage(driver);
-    protected static HomePage homePage = new HomePage(driver);
+    protected static LoginPage loginPage = new LoginPage(driver);
     protected static PropertiesFile propertiesFile = new PropertiesFile();
 
     @BeforeEach
@@ -23,7 +23,7 @@ public class BaseTest {
         driver.get(propertiesFile.getApplicationUrl());
 
         if(!driver.getTitle().equals(propertiesFile.getTitle())){
-            throw new IllegalStateException("You're not at 'http://176.36.27.131:8180/#/login' website. The current page is " + driver.getTitle());
+            throw new IllegalStateException("You're not at 'http://176.36.27.131:8180/#/login' website. The current page title is " + driver.getTitle());
         }
     }
 

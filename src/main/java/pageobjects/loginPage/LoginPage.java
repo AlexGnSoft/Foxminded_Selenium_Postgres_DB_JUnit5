@@ -1,13 +1,13 @@
-package pageobjects.homePage;
+package pageobjects.loginPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageobjects.base.BasePage;
 
-public class HomePage extends BasePage {
+public class LoginPage extends BasePage {
 
-    public HomePage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 
@@ -16,9 +16,9 @@ public class HomePage extends BasePage {
     private static final By password = By.xpath("//input[@id='password']");
 
 
-    public HomePage loginPageIsVisible(){
+    public LoginPage loginPageIsVisible(){
         WebElement loginPage = driver.findElement(loginPageBody);
-        Assertions.assertTrue(loginPage.isDisplayed());
+        waitElementIsVisible(loginPage);
 
         return this;
     }
