@@ -36,11 +36,6 @@ public class PropertiesFile {
         else throw new RuntimeException("url is not specified in the config.properties file.");
     }
 
-    public String getTitle() {
-        String title = properties.getProperty("title");
-        if(title != null) return title;
-        else throw new RuntimeException("browser is not specified in the config.properties file.");
-    }
 
     public String getLoginCredentials() {
         String login = properties.getProperty("login");
