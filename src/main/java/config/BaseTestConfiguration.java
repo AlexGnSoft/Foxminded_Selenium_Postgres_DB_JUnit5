@@ -1,7 +1,9 @@
 package config;
 
 import helpfiles.PropertiesFile;
-
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,7 +13,9 @@ public class BaseTestConfiguration {
     protected static PropertiesFile propertiesFile;
     protected static WebDriver driver;
 
+    @BeforeAll
     public static void createDriver(){
+        WebDriver driver = null;
         propertiesFile = new PropertiesFile();
 
         switch(propertiesFile.getBrowser()){
@@ -32,11 +36,11 @@ public class BaseTestConfiguration {
     }
 
 
-    public void openBrowser(String url){
-        driver.get(url);
+    public void openBrowser(){
+        driver.get(propertiesFile.getApplicationUrl());
     }
 
-
+    @AfterAll
     protected static void tearDown(){
         driver.quit();
     }

@@ -20,7 +20,7 @@ public class PropertiesFile {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            throw new RuntimeException("config.properties file not found at " + propertyFilePath);
+            throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
         }
     }
 
@@ -33,7 +33,7 @@ public class PropertiesFile {
     public String getApplicationUrl() {
         String url = properties.getProperty("url");
         if(url != null) return url;
-        else throw new RuntimeException("url is not specified in the config.properties file.");
+        else throw new RuntimeException("browser is not specified in the config.properties file.");
     }
 
 

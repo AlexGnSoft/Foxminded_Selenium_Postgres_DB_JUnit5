@@ -1,6 +1,5 @@
 import config.BaseTestConfiguration;
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.Test;
 import pageobjects.OpenPage;
 
@@ -9,16 +8,13 @@ public class TestExecution extends BaseTestConfiguration {
 
     @Test
     public void openApplication(){
-        createDriver();
-        openBrowser(propertiesFile.getApplicationUrl());
+        openBrowser();
         Assertions.assertTrue(openPage.loginPageIsVisible());
-        tearDown();
     }
 
     @Test
     public void closeApplication(){
-        createDriver();
-        openBrowser(propertiesFile.getApplicationUrl());
+        openBrowser();
         tearDown();
     }
 }
