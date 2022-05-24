@@ -1,15 +1,10 @@
 package pageobjects;
+import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class OpenPage {
-
-    public WebDriver driver;
-
-    public OpenPage(WebDriver driver) {
-        this.driver = driver;
-    }
+public class OpenPage extends BaseTestConfiguration {
 
     private static final By loginPageBody = By.xpath("//body//login");
 
