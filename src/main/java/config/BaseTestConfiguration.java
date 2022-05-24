@@ -2,7 +2,6 @@ package config;
 
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +18,7 @@ public class BaseTestConfiguration {
     }
 
     @BeforeAll
-    public static WebDriver createDriver(){
+    public static void createDriver(){
         propertiesFile = new PropertiesFile();
 
         switch(propertiesFile.getBrowser()){
@@ -37,8 +36,6 @@ public class BaseTestConfiguration {
         assert driver != null;
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(propertiesFile.getImplicitWait()));
-
-        return driver;
     }
 
     @BeforeEach
@@ -46,8 +43,8 @@ public class BaseTestConfiguration {
         driver.get(url);
     }
 
-    @AfterEach
-    public void closeBrowser(){
+    @AfterAll
+    protected static void tearDown(){
         driver.quit();
     }
 }

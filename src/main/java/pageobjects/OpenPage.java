@@ -1,13 +1,14 @@
-package pageobjects.openPage;
+package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pageobjects.base.BasePage;
 
-public class OpenPage extends BasePage {
+public class OpenPage {
+
+    public WebDriver driver;
 
     public OpenPage(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
 
     private static final By loginPageBody = By.xpath("//body//login");
