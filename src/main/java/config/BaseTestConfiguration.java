@@ -13,10 +13,6 @@ public class BaseTestConfiguration {
     protected static PropertiesFile propertiesFile;
     protected static WebDriver driver;
 
-    public BaseTestConfiguration(WebDriver driver) {
-        BaseTestConfiguration.driver = driver;
-    }
-
     @BeforeAll
     public static void createDriver(){
         propertiesFile = new PropertiesFile();
