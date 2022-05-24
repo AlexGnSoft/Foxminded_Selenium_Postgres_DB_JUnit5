@@ -1,8 +1,7 @@
 package config;
 
 import helpfiles.PropertiesFile;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,11 +12,9 @@ public class BaseTestConfiguration {
     protected static PropertiesFile propertiesFile;
     protected static WebDriver driver;
 
-    @BeforeAll
-    public static void createDriver(){
-        WebDriver driver = null;
+    @BeforeEach
+    public void createDriver(){
         propertiesFile = new PropertiesFile();
-
         switch(propertiesFile.getBrowser()){
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", propertiesFile.getDriverPathChrome());
@@ -40,8 +37,8 @@ public class BaseTestConfiguration {
         driver.get(propertiesFile.getApplicationUrl());
     }
 
-    @AfterAll
-    protected static void tearDown(){
+    @AfterEach
+    public void tearDown(){
         driver.quit();
     }
 }
