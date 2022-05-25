@@ -8,7 +8,7 @@ public class OpenPage extends BaseTestConfiguration{
 
     private static final By loginPageBody = By.xpath("//body//login");
 
-    public Boolean loginPageIsVisible(){
+    public static Boolean loginPageIsVisible(){
         WebElement loginPage = driver.findElement(loginPageBody);
 
         return loginPage.isDisplayed();

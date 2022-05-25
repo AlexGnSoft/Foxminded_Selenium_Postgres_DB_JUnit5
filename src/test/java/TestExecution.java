@@ -3,13 +3,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pageobjects.OpenPage;
 
-public class TestExecution extends BaseTestConfiguration {
-    OpenPage openPage = new OpenPage();
+public class TestExecution extends BaseTestConfiguration{
 
     @Test
     public void openApplication(){
         openBrowser();
-        Assertions.assertTrue(openPage.loginPageIsVisible());
+        Assertions.assertTrue(OpenPage.loginPageIsVisible());
     }
 
     @Test

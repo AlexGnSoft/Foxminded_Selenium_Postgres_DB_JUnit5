@@ -15,6 +15,7 @@ public class BaseTestConfiguration {
     @BeforeEach
     public void createDriver(){
         propertiesFile = new PropertiesFile();
+
         switch(propertiesFile.getBrowser()){
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", propertiesFile.getDriverPathChrome());
