@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Properties;
 
 public class PropertiesFile {
-    private final Properties properties;
+    public Properties properties;
 
     public PropertiesFile(){
         BufferedReader reader;

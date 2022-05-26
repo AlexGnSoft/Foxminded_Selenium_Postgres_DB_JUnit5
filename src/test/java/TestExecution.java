@@ -16,4 +16,11 @@ public class TestExecution extends BaseTestConfiguration{
         openBrowser();
         tearDown();
     }
+
+    @Test
+    public void signIn() {
+        openBrowser();
+        OpenPage.clickToSignIn();
+        Assertions.assertTrue(OpenPage.homePageIsVisible());
+    }
 }
