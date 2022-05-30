@@ -1,14 +1,9 @@
 package pageobjects;
 
-import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,11 +47,13 @@ public class TicketsPage extends BaseTestConfiguration{
     private static final By stageList = By.cssSelector("td[width='130px']");
 
 
-    public String getNamesOfAllTitles(By webElements) {
-        String titleName = null;
+    public String[] getNamesOfAllTitles(By webElements) {
+        String [] titleName = new String[10];
         List<WebElement> titleNameList = driver.findElements(webElements);
         for (int i = 1; i < titleNameList.size(); i++) {
-            titleName = titleNameList.get(i).getText();
+            titleName[i] = titleNameList.get(i).getText();
+            System.out.println(titleName[i]);
+
         }
            return titleName;
     }
@@ -67,8 +64,6 @@ public class TicketsPage extends BaseTestConfiguration{
             System.out.println(element.getText());
         }
     }
-
-
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -91,7 +86,8 @@ public class TicketsPage extends BaseTestConfiguration{
         Thread.sleep(3000);
 
         TicketsPage ticketsPage = new TicketsPage();
-        ticketsPage.printValueOfColumn(idList);
-        OpenPage.tearDown();
+
+        ticketsPage.getNamesOfAllTitles(titleList);
+
     }
 }
