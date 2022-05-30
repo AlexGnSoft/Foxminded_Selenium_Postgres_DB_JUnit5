@@ -1,9 +1,8 @@
 package pageobjects;
 
-import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
 
-public class ContactsNewContactPage extends BaseTestConfiguration {
+public class ContactsNewContactPage {
     private static final By newContactBtn = By.xpath("//button[@id='new-contact']");
     private static final By newContactPage = By.xpath("//div[@class='card-content']");
 
@@ -46,19 +45,6 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
 
     private static final By submitBtn = By.xpath("//button[@type='submit' and @id='search-bar-submit']");
     private static final By cancelBtn = By.xpath("//button[@id='contact-form-cancel']");
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

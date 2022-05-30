@@ -1,9 +1,18 @@
 package pageobjects;
 
+import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
-public class TicketsPage extends BaseTestConfiguration {
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TicketsPage extends BaseTestConfiguration{
 
     private static final By ticketsTab = By.xpath("//a[@id='menu-tickets']");
     private static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
@@ -37,4 +46,52 @@ public class TicketsPage extends BaseTestConfiguration {
     private static final By nextBtn = By.xpath("//a[@aria-label='Next page']");
     private static final By previousBtn = By.xpath("//a[@aria-label='Previous page']");
 
+    private static final By idList = By.cssSelector("td[width='80px']");
+    private static final By titleList = By.cssSelector(".ticket_title");
+    private static final By assigneeList = By.xpath("tr[class='assigned-manager']");
+    private static final By stageList = By.cssSelector("td[width='130px']");
+
+
+    public String getNamesOfAllTitles(By webElements) {
+        String titleName = null;
+        List<WebElement> titleNameList = driver.findElements(webElements);
+        for (int i = 1; i < titleNameList.size(); i++) {
+            titleName = titleNameList.get(i).getText();
+        }
+           return titleName;
+    }
+
+    public void printValueOfColumn(By webElements) {
+        List<WebElement> titleNameList = driver.findElements(webElements);
+        for (WebElement element : titleNameList) {
+            System.out.println(element.getText());
+        }
+    }
+
+
+
+
+    public static void main(String[] args) throws InterruptedException {
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver");
+//        WebDriver driver = new ChromeDriver();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.get("https://rozetka.com.ua/");
+//        Thread.sleep(3000);
+//        List<WebElement> elements = driver.findElements(By.cssSelector(".menu-categories__link"));
+//        for (int i = 0; i < elements.size(); i++) {
+//            System.out.println(elements.get(i).getText());
+//        }
+//        driver.quit();
+
+
+        BaseTestConfiguration.createDriver();
+        BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
+        baseTestConfiguration.openBrowser();
+        OpenPage.clickToSignIn();
+        Thread.sleep(3000);
+
+        TicketsPage ticketsPage = new TicketsPage();
+        ticketsPage.printValueOfColumn(idList);
+        OpenPage.tearDown();
+    }
 }

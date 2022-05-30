@@ -1,9 +1,8 @@
 package pageobjects;
 
-import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
 
-public class MenuTab extends BaseTestConfiguration {
+public class MenuTab {
 
     private static final By homePagePanel = By.xpath("//div[@class='main-panel']");
     private static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
@@ -15,26 +14,5 @@ public class MenuTab extends BaseTestConfiguration {
     private static final By departmentsTab = By.xpath("//a[@id='menu-departments']");
     private static final By managersTab = By.xpath("//a[@id='menu-managers']");
     private static final By categoriesTab = By.xpath("//a[@id='menu-categories']");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

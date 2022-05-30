@@ -38,8 +38,10 @@ public class BaseTestConfiguration {
         driver.get(propertiesFile.getApplicationUrl());
     }
 
+
     @AfterAll
     public static void tearDown(){
         driver.quit();
     }
+
 }

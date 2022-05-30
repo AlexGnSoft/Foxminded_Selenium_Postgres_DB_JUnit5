@@ -36,7 +36,6 @@ public class PropertiesFile {
         else throw new RuntimeException("browser is not specified in the config.properties file.");
     }
 
-
     public String getLoginCredentials() {
         String login = properties.getProperty("login");
         if(login != null) return login;

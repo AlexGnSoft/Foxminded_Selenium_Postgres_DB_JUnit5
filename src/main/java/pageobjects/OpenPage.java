@@ -11,8 +11,10 @@ public class OpenPage extends BaseTestConfiguration{
     public static PropertiesFile propertiesFile = new PropertiesFile();
 
     private static final By loginPageBody = By.xpath("//body//login");
-    private static final By login = By.xpath("//input[@id='username']");
-    private static final By password = By.xpath("//input[@id='password']");
+
+    private static final By login = By.cssSelector("input[name='username']");
+    private static final By password = By.cssSelector("input[name='password']");
+
     private static final By signInButton = By.xpath("//button[@id='login-signin']");
     private static final By homePage = By.xpath("//div[@class='main-panel']");
 
@@ -35,5 +37,4 @@ public class OpenPage extends BaseTestConfiguration{
 
         return true;
     }
-
 }
