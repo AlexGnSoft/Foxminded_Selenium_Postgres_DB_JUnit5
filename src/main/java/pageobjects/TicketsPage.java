@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class TicketsPage extends BaseTestConfiguration{
@@ -43,27 +44,51 @@ public class TicketsPage extends BaseTestConfiguration{
 
     private static final By idList = By.cssSelector("td[width='80px']");
     private static final By titleList = By.cssSelector(".ticket_title");
-    private static final By assigneeList = By.xpath("tr[class='assigned-manager']");
+    private static final By assigneeList = By.cssSelector(".ticket_assignee");
     private static final By stageList = By.cssSelector("td[width='130px']");
 
 
-    public String[] getNamesOfAllTitles(By webElements) {
-        String [] titleName = new String[10];
+    public ArrayList<String> getNamesOfAllTitles(By webElements) {
+        ArrayList<String> titleName = new ArrayList<>();
         List<WebElement> titleNameList = driver.findElements(webElements);
-        for (int i = 1; i < titleNameList.size(); i++) {
-            titleName[i] = titleNameList.get(i).getText();
-            System.out.println(titleName[i]);
-
+        for (int i = 0; i < titleNameList.size(); i++) {
+            titleName.add(titleNameList.get(i).getText());
+            System.out.println(titleName.get(i));
         }
            return titleName;
     }
 
+    public ArrayList<String> getNamesOfStages(By webElements) {
+        ArrayList<String> titleName = new ArrayList<>();
+        List<WebElement> titleNameList = driver.findElements(webElements);
+        for (int i = 0; i < titleNameList.size(); i++) {
+            String text = titleNameList.get(i).getText();
+            titleName.add(text);
+            if(text.equals("OPEN") || text.equals("DONE") || text.equals("IN PROGRESS")){
+                System.out.println(titleName.get(i));
+            }
+        }
+        return titleName;
+    }
+
     public void printValueOfColumn(By webElements) {
         List<WebElement> titleNameList = driver.findElements(webElements);
-        for (WebElement element : titleNameList) {
-            System.out.println(element.getText());
+        for (int i = 0; i < titleNameList.size(); i++) {
+            System.out.println(titleNameList.get(i).getText());
         }
     }
+
+    public void printStages(By webElements) {
+        List<WebElement> titleNameList = driver.findElements(webElements);
+        for (int i = 0; i < titleNameList.size(); i++) {
+            String text = titleNameList.get(i).getText();
+            if(text.contains("OPEN") || text.contains("IN PROGRESS") || text.contains("DONE")){
+                System.out.println(text);
+            }
+        }
+    }
+
+
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -78,16 +103,13 @@ public class TicketsPage extends BaseTestConfiguration{
 //        }
 //        driver.quit();
 
-
         BaseTestConfiguration.createDriver();
         BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
         baseTestConfiguration.openBrowser();
         OpenPage.clickToSignIn();
         Thread.sleep(3000);
-
         TicketsPage ticketsPage = new TicketsPage();
-
-        ticketsPage.getNamesOfAllTitles(titleList);
-
+        ticketsPage.printStages(stageList);
+        driver.quit();
     }
 }
