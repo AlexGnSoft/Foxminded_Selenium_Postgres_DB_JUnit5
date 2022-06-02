@@ -27,25 +27,27 @@ public class TextExecution_9 extends BaseTestConfiguration{
     }
 
     @Test
-    public void returnTitleForCategoryRazrabotka(){
+    public void returnTitleByCategoryRazrabotka(){
         openBrowser();
         OpenPage.clickToSignIn();
-        MenuDashboard.click(MenuDashboard.closeButton);
-        MenuDashboard.click(MenuDashboard.minimizeSideBarBtn);
-        MenuDashboard.click(MenuDashboard.dashboardTab);
-        MenuDashboard.click(MenuDashboard.needImmediateReactionButton);
-        MenuDashboard.returnTitleNameForCategory(MenuDashboard.titleList, MenuDashboard.categoryList, MenuDashboard.razrabotka);
+        MenuDashboard.getToNeedImmediateReactionPage();
+        MenuDashboard.returnTitleNameByCategory(MenuDashboard.titleList, MenuDashboard.categoryList, MenuDashboard.razrabotka);
 
     }
 
     @Test
-    public void returnTitleForCategoryFinance(){
+    public void returnTitleByCategoryFinance(){
         openBrowser();
         OpenPage.clickToSignIn();
-        MenuDashboard.click(MenuDashboard.closeButton);
-        MenuDashboard.click(MenuDashboard.minimizeSideBarBtn);
-        MenuDashboard.click(MenuDashboard.dashboardTab);
-        MenuDashboard.click(MenuDashboard.needImmediateReactionButton);
-        MenuDashboard.returnTitleNameForCategory(MenuDashboard.titleList, MenuDashboard.categoryList, MenuDashboard.finance);
+        MenuDashboard.getToNeedImmediateReactionPage();
+        MenuDashboard.returnTitleNameByCategory(MenuDashboard.titleList, MenuDashboard.categoryList, MenuDashboard.finance);
+    }
+
+    @Test
+    public void returnIDsByPriority(){
+        openBrowser();
+        OpenPage.clickToSignIn();
+        MenuDashboard.getToNeedImmediateReactionPage();
+        MenuDashboard.returnIDsByPriority(MenuDashboard.priority);
     }
 }
