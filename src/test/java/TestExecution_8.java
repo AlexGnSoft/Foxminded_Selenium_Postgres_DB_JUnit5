@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pageobjects.OpenPage;
 
-public class TestExecution extends BaseTestConfiguration{
+public class TestExecution_8 extends BaseTestConfiguration{
 
     @Test
     public void openApplication(){
@@ -23,4 +23,6 @@ public class TestExecution extends BaseTestConfiguration{
         OpenPage.clickToSignIn();
         Assertions.assertTrue(OpenPage.homePageIsVisible());
     }
+
+
 }

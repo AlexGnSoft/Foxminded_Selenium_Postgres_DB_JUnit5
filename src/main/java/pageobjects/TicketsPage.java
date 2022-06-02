@@ -3,9 +3,7 @@ package pageobjects;
 import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class TicketsPage extends BaseTestConfiguration{
@@ -42,42 +40,55 @@ public class TicketsPage extends BaseTestConfiguration{
     private static final By nextBtn = By.xpath("//a[@aria-label='Next page']");
     private static final By previousBtn = By.xpath("//a[@aria-label='Previous page']");
 
-    private static final By idList = By.cssSelector("td[width='80px']");
-    private static final By titleList = By.cssSelector(".ticket_title");
-    private static final By assigneeList = By.cssSelector(".ticket_assignee");
-    private static final By stageList = By.cssSelector("td[width='130px']");
+    public static final By idList = By.cssSelector("td[width='80px']");
+    public static final By titleList = By.cssSelector(".ticket_title");
+    public static final By assigneeList = By.cssSelector(".ticket_assignee");
+    public static final By stageList = By.cssSelector("td[width='130px']");
 
 
-    public ArrayList<String> getNamesOfAllTitles(By webElements) {
+    /**
+     * Method returns title names (of id, title, assignee, stage) using getText().
+     * As a parameter is receives a list of elements in a column
+     * from which we expect to get title names
+     */
+
+    public ArrayList<String> getNamesOfAnyColumns(By webElements) {
         ArrayList<String> titleName = new ArrayList<>();
         List<WebElement> titleNameList = driver.findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
             titleName.add(titleNameList.get(i).getText());
-            System.out.println(titleName.get(i));
         }
            return titleName;
     }
 
+    /**
+     * Method returns a list of Stage names using getText() method.
+     */
     public ArrayList<String> getNamesOfStages(By webElements) {
         ArrayList<String> titleName = new ArrayList<>();
         List<WebElement> titleNameList = driver.findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
-            String text = titleNameList.get(i).getText();
-            titleName.add(text);
-            if(text.equals("OPEN") || text.equals("DONE") || text.equals("IN PROGRESS")){
-                System.out.println(titleName.get(i));
-            }
+            titleName.add(titleNameList.get(i).getText());
         }
         return titleName;
     }
 
-    public void printValueOfColumn(By webElements) {
+    /**
+     * Method prints in console values of column using getText() method.
+     * As a parameter is receives a list of elements in a column
+     * from which we expect to get and print
+     */
+    public static void printValueOfColumn(By webElements) {
         List<WebElement> titleNameList = driver.findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
             System.out.println(titleNameList.get(i).getText());
         }
     }
 
+    /**
+     * Method prints stage names using getText() from Stage column.
+     * "OPEN", "DONE", "IN PROGRESS" stages are used in "if" method because there were are not unique selectors found
+     */
     public void printStages(By webElements) {
         List<WebElement> titleNameList = driver.findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
@@ -89,20 +100,7 @@ public class TicketsPage extends BaseTestConfiguration{
     }
 
 
-
-
     public static void main(String[] args) throws InterruptedException {
-//        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver");
-//        WebDriver driver = new ChromeDriver();
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//        driver.get("https://rozetka.com.ua/");
-//        Thread.sleep(3000);
-//        List<WebElement> elements = driver.findElements(By.cssSelector(".menu-categories__link"));
-//        for (int i = 0; i < elements.size(); i++) {
-//            System.out.println(elements.get(i).getText());
-//        }
-//        driver.quit();
-
         BaseTestConfiguration.createDriver();
         BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
         baseTestConfiguration.openBrowser();
