@@ -101,6 +101,21 @@ public class TicketsPage extends BaseTestConfiguration{
     }
 
 
+    /**
+     * Method clicks on a certain webElement
+     */
+
+    public void clickOnWebElement(By element){
+        WebElement webElement = driver.findElement(element);
+        waitElementIsVisible(webElement).click();
+    }
+
+
+
+
+
+
+
     public static void main(String[] args) throws InterruptedException {
         BaseTestConfiguration.createDriver();
         BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
