@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Properties;
 
 public class PropertiesFile {
-    public Properties properties;
+    public static Properties properties;
 
     public PropertiesFile(){
         BufferedReader reader;
@@ -36,13 +36,13 @@ public class PropertiesFile {
         else throw new RuntimeException("browser is not specified in the config.properties file.");
     }
 
-    public String getLoginCredentials() {
+    public static String getLoginCredentials() {
         String login = properties.getProperty("login");
         if(login != null) return login;
         else throw new RuntimeException("login is not specified in the config.properties file.");
     }
 
-    public String getPasswordCredentials() {
+    public static String getPasswordCredentials() {
         String password = properties.getProperty("password");
         if(password != null) return password;
         else throw new RuntimeException("password is not specified in the config.properties file.");

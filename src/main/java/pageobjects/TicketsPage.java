@@ -1,6 +1,7 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
+import helpfiles.PropertiesFile;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
@@ -89,10 +90,10 @@ public class TicketsPage extends BaseTestConfiguration{
      * Method prints stage names using getText() from Stage column.
      * "OPEN", "DONE", "IN PROGRESS" stages are used in "if" method because there were are not unique selectors found
      */
-    public void printStages(By webElements) {
-        List<WebElement> titleNameList = driver.findElements(webElements);
-        for (int i = 0; i < titleNameList.size(); i++) {
-            String text = titleNameList.get(i).getText();
+    public static void printStages(By webElements) {
+        List<WebElement> stageNameList = driver.findElements(webElements);
+        for (int i = 0; i < stageNameList.size(); i++) {
+            String text = stageNameList.get(i).getText();
             if(text.contains("OPEN") || text.contains("IN PROGRESS") || text.contains("DONE")){
                 System.out.println(text);
             }
@@ -104,10 +105,10 @@ public class TicketsPage extends BaseTestConfiguration{
         BaseTestConfiguration.createDriver();
         BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
         baseTestConfiguration.openBrowser();
-        OpenPage.clickToSignIn();
+        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials() );
         Thread.sleep(3000);
-        TicketsPage ticketsPage = new TicketsPage();
-        ticketsPage.printStages(stageList);
+//        OpenPage.implicitWait();
+        TicketsPage.printStages(stageList);
         driver.quit();
     }
 }

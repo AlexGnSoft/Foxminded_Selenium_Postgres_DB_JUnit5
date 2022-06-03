@@ -23,12 +23,6 @@ public class MenuDashboard extends BaseTestConfiguration {
     public static final By titleList = By.cssSelector("a[id='ticket-block-title']");
     public static final By needImmediateReactionButton = By.xpath("//tickets-block/div[@id='accordion1']");
     public static final By closeButton = By.cssSelector("button.close");
-    public static final String razrabotka = "РАЗРАБОТКА";
-    public static final String finance = "ФИНАНСЫ";
-    public static final String education = "УЧЕБНЫЙ ЦЕНТР";
-    public static final String priority = "P3";
-
-
 
     /**
      * Click on a web element
@@ -66,7 +60,6 @@ public class MenuDashboard extends BaseTestConfiguration {
     /**
      * Depending on a priority, this method returns and prints all IDs.
      */
-
     public static ArrayList<String> returnIDsByPriority(String priority){
         ArrayList<String> ids = new ArrayList<>();
         List<WebElement> idList = driver.findElements(idsList);
@@ -81,23 +74,5 @@ public class MenuDashboard extends BaseTestConfiguration {
             System.out.println(ids.get(j));
         }
         return ids;
-    }
-
-
-
-
-    public static void main(String[] args) throws InterruptedException {
-        BaseTestConfiguration.createDriver();
-        BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
-        baseTestConfiguration.openBrowser();
-        OpenPage.clickToSignIn();
-        Thread.sleep(1000);
-        click(closeButton);
-        click(minimizeSideBarBtn);
-        click(dashboardTab);
-        click(needImmediateReactionButton);
-        Thread.sleep(1000);
-        returnIDsByPriority(priority);
-        driver.quit();
     }
 }
