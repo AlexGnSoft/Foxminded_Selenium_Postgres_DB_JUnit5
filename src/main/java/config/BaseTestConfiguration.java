@@ -62,6 +62,16 @@ public class BaseTestConfiguration {
     }
 
     /**
+     * Method waits for a page to be visible and active
+     */
+    public static Boolean pageIsVisible(By webElement){
+        new WebDriverWait(driver, Duration.ofSeconds(propertiesFile.getExplicitWait()))
+                .until(ExpectedConditions.presenceOfElementLocated(webElement));
+
+        return true;
+    }
+
+    /**
      * Method clicks on a certain webElement
      */
     public void clickOnWebElement(By element){

@@ -18,13 +18,6 @@ public class OpenPage extends BaseTestConfiguration{
     private static final By signInButton = By.xpath("//button[@id='login-signin']");
     public static final By homePage = By.xpath("//div[@class='main-panel']");
 
-    public static Boolean pageIsVisible(By webElement){
-        new WebDriverWait(driver, Duration.ofSeconds(propertiesFile.getExplicitWait()))
-                .until(ExpectedConditions.presenceOfElementLocated(webElement));
-
-        return true;
-    }
-
     public static void makeSignIn(String username, String pass) {
         driver.findElement(login).sendKeys(username);
         driver.findElement(password).sendKeys(pass);
