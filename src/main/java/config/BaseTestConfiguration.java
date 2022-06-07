@@ -54,7 +54,7 @@ public class BaseTestConfiguration {
     /**
      * Method waits while the element is visible
      */
-    public WebElement waitElementIsVisible(WebElement webElement){
+    public static WebElement waitElementIsVisible(WebElement webElement){
         new WebDriverWait(driver, Duration.ofSeconds(propertiesFile.getExplicitWait()))
                 .until(ExpectedConditions.visibilityOf(webElement));
 

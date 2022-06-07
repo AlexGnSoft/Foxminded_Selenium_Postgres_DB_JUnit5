@@ -2,15 +2,14 @@ package pageobjects;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class TicketsPage extends BaseTestConfiguration{
+public class TicketsPage extends BaseTestConfiguration {
 
     private static final By ticketsTab = By.xpath("//a[@id='menu-tickets']");
     private static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
@@ -45,21 +44,26 @@ public class TicketsPage extends BaseTestConfiguration{
     public static final By assigneeList = By.cssSelector(".ticket_assignee");
     public static final By stageList = By.cssSelector("td[width='130px']");
 
-
     public static final By createTicketPage = By.cssSelector("div[class='container-fluid']");
     public static final By titleField = By.cssSelector("#title");
     public static final By descriptionField = By.cssSelector("textarea[id='description']");
-    public static final By descriptionFieldPlaceHolder = By.cssSelector("textarea[placeholder='Please input your description here...']");
     public static final By drpCategory = By.cssSelector("#categoryId");
     public static final By drpStage = By.cssSelector("#stageId");
     public static final By drpCompany = By.cssSelector("#company");
     public static final By drpContact = By.cssSelector("#contactId");
     public static final By drpPriority = By.cssSelector("#priority");
+
     public static final By calendarDataPicker = By.cssSelector(".ui-datepicker-trigger.ui-calendar-button");
     public static final By calendarDataField = By.cssSelector("#done-deadline-date");
+    public static final By calendarUi = By.xpath("//div[contains(@class,'ui-datepicker ui-widget ui-widget-content ui-helper-clearfix')]");
+    public static final By selectNextMonth = By.xpath("//span[@class='fa fa-angle-right']");
+    public static final By selectPreviousMonth = By.xpath("//span[@class='fa fa-angle-left']");
+    public static final By minutePickerList = By.xpath("//div[@class='ui-minute-picker']/a[@class='ng-tns-c10-2']");
+    public static final By hoursPickerList = By.xpath("//div[@class='ui-hour-picker']/a[@class='ng-tns-c10-2']");
+
     public static final By drpDepartment = By.cssSelector("#department");
     public static final By drpManager = By.cssSelector("#manager");
-    public static final By selectFiltersBtn = By.cssSelector("#add-files");
+    public static final By selectFiltersBtn = By.xpath("//div[@class='col-sm-10']/button[@class='btn btn-success btn-outline']");
     public static final By submitBtn = By.cssSelector("#submit-btn");
     public static final By cancelBtn = By.cssSelector("#cancel-btn");
 
@@ -68,13 +72,13 @@ public class TicketsPage extends BaseTestConfiguration{
      * As a parameter is receives a list of elements in a column
      * from which we expect to get title names
      */
-    public ArrayList<String> getNamesOfAnyColumns(By webElements) {
+    public static ArrayList<String> getNamesOfAnyColumns(By webElements) {
         ArrayList<String> titleName = new ArrayList<>();
         List<WebElement> titleNameList = driver.findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
             titleName.add(titleNameList.get(i).getText());
         }
-           return titleName;
+        return titleName;
     }
 
     /**
@@ -109,22 +113,31 @@ public class TicketsPage extends BaseTestConfiguration{
         List<WebElement> stageNameList = driver.findElements(webElements);
         for (int i = 0; i < stageNameList.size(); i++) {
             String text = stageNameList.get(i).getText();
-            if(text.contains("OPEN") || text.contains("IN PROGRESS") || text.contains("DONE")){
+            if (text.contains("OPEN") || text.contains("IN PROGRESS") || text.contains("DONE")) {
                 System.out.println(text);
             }
         }
     }
 
-    public static void enterDataToTheField(By webElement, String data){
+    /**
+     * Method is used to enter any text data to the field
+     */
+    public static void enterDataToTheField(By webElement, String data) {
         driver.findElement(webElement).sendKeys(data);
     }
 
-    public static Boolean navigateBackAndForth(){
+    /**
+     * Method is used to go to the previous page and come back
+     */
+    public static Boolean navigateBackAndForth() {
         driver.navigate().back();
         driver.navigate().forward();
         return pageIsVisible(createTicketPage);
     }
 
+    /**
+     * Method is used to select any option by Index in drop-down options list
+     */
     public static void selectDataFromDropDownListByIndex(By dropDownElement, int searchedElementIndex) {
         driver.findElement(dropDownElement).click();
         Select select = new Select((driver.findElement(dropDownElement)));
@@ -135,8 +148,12 @@ public class TicketsPage extends BaseTestConfiguration{
         select.selectByIndex(searchedElementIndex);
     }
 
+    /**
+     * Method is used to select any option by visible text in drop-down options list
+     */
     public static void selectFromDropDownListByVisibleText(By dropDownElement, String searchedVisibleText) {
         driver.findElement(dropDownElement).click();
+        pageIsVisible(dropDownElement);
         Select select = new Select((driver.findElement(dropDownElement)));
         List<WebElement> options = select.getOptions();
         for (WebElement option : options) {
@@ -145,61 +162,113 @@ public class TicketsPage extends BaseTestConfiguration{
         select.selectByVisibleText(searchedVisibleText);
     }
 
+    /**
+     * Method is used reach searched option from drop-down options list,
+     * by clicking on every option until it reaches the searched one
+     */
     public static void selectOptionOneByOne(By dropDownElement, String searchedVisibleText) {
         Select select = new Select(driver.findElement(dropDownElement));
         List<WebElement> options = select.getOptions();
         for (int i = 0; i < options.size(); i++) {
             driver.findElement(dropDownElement).click();
             options.get(i).click();
-            if(options.get(i).getText().contains(searchedVisibleText)){
+            if (options.get(i).getText().contains(searchedVisibleText)) {
                 break;
             }
         }
     }
 
-    public static void selectFirstOptionFromDropDownList(By dropDownElement){
+    /**
+     * Method is used to select the 1st option from drop-down options list
+     */
+    public static void selectFirstOptionFromDropDownList(By dropDownElement) {
         driver.findElement(dropDownElement).click();
         Select select = new Select(driver.findElement(dropDownElement));
         select.getFirstSelectedOption().isDisplayed();
     }
 
-
-    public static void selectLastOptionFromDropDownList(By dropDownElement){
+    /**
+     * Method is used to select the last option from drop-down options list
+     */
+    public static void selectLastOptionFromDropDownList(By dropDownElement) {
         Select select = new Select(driver.findElement(dropDownElement));
         int optionsSize = select.getOptions().size();
         select.selectByIndex(optionsSize - 1);
     }
 
-    public static Boolean placeHolderInVisible(By webElement, String expectPlaceHolderText){
+    /**
+     * Method is used to verify weather placeholder text is visible
+     */
+    public static Boolean placeHolderInVisible(By webElement, String expectPlaceHolderText) {
         WebElement element = driver.findElement(webElement);
         boolean actualPlaceholder = false;
-        if(element.getAttribute("placeholder").contains(expectPlaceHolderText)){
+        if (element.getAttribute("placeholder").contains(expectPlaceHolderText)) {
             actualPlaceholder = true;
         }
         return actualPlaceholder;
     }
 
-    public static void
+    /**
+     * Method clicks on calendar months, hours, minutes and random accessible date
+     */
+    public static void selectDateInCalendar() {
+        driver.findElement(calendarDataPicker).click();
+        driver.findElement(selectNextMonth).click();
+        driver.findElement(selectPreviousMonth).click();
 
+        List<WebElement> hoursPickers = driver.findElements(hoursPickerList);
+        for (WebElement hours : hoursPickers) {
+            hours.click();
+        }
 
+        List<WebElement> minutesPickers = driver.findElements(minutePickerList);
+        for (WebElement minutes : minutesPickers) {
+            minutes.click();
+        }
 
+        //a list of webElements with accessible dates
+        List<WebElement> accessibleCalendarDates = driver.findElements(By.xpath("//td[@class='ng-tns-c10-3']/a[@class='ui-state-default ng-tns-c10-3']"));
 
-
-
-
-
-    public static void main(String[] args) throws InterruptedException {
-        BaseTestConfiguration.createDriver();
-        BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
-        baseTestConfiguration.openBrowser();
-        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
-        Thread.sleep(1000);
-        baseTestConfiguration.clickOnWebElement(TicketsPage.newTicketBtn);
-        Thread.sleep(2000);
-
-        placeHolderInVisible(descriptionField, "Please input your description here...");
-        Thread.sleep(2000);
-        System.out.println("Ok");
-        driver.quit();
+        //in a loop we click on a random and accessible date in a calendar
+        Random random;
+        for (int i = 1; i < accessibleCalendarDates.size(); i++) {
+            random = new Random();
+            random.nextInt(accessibleCalendarDates.size());
+            accessibleCalendarDates.get(i).click();
+        }
     }
-}
+
+    /**
+     * Method uploads a file from certain directory on your PC
+     */
+    public static void fileUpload(String filePath) {
+        WebElement uploadBtn = driver.findElement(selectFiltersBtn);
+        uploadBtn.click();
+        uploadBtn.sendKeys(filePath);
+    }
+
+
+
+
+
+        public static void main (String[]args) throws InterruptedException {
+            BaseTestConfiguration.createDriver();
+            BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
+            baseTestConfiguration.openBrowser();
+            OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
+            baseTestConfiguration.clickOnWebElement(TicketsPage.newTicketBtn);
+            Thread.sleep(2000);
+            selectFromDropDownListByVisibleText(drpContact, "Drozdh Udahvxadb");
+            Thread.sleep(2000);
+            System.out.println("Selected");
+
+
+//            fileUpload("/Users/aleksandrgnuskin/Downloads/photo_2022-06-02 08.46.39.jpeg");
+
+//            System.out.println("File is added");
+
+            driver.quit();
+        }
+    }
+
+
