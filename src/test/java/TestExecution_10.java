@@ -2,6 +2,7 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pageobjects.GlobalPages;
 import pageobjects.OpenPage;
 import pageobjects.TicketsPage;
 
@@ -33,7 +34,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         clickOnWebElement(TicketsPage.newTicketBtn);
 
         //While being on  create new ticker page go back and forward
-        TicketsPage.navigateBackAndForth();
+        GlobalPages.navigateBackAndForth(TicketsPage.createTicketPage);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         clickOnWebElement(TicketsPage.newTicketBtn);
 
         //While being on  create new ticker page go back and forward
-        TicketsPage.placeHolderInVisible(TicketsPage.descriptionField, expectedPlaceHolder);
+        GlobalPages.placeHolderInVisible(TicketsPage.descriptionField, expectedPlaceHolder);
     }
 
 
@@ -78,10 +79,10 @@ public class TestExecution_10 extends BaseTestConfiguration {
         pageIsVisible(TicketsPage.createTicketPage);
 
         //Enter title name into title field
-        TicketsPage.enterDataToTheField(TicketsPage.titleField, titleName);
+        GlobalPages.enterDataToTheField(TicketsPage.titleField, titleName);
 
         //Enter description into description field
-        TicketsPage.enterDataToTheField(TicketsPage.descriptionField, description);
+        GlobalPages.enterDataToTheField(TicketsPage.descriptionField, description);
 
         //Select category by index
         TicketsPage.selectDataFromDropDownListByIndex(TicketsPage.drpCategory, indexOfOption);

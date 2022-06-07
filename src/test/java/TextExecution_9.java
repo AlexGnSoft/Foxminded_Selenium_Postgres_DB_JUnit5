@@ -1,6 +1,7 @@
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Test;
+import pageobjects.GlobalPages;
 import pageobjects.MenuDashboard;
 import pageobjects.OpenPage;
 import pageobjects.TicketsPage;

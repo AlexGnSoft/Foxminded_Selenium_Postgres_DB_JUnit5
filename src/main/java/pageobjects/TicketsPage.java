@@ -120,22 +120,6 @@ public class TicketsPage extends BaseTestConfiguration {
     }
 
     /**
-     * Method is used to enter any text data to the field
-     */
-    public static void enterDataToTheField(By webElement, String data) {
-        driver.findElement(webElement).sendKeys(data);
-    }
-
-    /**
-     * Method is used to go to the previous page and come back
-     */
-    public static Boolean navigateBackAndForth() {
-        driver.navigate().back();
-        driver.navigate().forward();
-        return pageIsVisible(createTicketPage);
-    }
-
-    /**
      * Method is used to select any option by Index in drop-down options list
      */
     public static void selectDataFromDropDownListByIndex(By dropDownElement, int searchedElementIndex) {
@@ -194,18 +178,6 @@ public class TicketsPage extends BaseTestConfiguration {
         Select select = new Select(driver.findElement(dropDownElement));
         int optionsSize = select.getOptions().size();
         select.selectByIndex(optionsSize - 1);
-    }
-
-    /**
-     * Method is used to verify weather placeholder text is visible
-     */
-    public static Boolean placeHolderInVisible(By webElement, String expectPlaceHolderText) {
-        WebElement element = driver.findElement(webElement);
-        boolean actualPlaceholder = false;
-        if (element.getAttribute("placeholder").contains(expectPlaceHolderText)) {
-            actualPlaceholder = true;
-        }
-        return actualPlaceholder;
     }
 
     /**
