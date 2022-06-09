@@ -3,13 +3,9 @@ package config;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -49,34 +45,6 @@ public class BaseTestConfiguration {
      */
     public void openBrowser(){
         driver.get(propertiesFile.getApplicationUrl());
-    }
-
-    /**
-     * Method waits while the element is visible
-     */
-    public static WebElement waitElementIsVisible(WebElement webElement){
-        new WebDriverWait(driver, Duration.ofSeconds(propertiesFile.getExplicitWait()))
-                .until(ExpectedConditions.visibilityOf(webElement));
-
-        return webElement;
-    }
-
-    /**
-     * Method waits for a page to be visible and active
-     */
-    public static Boolean pageIsVisible(By webElement){
-        new WebDriverWait(driver, Duration.ofSeconds(propertiesFile.getExplicitWait()))
-                .until(ExpectedConditions.presenceOfElementLocated(webElement));
-
-        return true;
-    }
-
-    /**
-     * Method clicks on a certain webElement
-     */
-    public void clickOnWebElement(By element){
-        WebElement webElement = driver.findElement(element);
-        waitElementIsVisible(webElement).click();
     }
 
     /**

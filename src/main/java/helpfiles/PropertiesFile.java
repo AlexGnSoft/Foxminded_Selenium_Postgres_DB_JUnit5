@@ -60,7 +60,7 @@ public class PropertiesFile {
         else throw new RuntimeException("driverPath for FireFox not specified in the config.properties file.");
     }
 
-    public long getImplicitWait() {
+    public static long getImplicitWait() {
         String implicitWait = properties.getProperty("implicit_Wait");
         if(implicitWait != null) return Long.parseLong(implicitWait);
         else throw new RuntimeException("implicitlyWait is not specified in the config.properties file.");

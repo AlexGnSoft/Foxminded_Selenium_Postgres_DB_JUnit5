@@ -24,7 +24,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
         Thread.sleep(2000);
 
         //Print text of ID from Tickets page
-        TicketsPage.printValueOfColumn(TicketsPage.idList);
+        GlobalPages.printValueOfColumn(TicketsPage.idList);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
         Thread.sleep(2000);
 
         //Print text of ID from Tickets page
-        TicketsPage.printValueOfColumn(TicketsPage.titleList);
+        GlobalPages.printValueOfColumn(TicketsPage.titleList);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
         Thread.sleep(2000);
 
         //Print text of assigned list from Tickets page
-        TicketsPage.printValueOfColumn(TicketsPage.assigneeList);
+        GlobalPages.printValueOfColumn(TicketsPage.assigneeList);
     }
 
     @Test

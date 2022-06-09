@@ -2,6 +2,7 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pageobjects.GlobalPages;
 import pageobjects.OpenPage;
 
 public class TestExecution_8 extends BaseTestConfiguration{
@@ -12,7 +13,7 @@ public class TestExecution_8 extends BaseTestConfiguration{
         openBrowser();
 
         // Verify that login page is visible
-        Assertions.assertTrue(OpenPage.pageIsVisible(OpenPage.loginPageBody));
+        Assertions.assertTrue(GlobalPages.pageIsVisible(OpenPage.loginPageBody));
     }
 
     @Test
@@ -33,7 +34,7 @@ public class TestExecution_8 extends BaseTestConfiguration{
         OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
 
         // Verify that home page is visible
-        Assertions.assertTrue(OpenPage.pageIsVisible(OpenPage.homePage));
+        Assertions.assertTrue(GlobalPages.pageIsVisible(OpenPage.homePage));
     }
 
 

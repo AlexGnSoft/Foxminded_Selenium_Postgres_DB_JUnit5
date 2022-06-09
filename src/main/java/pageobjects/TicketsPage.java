@@ -1,7 +1,6 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
-import helpfiles.PropertiesFile;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -26,7 +25,7 @@ public class TicketsPage extends BaseTestConfiguration {
     private static final By inProgressBtn = By.xpath("//a[@id='IN PROGRESS']");
     private static final By rejectedBtn = By.xpath("//a[@id='Rejected/SaaS']");
     private static final By doneBtn = By.xpath("//a[@id='DONE']");
-    public static final By newTicketBtn = By.xpath("//button[@id='create-new-ticket']");
+    public static final By newTicketBtn = By.cssSelector("#create-new-ticket");
     public static final By allTicketsBtn = By.xpath("//li[@id='tickets']//a[@tooltipplacement='bottom']");
     public static final By myTicketsBtn = By.xpath("//li[@id='user_tickets']/a[@class='btn btn-primary']");
     public static final By followedTicketsBtn = By.xpath("//li[@id='followed_tickets']");
@@ -67,19 +66,6 @@ public class TicketsPage extends BaseTestConfiguration {
     public static final By submitBtn = By.cssSelector("#submit-btn");
     public static final By cancelBtn = By.cssSelector("#cancel-btn");
 
-    /**
-     * Method returns title names (of id, title, assignee, stage) using getText().
-     * As a parameter is receives a list of elements in a column
-     * from which we expect to get title names
-     */
-    public static ArrayList<String> getNamesOfAnyColumns(By webElements) {
-        ArrayList<String> titleName = new ArrayList<>();
-        List<WebElement> titleNameList = driver.findElements(webElements);
-        for (int i = 0; i < titleNameList.size(); i++) {
-            titleName.add(titleNameList.get(i).getText());
-        }
-        return titleName;
-    }
 
     /**
      * Method returns a list of Stage names using getText() method.
@@ -91,18 +77,6 @@ public class TicketsPage extends BaseTestConfiguration {
             titleName.add(titleNameList.get(i).getText());
         }
         return titleName;
-    }
-
-    /**
-     * Method prints in console values of column using getText() method.
-     * As a parameter is receives a list of elements in a column
-     * from which we expect to get and print
-     */
-    public static void printValueOfColumn(By webElements) {
-        List<WebElement> titleNameList = driver.findElements(webElements);
-        for (int i = 0; i < titleNameList.size(); i++) {
-            System.out.println(titleNameList.get(i).getText());
-        }
     }
 
     /**
@@ -137,7 +111,7 @@ public class TicketsPage extends BaseTestConfiguration {
      */
     public static void selectFromDropDownListByVisibleText(By dropDownElement, String searchedVisibleText) {
         driver.findElement(dropDownElement).click();
-        pageIsVisible(dropDownElement);
+        GlobalPages.pageIsVisible(dropDownElement);
         Select select = new Select((driver.findElement(dropDownElement)));
         List<WebElement> options = select.getOptions();
         for (WebElement option : options) {
@@ -218,29 +192,7 @@ public class TicketsPage extends BaseTestConfiguration {
         uploadBtn.click();
         uploadBtn.sendKeys(filePath);
     }
+}
 
-
-
-
-
-        public static void main (String[]args) throws InterruptedException {
-            BaseTestConfiguration.createDriver();
-            BaseTestConfiguration baseTestConfiguration = new BaseTestConfiguration();
-            baseTestConfiguration.openBrowser();
-            OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
-            baseTestConfiguration.clickOnWebElement(TicketsPage.newTicketBtn);
-            Thread.sleep(2000);
-            selectFromDropDownListByVisibleText(drpContact, "Drozdh Udahvxadb");
-            Thread.sleep(2000);
-            System.out.println("Selected");
-
-
-//            fileUpload("/Users/aleksandrgnuskin/Downloads/photo_2022-06-02 08.46.39.jpeg");
-
-//            System.out.println("File is added");
-
-            driver.quit();
-        }
-    }
 
 

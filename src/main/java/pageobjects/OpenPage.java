@@ -2,10 +2,6 @@ package pageobjects;
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.time.Duration;
-
 
 public class OpenPage extends BaseTestConfiguration{
     public static PropertiesFile propertiesFile = new PropertiesFile();

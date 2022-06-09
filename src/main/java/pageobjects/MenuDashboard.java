@@ -8,15 +8,15 @@ import java.util.List;
 
 public class MenuDashboard extends BaseTestConfiguration {
 
-    private static final By homePagePanel = By.xpath("//div[@class='main-panel']");
+    public static final By homePagePanel = By.xpath("//div[@class='main-panel']");
     public static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
     public static final By dashboardTab = By.xpath("//a[@id='menu-dashboard']");
-    private static final By ticketsTab = By.xpath("//a[@id='menu-tickets']");
-    private static final By companiesTab = By.xpath("//a[@id='menu-companies']");
-    private static final By contactsTab = By.xpath("//a[@id='menu-contacts']");
-    private static final By devicesTab = By.xpath("//a[@id='menu-device-list']");
-    private static final By departmentsTab = By.xpath("//a[@id='menu-departments']");
-    private static final By managersTab = By.xpath("//a[@id='menu-managers']");
+    public static final By ticketsTab = By.xpath("//a[@id='menu-tickets']");
+    public static final By companiesTab = By.xpath("//a[@id='menu-companies']");
+    public static final By contactsTab = By.xpath("//a[@id='menu-contacts']");
+    public static final By devicesTab = By.xpath("//a[@id='menu-device-list']");
+    public static final By departmentsTab = By.xpath("//a[@id='menu-departments']");
+    public static final By managersTab = By.xpath("//a[@id='menu-managers']");
     public static final By idsList = By.cssSelector("td[style='width: 5% !important;']");
     public static final By prioritiesList = By.xpath("//td[contains(text(), 'P')]");
     public static final By categoryList = By.xpath("//span[@class='break-word fixed-span label label-info']");
@@ -25,17 +25,13 @@ public class MenuDashboard extends BaseTestConfiguration {
     public static final By closeButton = By.cssSelector("button.close");
 
     /**
-     * Click on a web element
+     * Method is used to get to NeedImmediateReactionPage
      */
-    public static void click(By webElement){
-        driver.findElement(webElement).click();
-    }
-
     public static void getToNeedImmediateReactionPage(){
-        click(closeButton);
-        click(minimizeSideBarBtn);
-        click(dashboardTab);
-        click(needImmediateReactionButton);
+        GlobalPages.click(closeButton);
+        GlobalPages.click(minimizeSideBarBtn);
+        GlobalPages.click(dashboardTab);
+        GlobalPages.click(needImmediateReactionButton);
     }
 
     /**
