@@ -2,7 +2,9 @@ package config;
 
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -18,8 +20,8 @@ public class BaseTestConfiguration {
      * '@BeforeAll' method is only executed once for a given test class.
      * Method creates webDriver and run test on a certain browser, depending on set browser in PropertiesFile class.
      */
-    @BeforeAll
-    public static void createDriver(){
+    @BeforeEach
+    public void createDriver(){
         propertiesFile = new PropertiesFile();
 
         switch(propertiesFile.getBrowser()){
@@ -52,8 +54,8 @@ public class BaseTestConfiguration {
      * '@AfterAll' method is only executed once for a given test class.
      * Method quit the whole browser session along with all the associated browser windows, tabs and pop-ups.
      */
-    @AfterAll
-    public static void tearDown(){
+    @AfterEach
+    public void tearDown(){
         driver.quit();
     }
 

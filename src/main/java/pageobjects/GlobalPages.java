@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +46,10 @@ public class GlobalPages extends BaseTestConfiguration {
     }
 
     /**
-     * Method is used to enter any text data to the field
+     * Method is used to clear possible placeholder text and then fill in user data to the field
      */
     public static void enterDataToTheField(By webElement, String data) {
+        driver.findElement(webElement).clear();
         driver.findElement(webElement).sendKeys(data);
     }
 
@@ -92,6 +92,17 @@ public class GlobalPages extends BaseTestConfiguration {
     }
 
     /**
+     * Method suspends the current thread for the specified amount of time.
+     */
+    public static void sleepWait(int waitTime){
+        try {
+            Thread.sleep(waitTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Method returns title names (of id, title, assignee, stage) using getText().
      * As a parameter is receives a list of elements in a column
      * from which we expect to get title names
@@ -119,23 +130,15 @@ public class GlobalPages extends BaseTestConfiguration {
 
 
     /**
-     * Method is used to accept Alert action
+     * Method is used to perform action on Alert pop up:
+     * if true - Accept click
+     * if false - Dismiss click
      */
-    public static void acceptAlert(){
-        driver.switchTo().alert().accept();
+    public static void alertAcceptOrDismiss(Boolean isAccept){
+        if(isAccept){
+            driver.switchTo().alert().accept();
+        }else{
+            driver.switchTo().alert().dismiss();
+        }
     }
-
-    /**
-     * Method is used to dismiss Alert action
-     */
-    public static void dismissAlert(){
-        driver.switchTo().alert().accept();
-    }
-
-
-
-
-
-
-
 }

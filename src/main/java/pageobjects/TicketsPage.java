@@ -42,25 +42,22 @@ public class TicketsPage extends BaseTestConfiguration {
     public static final By titleList = By.cssSelector(".ticket_title");
     public static final By assigneeList = By.cssSelector(".ticket_assignee");
     public static final By stageList = By.cssSelector("td[width='130px']");
-
     public static final By createTicketPage = By.cssSelector("div[class='container-fluid']");
     public static final By titleField = By.cssSelector("#title");
     public static final By descriptionField = By.cssSelector("textarea[id='description']");
     public static final By drpCategory = By.cssSelector("#categoryId");
     public static final By drpStage = By.cssSelector("#stageId");
-    public static final By drpCompany = By.cssSelector("#company");
-    public static final By drpContact = By.cssSelector("#contactId");
+    public static final By drpStageOptions = By.cssSelector("#stageId");
+    public static final By drpContact = By.xpath("//div[@class='inline']");
+    public static final By drpContactOptions = By.xpath("//select[@id='contactId']");
     public static final By drpPriority = By.cssSelector("#priority");
-
     public static final By calendarDataPicker = By.cssSelector(".ui-datepicker-trigger.ui-calendar-button");
-    public static final By calendarDataField = By.cssSelector("#done-deadline-date");
-    public static final By calendarUi = By.xpath("//div[contains(@class,'ui-datepicker ui-widget ui-widget-content ui-helper-clearfix')]");
     public static final By selectNextMonth = By.xpath("//span[@class='fa fa-angle-right']");
     public static final By selectPreviousMonth = By.xpath("//span[@class='fa fa-angle-left']");
     public static final By minutePickerList = By.xpath("//div[@class='ui-minute-picker']/a[@class='ng-tns-c10-2']");
     public static final By hoursPickerList = By.xpath("//div[@class='ui-hour-picker']/a[@class='ng-tns-c10-2']");
-
     public static final By drpDepartment = By.cssSelector("#department");
+    public static final By drpDepartmentOptions = By.xpath("//select[@id='department']");
     public static final By drpManager = By.cssSelector("#manager");
     public static final By selectFiltersBtn = By.xpath("//div[@class='col-sm-10']/button[@class='btn btn-success btn-outline']");
     public static final By submitBtn = By.cssSelector("#submit-btn");
@@ -98,25 +95,18 @@ public class TicketsPage extends BaseTestConfiguration {
      */
     public static void selectDataFromDropDownListByIndex(By dropDownElement, int searchedElementIndex) {
         driver.findElement(dropDownElement).click();
+        GlobalPages.sleepWait(3000);
         Select select = new Select((driver.findElement(dropDownElement)));
-        List<WebElement> options = select.getOptions();
-        for (WebElement option : options) {
-            option.isDisplayed();
-        }
         select.selectByIndex(searchedElementIndex);
     }
 
     /**
      * Method is used to select any option by visible text in drop-down options list
      */
-    public static void selectFromDropDownListByVisibleText(By dropDownElement, String searchedVisibleText) {
+    public static void selectFromDropDownListByVisibleText(By dropDownElement, By drpContactOptions, String searchedVisibleText) {
         driver.findElement(dropDownElement).click();
-        GlobalPages.pageIsVisible(dropDownElement);
-        Select select = new Select((driver.findElement(dropDownElement)));
-        List<WebElement> options = select.getOptions();
-        for (WebElement option : options) {
-            option.isDisplayed();
-        }
+        GlobalPages.sleepWait(2000);
+        Select select = new Select((driver.findElement(drpContactOptions)));
         select.selectByVisibleText(searchedVisibleText);
     }
 

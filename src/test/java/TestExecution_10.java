@@ -3,61 +3,12 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import pageobjects.*;
 import java.util.ArrayList;
 
 
 public class TestExecution_10 extends BaseTestConfiguration {
-    @Test
-    public void verifyThatCreateNewTicketPageIsVisible() {
-        // Go to application Login page
-        openBrowser();
-
-        //Make log in
-        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
-
-        //Click on 'New Ticket +' button
-        GlobalPages.clickOnVisibleElement(TicketsPage.newTicketBtn);
-
-        //Wait for 'Create New Ticket' page to be interactive
-        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.createTicketPage));
-    }
-
-    @Test
-    public void navigationBackAndForward() {
-        // Go to application Login page
-        openBrowser();
-
-        //Make log in
-        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
-
-        //Click on 'New Ticket +' button
-        GlobalPages.clickOnVisibleElement(TicketsPage.newTicketBtn);
-
-        //While being on  create new ticker page go back and forward
-        GlobalPages.navigateBackAndForth(TicketsPage.createTicketPage);
-    }
-
-    @Test
-    public void visibilityOfPlaceholders() throws InterruptedException {
-        //Test data
-        String expectedPlaceHolder = "Please input your description here...";
-
-        // Go to application Login page
-        openBrowser();
-
-        //Make log in
-        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
-        Thread.sleep(1000);
-
-
-        //Click on 'New Ticket +' button
-        GlobalPages.click(TicketsPage.newTicketBtn);
-        GlobalPages.waitImplicitly();
-
-        //While being on  create new ticker page go back and forward
-        GlobalPages.placeHolderInVisible(TicketsPage.descriptionField, expectedPlaceHolder);
-    }
 
     @Test
     public void createNewTicket() {
@@ -69,7 +20,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         String contactName = "Drozdh Udahvxadb";
         int indexOfOption = 4;
         String managerName = "Ярослав Коваленко";
-        String pathToTheFileOnPc = "/Users/aleksandrgnuskin/Downloads/photo_2022-06-02 08.46.39.jpeg";
+        String pathToTheFileOnPc = "src/main/java/helpfiles/Ukraine-Sign.jpeg";
 
         // Go to application Login page
         openBrowser();
@@ -79,7 +30,12 @@ public class TestExecution_10 extends BaseTestConfiguration {
 
         //Click on 'New Ticket +' button
         GlobalPages.clickOnVisibleElement(TicketsPage.newTicketBtn);
-        GlobalPages.pageIsVisible(TicketsPage.createTicketPage);
+
+        //Wait for 'Create New Ticket' page to be interactive
+        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.createTicketPage));
+
+        //Wait for 'Create New Ticket' page to be interactive
+        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.createTicketPage));
 
         //Enter title name into title field
         GlobalPages.enterDataToTheField(TicketsPage.titleField, ticketTitle);
@@ -91,13 +47,13 @@ public class TestExecution_10 extends BaseTestConfiguration {
         TicketsPage.selectDataFromDropDownListByIndex(TicketsPage.drpCategory, indexOfOption);
 
         //Select stage by visible text
-        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpStage, stage);
+        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpStage, TicketsPage.drpStageOptions,stage);
 
-        //Select company by index
-        TicketsPage.selectDataFromDropDownListByIndex(TicketsPage.drpCompany, 0);
+//        //Select company by visible text
+//        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpCompany, company);
 
         //Select contact
-        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpContact, contactName);
+        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpContact, TicketsPage.drpContactOptions, contactName);
 
         //Select priority by index
         TicketsPage.selectDataFromDropDownListByIndex(TicketsPage.drpPriority, indexOfOption);
@@ -105,11 +61,8 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Select random, but accessible date in the calendar
         TicketsPage.selectDateInCalendar();
 
-        //Select department by visible option in the drop-down list
-        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpDepartment, departmentName);
-
         //Select department by first option in the drop-down list
-        TicketsPage.selectFirstOptionFromDropDownList(TicketsPage.drpDepartment);
+        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpDepartment, TicketsPage.drpDepartmentOptions, departmentName);
 
         //Select manager
         TicketsPage.selectOptionOneByOne(TicketsPage.drpManager, managerName);
@@ -182,7 +135,6 @@ public class TestExecution_10 extends BaseTestConfiguration {
 
         //Click on Departments tab > 'New Department+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.departmentsTab);
-        GlobalPages.waitImplicitly();
         GlobalPages.clickOnVisibleElement(DepartmentsNewDepPage.newDepartmentBtn);
         GlobalPages.pageIsVisible(DepartmentsNewDepPage.newDepartmentPage);
 
@@ -191,18 +143,9 @@ public class TestExecution_10 extends BaseTestConfiguration {
 
         //Click on 'Additional Information+' button
         GlobalPages.click(DepartmentsNewDepPage.additionalInfoBtn);
-        GlobalPages.waitImplicitly();
 
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.phoneField, phone);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.skypeField, skype);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.websiteField, website);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.emailField, email);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.countryField, country);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.cityField, city);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.streetField, street);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.buildingField, building);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.zipCodeField, zipCode);
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.roomNumberField, roomNumber);
+        //Fill in all fields
+        DepartmentsNewDepPage.fillInAllFields(phone, skype,website,email,country,city, street, building, zipCode, roomNumber);
 
         //Click on Submit button
         GlobalPages.click(DepartmentsNewDepPage.submitBtn);
@@ -214,9 +157,9 @@ public class TestExecution_10 extends BaseTestConfiguration {
     }
 
     @Test
-    public void createNewDepartmentAndDeleteCreatedDepartment() throws InterruptedException {
+    public void createNewDepartmentAndDeleteCreatedDepartment() {
         //Test data
-        String departmentTitle = "My department 10";
+        String departmentTitle = "My department 14";
 
         // Go to application Login page
         openBrowser();
@@ -229,7 +172,6 @@ public class TestExecution_10 extends BaseTestConfiguration {
 
         //Click on Departments tab > 'New Department+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.departmentsTab);
-        Thread.sleep(1000);
         GlobalPages.click(DepartmentsNewDepPage.newDepartmentBtn);
         GlobalPages.pageIsVisible(DepartmentsNewDepPage.newDepartmentPage);
 
@@ -245,12 +187,11 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Click on Delete button to delete created department
         GlobalPages.click(DepartmentsNewDepPage.deleteBtn);
 
-        //Click on OK button in Alert
-        GlobalPages.acceptAlert();
+        //Accept alert (if true we accept alert)
+        GlobalPages.alertAcceptOrDismiss(true);
 
-        //Wait for page is visible
-        GlobalPages.pageIsVisible(DepartmentsNewDepPage.DepartmentPage);
-        Thread.sleep(1000);
+        //Thread sleep waiter
+        GlobalPages.sleepWait(3000);
 
         ArrayList<String> namesOfAnyColumns = GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList);
         for (String title2 : namesOfAnyColumns) {
@@ -259,7 +200,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
     }
 
     @Test
-    public void createNewContactWithoutAdditionalInfo() throws InterruptedException {
+    public void createNewContactWithoutAdditionalInfo() {
         // Test data
         String FName = "First Name";
         String LName = "Last Name";
@@ -276,8 +217,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
 
         //Click on Companies tab > 'New Company+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.contactsTab);
-        GlobalPages.waitImplicitly();
-        GlobalPages.clickOnVisibleElement(ContactsNewContactPage.newContactBtn);
+        GlobalPages.click(ContactsNewContactPage.newContactBtn);
         GlobalPages.pageIsVisible(ContactsNewContactPage.newContactPage);
 
         //Fill in First Name, Last Name, Email, Login, select Company
@@ -285,17 +225,17 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, LName);
         GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, email);
 
-        //Fill in Check-boxes
-        GlobalPages.click(ContactsNewContactPage.notificationOnStageChangeCheckBox);
-        GlobalPages.click(ContactsNewContactPage.notificationOnNewCommentCheckBox);
-        GlobalPages.click(ContactsNewContactPage.notificationOnDoneStageCheckBox);
-        GlobalPages.click(ContactsNewContactPage.notificationOnStageChangeCheckBox);
+        //Click on Check-boxes if it's not checked. Finding element is test is a temporary solution.
+        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
+        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnNewComment']")));
+        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
 
-        //Fill in Radio
-        GlobalPages.click(ContactsNewContactPage.firstServiceLevelRadioBtn);
-        GlobalPages.click(ContactsNewContactPage.secondServiceLevelRadioBtn);
-        GlobalPages.click(ContactsNewContactPage.thirdServiceLevelRadioBtn);
-        GlobalPages.click(ContactsNewContactPage.zeroServiceLevelRadioBtn);
+        //Select radio button if it's not already selected. Finding element is test is a temporary solution.
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='0']")));
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='1']")));
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='2']")));
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='3']")));
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);
@@ -306,7 +246,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
     }
 
     @Test
-    public void createNewContactWithAdditionalInfo() throws InterruptedException {
+    public void createNewContactWithAdditionalInfo() {
         // Test data
         String FName = "First Name";
         String LName = "Last Name";
@@ -330,11 +270,9 @@ public class TestExecution_10 extends BaseTestConfiguration {
 
         //Open sidebar
         GlobalPages.openLeftSideTab();
-        GlobalPages.waitImplicitly();
 
         //Click on Companies tab > 'New Company+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.contactsTab);
-        GlobalPages.waitImplicitly();
         GlobalPages.clickOnVisibleElement(ContactsNewContactPage.newContactBtn);
         GlobalPages.pageIsVisible(ContactsNewContactPage.newContactPage);
 
@@ -346,29 +284,20 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Click on 'Additional information+' button
         GlobalPages.click(ContactsNewContactPage.addInfoBtn);
 
-        //Fill in fields
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.countryField, country);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.cityField, city);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.streetField, street);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.buildingField, building);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.zipCodeField, zipCode);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.roomNumberField, roomNumber);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.phoneField, skype);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.phoneField, skype);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.websiteField, website);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.jobPositionField, jobPosition);
+        //Fill in all fields
+        ContactsNewContactPage.fillInAllFields(country, street, zipCode, phone, website, city, building, roomNumber, skype, jobPosition);
 
-        //Fill in Check-boxes
-        GlobalPages.click(ContactsNewContactPage.notificationOnStageChangeCheckBox);
-        GlobalPages.click(ContactsNewContactPage.notificationOnNewCommentCheckBox);
-        GlobalPages.click(ContactsNewContactPage.notificationOnDoneStageCheckBox);
-        GlobalPages.click(ContactsNewContactPage.notificationOnStageChangeCheckBox);
+        //Click on Check-boxes if it's not checked. Finding element is test is a temporary solution.
+        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
+        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnNewComment']")));
+        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
 
-        //Fill in Radio
-        GlobalPages.click(ContactsNewContactPage.firstServiceLevelRadioBtn);
-        GlobalPages.click(ContactsNewContactPage.secondServiceLevelRadioBtn);
-        GlobalPages.click(ContactsNewContactPage.thirdServiceLevelRadioBtn);
-        GlobalPages.click(ContactsNewContactPage.zeroServiceLevelRadioBtn);
+        //Select radio button if it's not already selected. Finding element is test is a temporary solution.
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='0']")));
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='1']")));
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='2']")));
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='3']")));
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);
