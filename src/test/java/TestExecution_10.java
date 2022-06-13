@@ -49,9 +49,6 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Select stage by visible text
         TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpStage, TicketsPage.drpStageOptions,stage);
 
-//        //Select company by visible text
-//        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpCompany, company);
-
         //Select contact
         TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpContact, TicketsPage.drpContactOptions, contactName);
 
@@ -68,7 +65,6 @@ public class TestExecution_10 extends BaseTestConfiguration {
         TicketsPage.selectOptionOneByOne(TicketsPage.drpManager, managerName);
 
         //Upload file from pc
-
         TicketsPage.fileUpload(pathToTheFileOnPc);
 
         //Submit new ticker data

@@ -65,7 +65,7 @@ public class GlobalPages extends BaseTestConfiguration {
     /**
      * Method is used to verify weather placeholder text is visible
      */
-    public static Boolean placeHolderInVisible(By webElement, String expectPlaceHolderText) {
+    public static Boolean placeHolderIsVisible(By webElement, String expectPlaceHolderText) {
         WebElement element = driver.findElement(webElement);
         boolean actualPlaceholder = false;
         if (element.getAttribute("placeholder").contains(expectPlaceHolderText)) {
