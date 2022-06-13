@@ -1,5 +1,7 @@
 package utils;
 
+import net.bytebuddy.utility.RandomString;
+
 import java.util.Random;
 
 public class RandomDataGenerator {
@@ -29,14 +31,31 @@ public class RandomDataGenerator {
      * Method is used to generate random Strings values,
      * where stringArray - is an array of strings
      */
-    public String randomString(String[] stringArray){
+    public String randomString(int strLength){
+        //create a string for all characters
+        String AlphaNumericStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz0123456789";
+
+        //create a random string builder
+        StringBuilder sb = new StringBuilder();
+
+        //create an object of random string
         Random random = new Random();
 
-        // Getting random index of a string in the array of strings
-        int randomIndex = random.nextInt(stringArray.length);
+        for (int i = 0; i < strLength; i++) {
 
-        // Initializing randomString variable with random string value
-        String randomString = stringArray[randomIndex];
+            //initialize length of index, which we get as our method input value
+            int index = random.nextInt(AlphaNumericStr.length());
+
+            //get character specified by index from string
+            char randomChar = AlphaNumericStr.charAt(index);
+
+            //append the character to String builder
+            sb.append(randomChar);
+        }
+
+        //initializing out random string
+        String randomString = sb.toString();
+        System.out.println(randomString);
 
         return randomString;
     }
@@ -44,9 +63,7 @@ public class RandomDataGenerator {
 
     public static void main(String[] args) {
         RandomDataGenerator randomDataGenerator = new RandomDataGenerator();
-        String [] arr = {"Jose", "Alex", "Ann", "Polina", "German"};
-        randomDataGenerator.randomString(arr);
-
+        randomDataGenerator.randomString(7);
     }
 }
 
