@@ -1,10 +1,9 @@
 package pageobjects;
 
-import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class ContactsNewContactPage extends BaseTestConfiguration {
+public class ContactsNewContactPage {
     public static final By newContactBtn = By.xpath("//button[@id='new-contact']");
     public static final By newContactPage = By.xpath("//div[@class='card-content']");
     public static final By fullNameList = By.xpath("//tbody/tr/td/a");
@@ -66,26 +65,6 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
         GlobalPages.enterDataToTheField(ContactsNewContactPage.roomNumberField, roomNumber);
         GlobalPages.enterDataToTheField(ContactsNewContactPage.skypeField, skype);
         GlobalPages.enterDataToTheField(ContactsNewContactPage.jobPositionField, jobPosition);
-    }
-
-    /**
-     * Method is used to check checkBox status.
-     * If not checked > we make it checked
-     */
-    public static void checkCheckboxStatusAndClick(WebElement checkBox) {
-        if (!checkBox.isSelected()) {
-            checkBox.click();
-        }
-    }
-
-    /**
-     * Method is used to check radioButton status.
-     * If not selected > we make it selected
-     */
-    public static void checkRadioButtonStatusAndSelect(WebElement checkBox) {
-        if (!checkBox.isSelected()) {
-            checkBox.click();
-        }
     }
 }
 

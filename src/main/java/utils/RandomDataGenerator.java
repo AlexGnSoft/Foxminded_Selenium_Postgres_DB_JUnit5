@@ -1,7 +1,5 @@
 package utils;
 
-import net.bytebuddy.utility.RandomString;
-
 import java.util.Random;
 
 public class RandomDataGenerator {
@@ -55,15 +53,8 @@ public class RandomDataGenerator {
 
         //initializing out random string
         String randomString = sb.toString();
-        System.out.println(randomString);
 
         return randomString;
-    }
-
-
-    public static void main(String[] args) {
-        RandomDataGenerator randomDataGenerator = new RandomDataGenerator();
-        randomDataGenerator.randomString(7);
     }
 }
 

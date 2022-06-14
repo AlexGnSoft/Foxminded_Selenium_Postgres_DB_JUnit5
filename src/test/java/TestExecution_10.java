@@ -47,10 +47,10 @@ public class TestExecution_10 extends BaseTestConfiguration {
         TicketsPage.selectDataFromDropDownListByIndex(TicketsPage.drpCategory, indexOfOption);
 
         //Select stage by visible text
-        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpStage, TicketsPage.drpStageOptions,stage);
+        GlobalPages.selectFromDropDownListByVisibleText(TicketsPage.drpStage, TicketsPage.drpStageOptions,stage);
 
         //Select contact
-        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpContact, TicketsPage.drpContactOptions, contactName);
+        GlobalPages.selectFromDropDownListByVisibleText(TicketsPage.drpContact, TicketsPage.drpContactOptions, contactName);
 
         //Select priority by index
         TicketsPage.selectDataFromDropDownListByIndex(TicketsPage.drpPriority, indexOfOption);
@@ -59,7 +59,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         TicketsPage.selectDateInCalendar();
 
         //Select department by first option in the drop-down list
-        TicketsPage.selectFromDropDownListByVisibleText(TicketsPage.drpDepartment, TicketsPage.drpDepartmentOptions, departmentName);
+        GlobalPages.selectFromDropDownListByVisibleText(TicketsPage.drpDepartment, TicketsPage.drpDepartmentOptions, departmentName);
 
         //Select manager
         TicketsPage.selectOptionOneByOne(TicketsPage.drpManager, managerName);
@@ -222,16 +222,16 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, email);
 
         //Click on Check-boxes if it's not checked. Finding element is test is a temporary solution.
-        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
-        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
-        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnNewComment']")));
-        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
+        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnNewComment']")));
+        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
 
         //Select radio button if it's not already selected. Finding element is test is a temporary solution.
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='0']")));
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='1']")));
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='2']")));
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='3']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='0']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='1']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='2']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='3']")));
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);
@@ -284,16 +284,16 @@ public class TestExecution_10 extends BaseTestConfiguration {
         ContactsNewContactPage.fillInAllFields(country, street, zipCode, phone, website, city, building, roomNumber, skype, jobPosition);
 
         //Click on Check-boxes if it's not checked. Finding element is test is a temporary solution.
-        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
-        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
-        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnNewComment']")));
-        ContactsNewContactPage.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
+        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//input[@name='notificationOnNewComment']")));
+        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
 
         //Select radio button if it's not already selected. Finding element is test is a temporary solution.
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='0']")));
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='1']")));
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='2']")));
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='3']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='0']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='1']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='2']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(driver.findElement(By.xpath("//input[@value='3']")));
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);

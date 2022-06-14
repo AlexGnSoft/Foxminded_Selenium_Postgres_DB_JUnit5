@@ -100,15 +100,7 @@ public class TicketsPage extends BaseTestConfiguration {
         select.selectByIndex(searchedElementIndex);
     }
 
-    /**
-     * Method is used to select any option by visible text in drop-down options list
-     */
-    public static void selectFromDropDownListByVisibleText(By dropDownElement, By drpContactOptions, String searchedVisibleText) {
-        driver.findElement(dropDownElement).click();
-        GlobalPages.sleepWait(2000);
-        Select select = new Select((driver.findElement(drpContactOptions)));
-        select.selectByVisibleText(searchedVisibleText);
-    }
+
 
     /**
      * Method is used reach searched option from drop-down options list,

@@ -5,6 +5,7 @@ import helpfiles.PropertiesFile;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -117,6 +118,14 @@ public class GlobalPages extends BaseTestConfiguration {
     }
 
     /**
+     * Method is used to click on the first element in a list
+     */
+    public static void clickOnTheFirstElementInAList(By webElements){
+        List<WebElement> webElementList = driver.findElements(webElements);
+        webElementList.get(0).click();
+    }
+
+    /**
      * Method prints in console values of column using getText() method.
      * As a parameter is receives a list of elements in a column
      * from which we expect to get and print
@@ -126,6 +135,16 @@ public class GlobalPages extends BaseTestConfiguration {
         for (int i = 0; i < titleNameList.size(); i++) {
             System.out.println(titleNameList.get(i).getText());
         }
+    }
+
+    /**
+     * Method is used to select any option by visible text in drop-down options list
+     */
+    public static void selectFromDropDownListByVisibleText(By dropDownElement, By drpOptions, String searchedVisibleText) {
+        driver.findElement(dropDownElement).click();
+        GlobalPages.sleepWait(2000);
+        Select select = new Select((driver.findElement(drpOptions)));
+        select.selectByVisibleText(searchedVisibleText);
     }
 
 
@@ -140,5 +159,31 @@ public class GlobalPages extends BaseTestConfiguration {
         }else{
             driver.switchTo().alert().dismiss();
         }
+    }
+
+
+    /**
+     * Method is used to check checkBox status.
+     * If not checked > we make it checked
+     */
+    public static void checkCheckboxStatusAndClick(WebElement checkBox) {
+        if (!checkBox.isSelected()) {
+            checkBox.click();
+        }
+    }
+
+    /**
+     * Method is used to check radioButton status.
+     * If not selected > we make it selected
+     */
+    public static void checkRadioButtonStatusAndSelect(WebElement checkBox) {
+        List<WebElement> checkBoxList = new ArrayList<>();
+
+        for (int i = 0; i < checkBoxList.size(); i++) {
+            if (!checkBoxList.get(i).isSelected()) {
+                checkBox.click();
+            }
+        }
+
     }
 }
