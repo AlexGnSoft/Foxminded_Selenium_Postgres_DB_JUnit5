@@ -9,52 +9,84 @@ public class RandomDataGenerator {
      */
     public Boolean randomBoolean(){
         Random random = new Random();
-        Boolean booleanState = random.nextBoolean();
 
-        return booleanState;
+        return random.nextBoolean();
     }
 
     /**
-     * Method is used to generate random int values,
-     * where intRange - sets the max int diapason value.
+     * Method is used to generate random sequence of int values, where
+     * intRange - sets the max int range;
+     * quantityOfRandomInt - sets quantity of int values to be added to each other in a sequence;
+     *
      */
-    public int randomInt(int intRange){
+    public String randomInt(int intRange, int quantityOfRandomInt){
         Random random = new Random();
-        int randomInt = random.nextInt(intRange);
+        StringBuilder sb = new StringBuilder();
+        String randomIntSequence;
 
-        return randomInt;
+        for (int i = 0; i < quantityOfRandomInt; i++) {
+            int randomNumber = random.nextInt(intRange);
+            sb.append(randomNumber);
+        }
+        randomIntSequence = sb.toString();
+
+        return randomIntSequence;
     }
 
     /**
-     * Method is used to generate random Strings values,
-     * where stringArray - is an array of strings
+     * Method is used to generate different random Strings, where
+     * strLength - is a string length
+     * Boolean parameters: if true > we get certain String:
+     * email -  with @ and .com
+     * login, skype  - random chars and digits
+     * name - random First Name with 1st Capital letter and Last Name
      */
-    public String randomString(int strLength){
+    public String randomString(int strLength, Boolean isEmail, Boolean isLoginOrSkype, Boolean isName){
+        String randomString = "";
+        String firstLetter = "";
+        if (strLength < 1) throw new IllegalArgumentException();
         //create a string for all characters
         String AlphaNumericStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz0123456789";
 
         //create a random string builder
-        StringBuilder sb = new StringBuilder();
-
+        StringBuilder sb = new StringBuilder(strLength);
         //create an object of random string
         Random random = new Random();
+        int index;
 
         for (int i = 0; i < strLength; i++) {
-
-            //initialize length of index, which we get as our method input value
-            int index = random.nextInt(AlphaNumericStr.length());
-
-            //get character specified by index from string
-            char randomChar = AlphaNumericStr.charAt(index);
-
-            //append the character to String builder
-            sb.append(randomChar);
+                index = random.nextInt(AlphaNumericStr.length());
+                char rndChar = AlphaNumericStr.charAt(index);
+            sb.append(rndChar);
         }
 
-        //initializing out random string
-        String randomString = sb.toString();
+        String randomStrTemp = sb.toString(); //random String creation
+
+        //first letter in a string should be a letter only, not a digit. Implementation:
+        for (int j = 0; j < randomStrTemp.length(); j++) {
+            boolean flag = Character.isAlphabetic(randomStrTemp.charAt(j));
+            if(flag){
+                firstLetter = randomStrTemp.substring(0, 1).toUpperCase();
+            }
+        }
+
+        String remainingLetters = randomStrTemp.substring(1);
+        if(isEmail){
+            randomString = firstLetter + "@" + remainingLetters + ".com";
+        }else if(isLoginOrSkype){
+            randomString = firstLetter + remainingLetters;
+        }else if(isName){
+            randomString = remainingLetters;
+        }else{
+            System.out.println("Please, select a type of random string");
+        }
 
         return randomString;
+    }
+
+    public static void main(String[] args) {
+        RandomDataGenerator rg = new RandomDataGenerator();
+        rg.randomString(10, false, false, true);
     }
 }
 

@@ -7,7 +7,7 @@ import pageobjects.*;
 public class TestExecution_11 extends BaseTestConfiguration {
 
     @Test
-    public void CreateNewManager() throws InterruptedException {
+    public void createNewManager() throws InterruptedException {
         //Test data
         int firstNameLength = 10;
         int secondNameLength = 20;
@@ -27,28 +27,29 @@ public class TestExecution_11 extends BaseTestConfiguration {
         GlobalPages.click(ManagerNewManager.newManagerBtn);
         GlobalPages.pageIsVisible(ManagerNewManager.newManagerPage);
 
-        //Fill in First and Last names with random string
-        ManagerNewManager.fillInFirstLastNameRandomly(firstNameLength, secondNameLength);
+
+        // Fill in First and Last names with random string
+        ManagerNewManager.enterFirstLastName();
 
         //Fill in random email
-        ManagerNewManager.fillInEmailRandomly();
+        ManagerNewManager.enterEmail();
 
         //Fill in login
-        ManagerNewManager.fillInLogin();
-
-        //Fill in phoneNumber
-        ManagerNewManager.fillInPhoneRandomly();
-
-        //Fill in skype
-        ManagerNewManager.fillInSkypeRandomly();
-
-        //Save data into
-        ManagerNewManager.saveDataInMap("email","login", "phone", "skype");
+        ManagerNewManager.enterLogin();
 
         //Click on Department drop-down and select an option
         GlobalPages.click(ManagerNewManager.drpDepartment);
         GlobalPages.waitImplicitly();
         GlobalPages.selectFromDropDownListByVisibleText(ManagerNewManager.drpDepartment, ManagerNewManager.drpDepartmentOptions, department);
+
+        //Fill in phoneNumber
+        ManagerNewManager.enterPhoneNumber();
+
+        //Fill in skype
+        ManagerNewManager.enterSkype();
+
+        //Save data to Hash Map
+        ManagerNewManager.saveManagerData();
 
         //Click on checkboxes (if not clicked). Finding element is test is a temporary solution.
         GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label[@class='manager-form-checkbox_label2']/span/span")));
@@ -58,14 +59,13 @@ public class TestExecution_11 extends BaseTestConfiguration {
 
         //click on just created manager profile tab
         GlobalPages.clickOnTheFirstElementInAList(ManagerNewManager.fullNameList);
+        GlobalPages.sleepWait(3000);
 
-
-
-
-
-
-
-
-
+        //Data validation
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("name"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("phone"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("skype"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("email"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("login"));
     }
 }

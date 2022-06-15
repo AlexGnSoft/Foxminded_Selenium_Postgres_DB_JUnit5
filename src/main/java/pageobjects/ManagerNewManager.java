@@ -4,7 +4,7 @@ import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.RandomDataGenerator;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,165 +29,93 @@ public class ManagerNewManager extends BaseTestConfiguration {
     public static final By drpDepartmentOptions = By.xpath("//select[@id='manager-form-department-select']");
     public static final By phone = By.cssSelector("#phone");
     public static final By skype = By.cssSelector("#skype");
-//    public static WebElement checkBoxList = driver.findElement(By.xpath("//label[@class='manager-form-checkbox_label2']/span/span"));
+    //    public static WebElement checkBoxList = driver.findElement(By.xpath("//label[@class='manager-form-checkbox_label2']/span/span"));
     public static final By submitBtn = By.cssSelector("#manager-form-submit");
     public static final By cancelBtn = By.cssSelector("#manager-form-cancel");
+    public static final By profileDataCreated = By.xpath("//div[@class='col-sm-7']/p");
+    public static final By managerDataList = By.cssSelector(".text-left");
 
     /**
-     * Method randomly generates first and last names (strings), where
-     * firstNameLength - length of the first name
-     * lastNameLength -  length of the last name
+     * Method enters First and Last Names
      */
-    public static void fillInFirstLastNameRandomly(int firstNameLength, int lastNameLength) {
-        RandomDataGenerator randomDataGenerator = new RandomDataGenerator();
-        String randomFirstName = randomDataGenerator.randomString(firstNameLength);
-        String randomLastName = randomDataGenerator.randomString(lastNameLength);
+    public static void enterFirstLastName(){
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String fName = generator.randomString(7, false, false, true);
+        String lName = generator.randomString(7, false, false, true);
+        driver.findElement(firstName).clear();
+        driver.findElement(firstName).sendKeys(fName);
 
-        GlobalPages.enterDataToTheField(firstName, randomFirstName);
-        GlobalPages.enterDataToTheField(lastName, randomLastName);
+        driver.findElement(lastName).clear();
+        driver.findElement(lastName).sendKeys(lName);
     }
 
     /**
-     * Method randomly generates email in certain format (randomString@randomString.com  )
+     * Method enters Email
      */
-    public static String fillInEmailRandomly() {
-        int firstEmailPartLength = 8;
-        int secondEmailPartLength = 5;
-        String at = "@";
-        String domain = ".com";
-
-        RandomDataGenerator randomDataGenerator = new RandomDataGenerator();
-        String randomBeforeAtPart = randomDataGenerator.randomString(firstEmailPartLength);
-        String randomAfterAtPart = randomDataGenerator.randomString(secondEmailPartLength);
-        String randomEmail = randomBeforeAtPart.toLowerCase() + at + randomAfterAtPart.toLowerCase() + domain;
-        GlobalPages.enterDataToTheField(email, randomEmail);
-
-        return randomEmail;
+    public static void enterEmail(){
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String randomEmail = generator.randomString(7, true, false, false);
+        driver.findElement(email).clear();
+        driver.findElement(email).sendKeys(randomEmail);
     }
 
     /**
-     * Method randomly generates login (with First Capital letter and length has to be more than 3 symbols)
+     * Method enters Login
      */
-    public static String fillInLogin() {
+    public static void enterLogin(){
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String randomLogin = generator.randomString(7, false, true, false);
         driver.findElement(login).clear();
-        int minStringLength = 4;
-        driver.findElement(login).clear();
-        RandomDataGenerator randomDataGenerator = new RandomDataGenerator();
-        String randomString = "";
-        String randomLogin = "";
-        String firstLetter = "";
-        if(minStringLength >= 4){
-            randomString = randomDataGenerator.randomString(minStringLength);
-            for (int i = 0; i < randomString.length(); i++) {
-                boolean flag = Character.isAlphabetic(randomString.charAt(i));
-                if(flag){
-                    firstLetter = randomString.substring(0,1).toUpperCase();
-                }
-            }
-            String remainingLetters = randomString.substring(1, randomString.length());
-            randomLogin = firstLetter + remainingLetters;
-        }else{
-            System.out.println("Login should be more then 3 symbols");
-        }
         driver.findElement(login).sendKeys(randomLogin);
-
-        return randomLogin;
     }
 
-
     /**
-     * Method randomly generates random phone number (10 symbols)
+     * Method enters Phone number
      */
-    public static String fillInPhoneRandomly() {
+    public static void enterPhoneNumber(){
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String randomPhone = generator.randomInt(9, 10);
         driver.findElement(phone).clear();
-        int maxInt = 9;
-        String plusSign = "+";
-        String phoneNumber;
-        String randomPhoneNumber;
-        int randomNumbers = 0;
-        StringBuilder sb = new StringBuilder();
-        RandomDataGenerator randomDataGenerator = new RandomDataGenerator();
-
-        for (int i = 0; i < 10; i++) {
-            randomNumbers = randomDataGenerator.randomInt(maxInt);
-            sb.append(randomNumbers);
-        }
-
-        phoneNumber = sb.toString();
-        randomPhoneNumber = plusSign + phoneNumber;
-        driver.findElement(phone).sendKeys(randomPhoneNumber);
-
-        return randomPhoneNumber;
+        driver.findElement(phone).sendKeys(randomPhone);
     }
 
     /**
-     * Method randomly generates random skype (alphanumeric string)
+     * Method enters Skype
      */
-    public static String fillInSkypeRandomly() {
+    public static void enterSkype(){
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String randomSkype = generator.randomString(7, false, true, false);
         driver.findElement(skype).clear();
-        String randomS1;
-        String randomS2;
-        String randomSkype;
-        String randomString;
-        int randomInt;
-        StringBuilder sb1 = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
-        RandomDataGenerator randomDataGenerator = new RandomDataGenerator();
-
-        for (int i = 0; i < 3; i++) {
-            randomString = randomDataGenerator.randomString(3);
-            randomInt = randomDataGenerator.randomInt(3);
-            sb1.append(randomString);
-            sb2.append(randomInt);
-        }
-
-        randomS1 = sb1.toString();
-        randomS2 = sb2.toString();
-        randomSkype = randomS1 + randomS2;
-
         driver.findElement(skype).sendKeys(randomSkype);
-
-        return randomSkype;
     }
 
     /**
-     * Method saves data in Map
+     * Method saves data to Hash Map
      */
-    public static HashMap<String, String> saveDataInMap(String email, String login, String phone, String skype) {
-        HashMap<String, String> data = new HashMap<>();
-        data.put(email, fillInEmailRandomly());
-        data.put(login, fillInLogin());
-        data.put(phone, fillInPhoneRandomly());
-        data.put(skype, fillInSkypeRandomly());
+    public static HashMap<String, String> saveManagerData() {
+        RandomDataGenerator generator = new RandomDataGenerator();
+
+        HashMap<String, String> data = new HashMap<String, String>();
+        data.put("phone", generator.randomInt(9, 10));
+        data.put("login", generator.randomString(10, false, true, false));
+        data.put("email", generator.randomString(10, true, false, false));
+        data.put("skype", generator.randomString(10, false, true, false));
+        data.put("name", generator.randomString(10, false, false, true));
 
         return data;
     }
 
     /**
-     * Method is used to compare Hash Map values
+     * Method is used to get create user data
      */
-    public static void compareHashMapValues(){
-       saveDataInMap()
+    public static ArrayList<String> getCreatedManagerData(){
+        ArrayList<String> managerArrayData = new ArrayList<>();
+        List<WebElement> managerData = driver.findElements(managerDataList);
+        for (int i = 0; i < managerData.size(); i++) {
+            managerArrayData.add(managerData.get(i).getText());
+        }
 
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public static void main(String[] args) {
-
-
+        return managerArrayData;
     }
 }
+

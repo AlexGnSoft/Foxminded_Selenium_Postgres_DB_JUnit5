@@ -1,7 +1,6 @@
 package pageobjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class ContactsNewContactPage {
     public static final By newContactBtn = By.xpath("//button[@id='new-contact']");
