@@ -106,7 +106,7 @@ public class ManagerNewManager extends BaseTestConfiguration {
     }
 
     /**
-     * Method is used to get create user data
+     * Method is used to get created user data
      */
     public static ArrayList<String> getCreatedManagerData(){
         ArrayList<String> managerArrayData = new ArrayList<>();
