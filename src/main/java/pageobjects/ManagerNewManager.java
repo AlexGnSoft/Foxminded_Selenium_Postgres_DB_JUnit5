@@ -3,7 +3,6 @@ package pageobjects;
 import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.RandomDataGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,40 +20,30 @@ public class ManagerNewManager extends BaseTestConfiguration {
     public static final By departmentNameSearch = By.cssSelector("#search-manager-department");
     public static final By filterBtn = By.cssSelector("#search-manager-filter");
     public static final By clearBtn = By.cssSelector("#search-manager-clear");
-    public static final By firstName = By.cssSelector("#firstName");
-    public static final By lastName = By.cssSelector("#lastName");
-    public static final By email = By.cssSelector("#email");
-    public static final By login = By.cssSelector("#login");
+    public static final By firstNameElement = By.cssSelector("#firstName");
+    public static final By lastNameElement = By.cssSelector("#lastName");
+    public static final By emailElement = By.cssSelector("#email");
+    public static final By loginElement = By.cssSelector("#login");
     public static final By drpDepartment = By.cssSelector("#manager-form-department-select");
     public static final By drpDepartmentOptions = By.xpath("//select[@id='manager-form-department-select']");
-    public static final By phone = By.cssSelector("#phone");
-    public static final By skype = By.cssSelector("#skype");
+    public static final By phoneElement = By.cssSelector("#phone");
+    public static final By skypeElement = By.cssSelector("#skype");
     //    public static WebElement checkBoxList = driver.findElement(By.xpath("//label[@class='manager-form-checkbox_label2']/span/span"));
     public static final By submitBtn = By.cssSelector("#manager-form-submit");
     public static final By cancelBtn = By.cssSelector("#manager-form-cancel");
     public static final By profileDataCreated = By.xpath("//div[@class='col-sm-7']/p");
     public static final By managerDataList = By.cssSelector(".text-left");
-    //Generating random data
-    public static RandomDataGenerator generator = new RandomDataGenerator();
-    public static String fName = generator.randomString(7, false, false, true);
-    public static String lName = generator.randomString(7, false, false, true);
-    public static String randomEmail = generator.randomString(7, true, false, false);
-    public static String randomLogin = generator.randomString(7, false, true, false);
-    public static String randomPhone = generator.randomInt(9, 10);
-    public static String randomSkype = generator.randomString(7, false, true, false);
 
     /**
-     * Method saves data to Hash Map
+     * Method saves data to HashMap
      */
-    public static HashMap<String, String> saveManagerData() {
-        RandomDataGenerator generator = new RandomDataGenerator();
-
+    public static HashMap<String, String> saveManagerData(String phoneTest, String loginTest, String emailTest, String skypeTest, String nameTest) {
         HashMap<String, String> data = new HashMap<String, String>();
-        data.put("phone", generator.randomInt(9, 10));
-        data.put("login", generator.randomString(10, false, true, false));
-        data.put("email", generator.randomString(10, true, false, false));
-        data.put("skype", generator.randomString(10, false, true, false));
-        data.put("name", generator.randomString(10, false, false, true));
+        data.put("phone", phoneTest);
+        data.put("login", loginTest);
+        data.put("email", emailTest);
+        data.put("skype", skypeTest);
+        data.put("name", nameTest);
 
         return data;
     }
@@ -62,24 +51,24 @@ public class ManagerNewManager extends BaseTestConfiguration {
     /**
      * Method enters all manager's fields
      */
-    public static void fillInAllFields(){
+    public static void fillInAllFields(String fNameTest, String lNameTest,String emailTest, String loginTest, String phoneTest, String skypeTest){
         //enter enterFirstLastName
-        driver.findElement(firstName).clear();
-        driver.findElement(firstName).sendKeys(fName);
-        driver.findElement(lastName).clear();
-        driver.findElement(lastName).sendKeys(lName);
+        driver.findElement(firstNameElement).clear();
+        driver.findElement(firstNameElement).sendKeys(fNameTest);
+        driver.findElement(lastNameElement).clear();
+        driver.findElement(lastNameElement).sendKeys(lNameTest);
         //enter Email
-        driver.findElement(email).clear();
-        driver.findElement(email).sendKeys(randomEmail);
+        driver.findElement(emailElement).clear();
+        driver.findElement(emailElement).sendKeys(emailTest);
         //enter Login
-        driver.findElement(login).clear();
-        driver.findElement(login).sendKeys(randomLogin);
+        driver.findElement(loginElement).clear();
+        driver.findElement(loginElement).sendKeys(loginTest);
         //enter Phone
-        driver.findElement(phone).clear();
-        driver.findElement(phone).sendKeys(randomPhone);
+        driver.findElement(phoneElement).clear();
+        driver.findElement(phoneElement).sendKeys(phoneTest);
         //enter Skype
-        driver.findElement(skype).clear();
-        driver.findElement(skype).sendKeys(randomSkype);
+        driver.findElement(skypeElement).clear();
+        driver.findElement(skypeElement).sendKeys(skypeTest);
     }
 
     /**

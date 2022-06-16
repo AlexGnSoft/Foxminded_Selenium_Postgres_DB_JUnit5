@@ -3,15 +3,26 @@ import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import pageobjects.*;
+import utils.RandomDataGenerator;
 
 public class TestExecution_11 extends BaseTestConfiguration {
 
     @Test
     public void createNewManager() {
         //Test data
-        int firstNameLength = 10;
-        int secondNameLength = 20;
         String department = "Комната добра";
+        int srtLength = 7;
+        int phoneRange = 9;
+        int quantityOfPhoneDigits = 10;
+
+        //Generating random data
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String rndFName = generator.randomString(srtLength, false, false, true);
+        String rndLName = generator.randomString(srtLength, false, false, true);
+        String rndEmail = generator.randomString(srtLength, true, false, false);
+        String rndLogin = generator.randomString(srtLength, false, true, false);
+        String rndSkype = generator.randomString(srtLength, false, true, false);
+        String rndPhone = generator.randomInt(phoneRange, quantityOfPhoneDigits);
 
         // Go to application Login page
         openBrowser();
@@ -27,16 +38,13 @@ public class TestExecution_11 extends BaseTestConfiguration {
         GlobalPages.click(ManagerNewManager.newManagerBtn);
         GlobalPages.pageIsVisible(ManagerNewManager.newManagerPage);
 
-        // Fill in First and Last names with random string
-        ManagerNewManager.fillInAllFields();
+        // Fill in all manager's fields
+        ManagerNewManager.fillInAllFields(rndFName, rndLName, rndEmail,rndLogin, rndPhone, rndSkype);
 
         //Click on Department drop-down and select an option
         GlobalPages.click(ManagerNewManager.drpDepartment);
         GlobalPages.waitImplicitly();
         GlobalPages.selectFromDropDownListByVisibleText(ManagerNewManager.drpDepartment, ManagerNewManager.drpDepartmentOptions, department);
-
-        //Save data to Hash Map
-        ManagerNewManager.saveManagerData();
 
         //Click on checkboxes (if not clicked). Finding element is test is a temporary solution.
         GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label[@class='manager-form-checkbox_label2']/span/span")));
@@ -49,10 +57,10 @@ public class TestExecution_11 extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
 
         //Data validation
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("name"));
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("phone"));
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("skype"));
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("email"));
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData().get("login"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("name"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("phone"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("skype"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("email"));
+        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("login"));
     }
 }
