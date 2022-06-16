@@ -34,60 +34,14 @@ public class ManagerNewManager extends BaseTestConfiguration {
     public static final By cancelBtn = By.cssSelector("#manager-form-cancel");
     public static final By profileDataCreated = By.xpath("//div[@class='col-sm-7']/p");
     public static final By managerDataList = By.cssSelector(".text-left");
-
-    /**
-     * Method enters First and Last Names
-     */
-    public static void enterFirstLastName(){
-        RandomDataGenerator generator = new RandomDataGenerator();
-        String fName = generator.randomString(7, false, false, true);
-        String lName = generator.randomString(7, false, false, true);
-        driver.findElement(firstName).clear();
-        driver.findElement(firstName).sendKeys(fName);
-
-        driver.findElement(lastName).clear();
-        driver.findElement(lastName).sendKeys(lName);
-    }
-
-    /**
-     * Method enters Email
-     */
-    public static void enterEmail(){
-        RandomDataGenerator generator = new RandomDataGenerator();
-        String randomEmail = generator.randomString(7, true, false, false);
-        driver.findElement(email).clear();
-        driver.findElement(email).sendKeys(randomEmail);
-    }
-
-    /**
-     * Method enters Login
-     */
-    public static void enterLogin(){
-        RandomDataGenerator generator = new RandomDataGenerator();
-        String randomLogin = generator.randomString(7, false, true, false);
-        driver.findElement(login).clear();
-        driver.findElement(login).sendKeys(randomLogin);
-    }
-
-    /**
-     * Method enters Phone number
-     */
-    public static void enterPhoneNumber(){
-        RandomDataGenerator generator = new RandomDataGenerator();
-        String randomPhone = generator.randomInt(9, 10);
-        driver.findElement(phone).clear();
-        driver.findElement(phone).sendKeys(randomPhone);
-    }
-
-    /**
-     * Method enters Skype
-     */
-    public static void enterSkype(){
-        RandomDataGenerator generator = new RandomDataGenerator();
-        String randomSkype = generator.randomString(7, false, true, false);
-        driver.findElement(skype).clear();
-        driver.findElement(skype).sendKeys(randomSkype);
-    }
+    //Generating random data
+    public static RandomDataGenerator generator = new RandomDataGenerator();
+    public static String fName = generator.randomString(7, false, false, true);
+    public static String lName = generator.randomString(7, false, false, true);
+    public static String randomEmail = generator.randomString(7, true, false, false);
+    public static String randomLogin = generator.randomString(7, false, true, false);
+    public static String randomPhone = generator.randomInt(9, 10);
+    public static String randomSkype = generator.randomString(7, false, true, false);
 
     /**
      * Method saves data to Hash Map
@@ -106,6 +60,29 @@ public class ManagerNewManager extends BaseTestConfiguration {
     }
 
     /**
+     * Method enters all manager's fields
+     */
+    public static void fillInAllFields(){
+        //enter enterFirstLastName
+        driver.findElement(firstName).clear();
+        driver.findElement(firstName).sendKeys(fName);
+        driver.findElement(lastName).clear();
+        driver.findElement(lastName).sendKeys(lName);
+        //enter Email
+        driver.findElement(email).clear();
+        driver.findElement(email).sendKeys(randomEmail);
+        //enter Login
+        driver.findElement(login).clear();
+        driver.findElement(login).sendKeys(randomLogin);
+        //enter Phone
+        driver.findElement(phone).clear();
+        driver.findElement(phone).sendKeys(randomPhone);
+        //enter Skype
+        driver.findElement(skype).clear();
+        driver.findElement(skype).sendKeys(randomSkype);
+    }
+
+    /**
      * Method is used to get created user data
      */
     public static ArrayList<String> getCreatedManagerData(){
@@ -114,7 +91,6 @@ public class ManagerNewManager extends BaseTestConfiguration {
         for (int i = 0; i < managerData.size(); i++) {
             managerArrayData.add(managerData.get(i).getText());
         }
-
         return managerArrayData;
     }
 }

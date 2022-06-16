@@ -83,11 +83,6 @@ public class RandomDataGenerator {
 
         return randomString;
     }
-
-    public static void main(String[] args) {
-        RandomDataGenerator rg = new RandomDataGenerator();
-        rg.randomString(10, false, false, true);
-    }
 }
 
 

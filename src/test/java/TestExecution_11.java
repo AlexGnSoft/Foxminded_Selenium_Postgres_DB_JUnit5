@@ -7,7 +7,7 @@ import pageobjects.*;
 public class TestExecution_11 extends BaseTestConfiguration {
 
     @Test
-    public void createNewManager() throws InterruptedException {
+    public void createNewManager() {
         //Test data
         int firstNameLength = 10;
         int secondNameLength = 20;
@@ -27,26 +27,13 @@ public class TestExecution_11 extends BaseTestConfiguration {
         GlobalPages.click(ManagerNewManager.newManagerBtn);
         GlobalPages.pageIsVisible(ManagerNewManager.newManagerPage);
 
-
         // Fill in First and Last names with random string
-        ManagerNewManager.enterFirstLastName();
-
-        //Fill in random email
-        ManagerNewManager.enterEmail();
-
-        //Fill in login
-        ManagerNewManager.enterLogin();
+        ManagerNewManager.fillInAllFields();
 
         //Click on Department drop-down and select an option
         GlobalPages.click(ManagerNewManager.drpDepartment);
         GlobalPages.waitImplicitly();
         GlobalPages.selectFromDropDownListByVisibleText(ManagerNewManager.drpDepartment, ManagerNewManager.drpDepartmentOptions, department);
-
-        //Fill in phoneNumber
-        ManagerNewManager.enterPhoneNumber();
-
-        //Fill in skype
-        ManagerNewManager.enterSkype();
 
         //Save data to Hash Map
         ManagerNewManager.saveManagerData();
