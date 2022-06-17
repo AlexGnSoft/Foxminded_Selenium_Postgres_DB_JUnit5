@@ -147,7 +147,6 @@ public class GlobalPages extends BaseTestConfiguration {
         select.selectByVisibleText(searchedVisibleText);
     }
 
-
     /**
      * Method is used to perform action on Alert pop up:
      * if true - Accept click

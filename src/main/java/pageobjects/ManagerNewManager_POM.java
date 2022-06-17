@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ManagerNewManager extends BaseTestConfiguration {
+public class ManagerNewManager_POM extends BaseTestConfiguration {
     public static final By ManagerPage = By.cssSelector(".card-content");
     public static final By newManagerBtn = By.cssSelector("#managers-new-manager");
     public static final By newManagerPage = By.cssSelector(".container-fluid");
