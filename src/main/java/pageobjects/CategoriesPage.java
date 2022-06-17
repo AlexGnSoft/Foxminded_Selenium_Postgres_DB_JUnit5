@@ -9,4 +9,6 @@ public class CategoriesPage {
     private static final By deleteBtnList = By.xpath("//a[@id='category-delete-btn']");
     private static final By colorLabelList = By.xpath("//span[@class='label label-lg']");
 
+
+
 }
