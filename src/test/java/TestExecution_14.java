@@ -16,7 +16,6 @@ public class TestExecution_14 {
 
         Assertions.assertTrue(CustomerBuilder.isNamesStartsFromCapital(builder.getFirstName()));
         Assertions.assertTrue(CustomerBuilder.isNamesStartsFromCapital(builder.getLastName()));
-
     }
 }
 

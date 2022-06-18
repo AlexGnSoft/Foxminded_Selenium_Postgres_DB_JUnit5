@@ -11,6 +11,8 @@ public class TestExecution_8_PFM extends BaseTestConfiguration{
         // Go to application Login page
         openBrowser();
 
+        OpenPage_PFM.using(driver);
+
         //Verify that login page is visible
         Assertions.assertTrue(OpenPage_PFM.isLoginPageBodyVisible());
     }

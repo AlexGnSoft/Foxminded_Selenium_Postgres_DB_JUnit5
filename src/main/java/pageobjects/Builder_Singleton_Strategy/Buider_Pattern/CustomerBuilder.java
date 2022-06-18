@@ -1,6 +1,5 @@
 package pageobjects.Builder_Singleton_Strategy.Buider_Pattern;
 
-
 public class CustomerBuilder {
     private String firstName;
     private String lastName;

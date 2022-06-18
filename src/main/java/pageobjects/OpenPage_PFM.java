@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class OpenPage_PFM extends BaseTestConfiguration{
+public class OpenPage_PFM extends BaseTestConfiguration {
     public static PropertiesFile propertiesFile = new PropertiesFile();
 
     @FindBy(xpath = "//body//login")
