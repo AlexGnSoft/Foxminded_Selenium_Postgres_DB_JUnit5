@@ -36,6 +36,4 @@ public class TestExecution_8 extends BaseTestConfiguration{
         // Verify that home page is visible
         Assertions.assertTrue(GlobalPages.pageIsVisible(OpenPage.homePage));
     }
-
-
 }

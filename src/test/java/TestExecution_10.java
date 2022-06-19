@@ -13,7 +13,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
     @Test
     public void createNewTicket() {
         //Test data
-        String ticketTitle = "My ticket from automation 4";
+        String ticketTitle = "My ticket from automation 5";
         String description = "My description to the ticket";
         String stage = "IN PROGRESS";
         String departmentName = "Комната добра";
@@ -34,9 +34,6 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Wait for 'Create New Ticket' page to be interactive
         Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.createTicketPage));
 
-        //Wait for 'Create New Ticket' page to be interactive
-        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.createTicketPage));
-
         //Enter title name into title field
         GlobalPages.enterDataToTheField(TicketsPage.titleField, ticketTitle);
 
@@ -44,7 +41,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.enterDataToTheField(TicketsPage.descriptionField, description);
 
         //Select category by index
-        TicketsPage.selectDataFromDropDownListByIndex(TicketsPage.drpCategory, indexOfOption);
+        GlobalPages.selectDataFromDropDownListByIndex(TicketsPage.drpCategory, indexOfOption);
 
         //Select stage by visible text
         GlobalPages.selectFromDropDownListByVisibleText(TicketsPage.drpStage, TicketsPage.drpStageOptions,stage);
@@ -53,7 +50,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.selectFromDropDownListByVisibleText(TicketsPage.drpContact, TicketsPage.drpContactOptions, contactName);
 
         //Select priority by index
-        TicketsPage.selectDataFromDropDownListByIndex(TicketsPage.drpPriority, indexOfOption);
+        GlobalPages.selectDataFromDropDownListByIndex(TicketsPage.drpPriority, indexOfOption);
 
         //Select random, but accessible date in the calendar
         TicketsPage.selectDateInCalendar();

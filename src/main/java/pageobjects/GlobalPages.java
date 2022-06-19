@@ -148,6 +148,16 @@ public class GlobalPages extends BaseTestConfiguration {
     }
 
     /**
+     * Method is used to select any option by Index in drop-down options list
+     */
+    public static void selectDataFromDropDownListByIndex(By dropDownElement, int searchedElementIndex) {
+        driver.findElement(dropDownElement).click();
+        GlobalPages.sleepWait(3000);
+        Select select = new Select((driver.findElement(dropDownElement)));
+        select.selectByIndex(searchedElementIndex);
+    }
+
+    /**
      * Method is used to perform action on Alert pop up:
      * if true - Accept click
      * if false - Dismiss click

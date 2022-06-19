@@ -1,17 +1,12 @@
 package pageobjects;
 import config.BaseTestConfiguration;
-import helpfiles.PropertiesFile;
 import org.openqa.selenium.By;
 
 public class OpenPage extends BaseTestConfiguration{
-    public static PropertiesFile propertiesFile = new PropertiesFile();
-
     public static final By loginPageBody = By.xpath("//body//login");
-
-    private static final By login = By.cssSelector("input[name='username']");
-    private static final By password = By.cssSelector("input[name='password']");
-
-    private static final By signInButton = By.xpath("//button[@id='login-signin']");
+    public static final By login = By.cssSelector("input[name='username']");
+    public static final By password = By.cssSelector("input[name='password']");
+    public static final By signInButton = By.xpath("//button[@id='login-signin']");
     public static final By homePage = By.xpath("//div[@class='main-panel']");
 
     public static void makeSignIn(String username, String pass) {

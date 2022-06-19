@@ -10,21 +10,21 @@ import java.util.Random;
 
 public class TicketsPage extends BaseTestConfiguration {
 
-    private static final By ticketsTab = By.xpath("//a[@id='menu-tickets']");
-    private static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
-    private static final By searchField = By.xpath("//input[@type='search']");
-    private static final By searchButton = By.xpath("//i[@class='search-bar_icon material-icons']");
-    private static final By languageBtn = By.xpath("//a[concat(@class,'language_button') and @id='current-language']");
-    private static final By allCategoriesBtn = By.xpath("//li[contains(@class,'select-category')]/a[contains(@class,'dropdown-toggle')]");
-    private static final By notificationsBtn = By.xpath("//a[@class='dropdown-toggle']/i[text()='notifications']");
-    private static final By mailBoxBtn = By.xpath("//a[@id='navbar-mail-backlog']");
-    private static final By personNavBar = By.xpath("//a[@id='navbar-person']");
-    private static final By totalTicketsBtn = By.xpath("//a[@name='stage-status-button' and @id='stage-total']");
-    private static final By closedTicketsBtn = By.xpath("//a[@id='stage-closed']");
-    private static final By openBtn = By.xpath("//a[@id='OPEN']");
-    private static final By inProgressBtn = By.xpath("//a[@id='IN PROGRESS']");
-    private static final By rejectedBtn = By.xpath("//a[@id='Rejected/SaaS']");
-    private static final By doneBtn = By.xpath("//a[@id='DONE']");
+    public static final By ticketsTab = By.xpath("//a[@id='menu-tickets']");
+    public static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
+    public static final By searchField = By.xpath("//input[@type='search']");
+    public static final By searchButton = By.xpath("//i[@class='search-bar_icon material-icons']");
+    public static final By languageBtn = By.xpath("//a[concat(@class,'language_button') and @id='current-language']");
+    public static final By allCategoriesBtn = By.xpath("//li[contains(@class,'select-category')]/a[contains(@class,'dropdown-toggle')]");
+    public static final By notificationsBtn = By.xpath("//a[@class='dropdown-toggle']/i[text()='notifications']");
+    public static final By mailBoxBtn = By.xpath("//a[@id='navbar-mail-backlog']");
+    public static final By personNavBar = By.xpath("//a[@id='navbar-person']");
+    public static final By totalTicketsBtn = By.xpath("//a[@name='stage-status-button' and @id='stage-total']");
+    public static final By closedTicketsBtn = By.xpath("//a[@id='stage-closed']");
+    public static final By openBtn = By.xpath("//a[@id='OPEN']");
+    public static final By inProgressBtn = By.xpath("//a[@id='IN PROGRESS']");
+    public static final By rejectedBtn = By.xpath("//a[@id='Rejected/SaaS']");
+    public static final By doneBtn = By.xpath("//a[@id='DONE']");
     public static final By newTicketBtn = By.cssSelector("#create-new-ticket");
     public static final By allTicketsBtn = By.xpath("//li[@id='tickets']//a[@tooltipplacement='bottom']");
     public static final By myTicketsBtn = By.xpath("//li[@id='user_tickets']/a[@class='btn btn-primary']");
@@ -61,8 +61,7 @@ public class TicketsPage extends BaseTestConfiguration {
     public static final By drpManager = By.cssSelector("#manager");
     public static final By selectFiltersBtn = By.xpath("//div[@class='col-sm-10']/button[@class='btn btn-success btn-outline']");
     public static final By submitBtn = By.cssSelector("#submit-btn");
-    public static final By cancelBtn = By.cssSelector("#cancel-btn");
-
+    public static final By accessibleCalendarDatesList = By.xpath("//td[@class='ng-tns-c10-3']/a[@class='ui-state-default ng-tns-c10-3']");
 
     /**
      * Method returns a list of Stage names using getText() method.
@@ -89,17 +88,6 @@ public class TicketsPage extends BaseTestConfiguration {
             }
         }
     }
-
-    /**
-     * Method is used to select any option by Index in drop-down options list
-     */
-    public static void selectDataFromDropDownListByIndex(By dropDownElement, int searchedElementIndex) {
-        driver.findElement(dropDownElement).click();
-        GlobalPages.sleepWait(3000);
-        Select select = new Select((driver.findElement(dropDownElement)));
-        select.selectByIndex(searchedElementIndex);
-    }
-
 
 
     /**
@@ -155,7 +143,7 @@ public class TicketsPage extends BaseTestConfiguration {
         }
 
         //a list of webElements with accessible dates
-        List<WebElement> accessibleCalendarDates = driver.findElements(By.xpath("//td[@class='ng-tns-c10-3']/a[@class='ui-state-default ng-tns-c10-3']"));
+        List<WebElement> accessibleCalendarDates = driver.findElements(accessibleCalendarDatesList);
 
         //in a loop we click on a random and accessible date in a calendar
         Random random;

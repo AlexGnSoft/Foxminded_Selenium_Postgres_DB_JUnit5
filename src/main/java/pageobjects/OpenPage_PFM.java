@@ -1,14 +1,11 @@
 package pageobjects;
 import config.BaseTestConfiguration;
-import helpfiles.PropertiesFile;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class OpenPage_PFM extends BaseTestConfiguration {
-    public static PropertiesFile propertiesFile = new PropertiesFile();
-
     @FindBy(xpath = "//body//login")
     private static WebElement loginPageBody;
 
@@ -53,5 +50,4 @@ public class OpenPage_PFM extends BaseTestConfiguration {
     public static Boolean isHomePageBodyVisible() {
         return homePageBody.isDisplayed();
     }
-
 }

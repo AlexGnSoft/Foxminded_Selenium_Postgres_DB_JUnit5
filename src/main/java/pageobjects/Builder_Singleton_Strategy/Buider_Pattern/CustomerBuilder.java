@@ -56,6 +56,9 @@ public class CustomerBuilder {
         return new Customer(firstName, lastName, age, height, weight);
     }
 
+    /**
+     * Method is used to verify whether entered name starts with capital letter
+     */
     public static Boolean isNamesStartsFromCapital(String namesAreCapital) {
         String regEx = "[A-Z]\\w*";
 
@@ -63,5 +66,23 @@ public class CustomerBuilder {
             return true;
         } else
             return false;
+    }
+
+    /**
+     * Method is used to verify whether age of a visitor is old enough
+     * if age is < then ageLimit - such a visitor can not enter a club
+     * if age is > then ageLimit - such a visitor can enter a club
+     */
+    public static Boolean  isCustomerCanEnterNightClud(String firstName, String lastName, int age){
+        int ageLimit = 18;
+
+        if(age >=ageLimit){
+            System.out.println(firstName + " " + lastName + " you can enter our club!");
+            return true;
+
+        }else{
+            System.out.println(firstName + " " + lastName + ", we're really sorry, but due to your age you can't enter our club :(");
+        }
+        return false;
     }
 }
