@@ -47,7 +47,7 @@ public class TestExecution_12 extends BaseTestConfiguration {
         GlobalPages.selectFromDropDownListByVisibleText(ManagerNewManager.drpDepartment, ManagerNewManager.drpDepartmentOptions, department);
 
         //Click on checkboxes (if not clicked). Finding element is test is a temporary solution.
-        GlobalPages.checkCheckboxStatusAndClick(driver.findElement(By.xpath("//label[@class='manager-form-checkbox_label2']/span/span")));
+        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label[@class='manager-form-checkbox_label2']/span/span")));
 
         //click on Submit button
         GlobalPages.click(ManagerNewManager.submitBtn);

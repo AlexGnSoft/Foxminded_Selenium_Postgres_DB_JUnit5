@@ -39,8 +39,8 @@ public class MenuDashboard extends BaseTestConfiguration {
      */
     public static ArrayList<String> returnTitleNameByCategory(By titleColumn, By category, String searchedCategory) {
         ArrayList<String> titleName = new ArrayList<>();
-        List<WebElement> titleList = driver.findElements(titleColumn);
-        List<WebElement> categoryList = driver.findElements(category);
+        List<WebElement> titleList = getDriver().findElements(titleColumn);
+        List<WebElement> categoryList = getDriver().findElements(category);
         for (int i = 0; i < titleList.size(); i++) {
             if(categoryList.get(i).getText().contains(searchedCategory)){
                 titleName.add(titleList.get(i).getText());
@@ -58,8 +58,8 @@ public class MenuDashboard extends BaseTestConfiguration {
      */
     public static ArrayList<String> returnIDsByPriority(String priority){
         ArrayList<String> ids = new ArrayList<>();
-        List<WebElement> idList = driver.findElements(idsList);
-        List<WebElement> priorityList = driver.findElements(prioritiesList);
+        List<WebElement> idList = getDriver().findElements(idsList);
+        List<WebElement> priorityList = getDriver().findElements(prioritiesList);
         for (int i = 0; i < idList.size(); i++) {
             if (priorityList.get(i).getText().contains(priority)){
                 ids.add(idList.get(i).getText());

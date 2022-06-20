@@ -10,7 +10,13 @@ import java.time.Duration;
 
 public class BaseTestConfiguration {
     protected static PropertiesFile propertiesFile;
-    protected static WebDriver driver;
+
+    //Singleton approache for driver instance
+    private static WebDriver driver;
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
 
     /**
      * Method is used to signal that the annotated method is executed before all tests in the current test class.
@@ -34,6 +40,7 @@ public class BaseTestConfiguration {
                 System.out.println("Browser name specified in Config class is not equal to : " + propertiesFile.getBrowser());
         }
         assert driver != null;
+        driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(propertiesFile.getImplicitWait()));
     }
@@ -55,5 +62,4 @@ public class BaseTestConfiguration {
     public void tearDown(){
         driver.quit();
     }
-
 }

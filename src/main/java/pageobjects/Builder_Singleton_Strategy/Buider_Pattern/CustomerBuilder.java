@@ -52,7 +52,8 @@ public class CustomerBuilder {
         return weight;
     }
 
-    public  Customer getCustomer(){
+
+    public Customer getCustomer(){
         return new Customer(firstName, lastName, age, height, weight);
     }
 
@@ -71,7 +72,7 @@ public class CustomerBuilder {
     /**
      * Method is used to verify whether age of a visitor is old enough
      * if age is < then ageLimit - such a visitor can not enter a club
-     * if age is > then ageLimit - such a visitor can enter a club
+     * if age is >= then ageLimit - such a visitor can enter a club
      */
     public static Boolean  isCustomerCanEnterNightClud(String firstName, String lastName, int age){
         int ageLimit = 18;

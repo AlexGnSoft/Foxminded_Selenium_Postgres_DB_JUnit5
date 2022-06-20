@@ -25,14 +25,14 @@ public class GlobalPages extends BaseTestConfiguration {
      * Click on a web element
      */
     public static void click(By webElement){
-        driver.findElement(webElement).click();
+        getDriver().findElement(webElement).click();
     }
 
     /**
      * Clicks on the web element + check its visibility first
      */
     public static void clickOnVisibleElement(By element){
-        WebElement webElement = driver.findElement(element);
+        WebElement webElement = getDriver().findElement(element);
         waitExplicitly(webElement).click();
     }
 
@@ -40,7 +40,7 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method waits for a page to be visible and active
      */
     public static Boolean pageIsVisible(By webElement){
-        new WebDriverWait(driver, Duration.ofSeconds(propertiesFile.getExplicitWait()))
+        new WebDriverWait(getDriver(), Duration.ofSeconds(propertiesFile.getExplicitWait()))
                 .until(ExpectedConditions.presenceOfElementLocated(webElement));
 
         return true;
@@ -50,16 +50,16 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method is used to clear possible placeholder text and then fill in user data to the field
      */
     public static void enterDataToTheField(By webElement, String data) {
-        driver.findElement(webElement).clear();
-        driver.findElement(webElement).sendKeys(data);
+        getDriver().findElement(webElement).clear();
+        getDriver().findElement(webElement).sendKeys(data);
     }
 
     /**
      * Method is used to go to the previous page and come back
      */
     public static Boolean navigateBackAndForth(By webElement) {
-        driver.navigate().back();
-        driver.navigate().forward();
+        getDriver().navigate().back();
+        getDriver().navigate().forward();
         return pageIsVisible(webElement);
     }
 
@@ -67,7 +67,7 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method is used to verify weather placeholder text is visible
      */
     public static Boolean placeHolderIsVisible(By webElement, String expectPlaceHolderText) {
-        WebElement element = driver.findElement(webElement);
+        WebElement element = getDriver().findElement(webElement);
         boolean actualPlaceholder = false;
         if (element.getAttribute("placeholder").contains(expectPlaceHolderText)) {
             actualPlaceholder = true;
@@ -79,7 +79,7 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method waits while the element is visible (Explicit wait)
      */
     public static WebElement waitExplicitly(WebElement webElement){
-        new WebDriverWait(driver, Duration.ofSeconds(propertiesFile.getExplicitWait()))
+        new WebDriverWait(getDriver(), Duration.ofSeconds(propertiesFile.getExplicitWait()))
                 .until(ExpectedConditions.visibilityOf(webElement));
 
         return webElement;
@@ -89,7 +89,7 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method waits while the element is visible (Implicit wait)
      */
     public static void waitImplicitly(){
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(PropertiesFile.getImplicitWait()));
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(PropertiesFile.getImplicitWait()));
     }
 
     /**
@@ -110,7 +110,7 @@ public class GlobalPages extends BaseTestConfiguration {
      */
     public static ArrayList<String> getNamesOfAnyColumns(By webElements) {
         ArrayList<String> titleName = new ArrayList<>();
-        List<WebElement> titleNameList = driver.findElements(webElements);
+        List<WebElement> titleNameList = getDriver().findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
             titleName.add(titleNameList.get(i).getText());
         }
@@ -121,7 +121,7 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method is used to click on the first element in a list
      */
     public static void clickOnTheFirstElementInAList(By webElements){
-        List<WebElement> webElementList = driver.findElements(webElements);
+        List<WebElement> webElementList = getDriver().findElements(webElements);
         webElementList.get(0).click();
     }
 
@@ -131,7 +131,7 @@ public class GlobalPages extends BaseTestConfiguration {
      * from which we expect to get and print
      */
     public static void printValueOfColumn(By webElements) {
-        List<WebElement> titleNameList = driver.findElements(webElements);
+        List<WebElement> titleNameList = getDriver().findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
             System.out.println(titleNameList.get(i).getText());
         }
@@ -141,9 +141,9 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method is used to select any option by visible text in drop-down options list
      */
     public static void selectFromDropDownListByVisibleText(By dropDownElement, By drpOptions, String searchedVisibleText) {
-        driver.findElement(dropDownElement).click();
+        getDriver().findElement(dropDownElement).click();
         GlobalPages.sleepWait(2000);
-        Select select = new Select((driver.findElement(drpOptions)));
+        Select select = new Select((getDriver().findElement(drpOptions)));
         select.selectByVisibleText(searchedVisibleText);
     }
 
@@ -151,9 +151,9 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method is used to select any option by Index in drop-down options list
      */
     public static void selectDataFromDropDownListByIndex(By dropDownElement, int searchedElementIndex) {
-        driver.findElement(dropDownElement).click();
+        getDriver().findElement(dropDownElement).click();
         GlobalPages.sleepWait(3000);
-        Select select = new Select((driver.findElement(dropDownElement)));
+        Select select = new Select((getDriver().findElement(dropDownElement)));
         select.selectByIndex(searchedElementIndex);
     }
 
@@ -164,9 +164,9 @@ public class GlobalPages extends BaseTestConfiguration {
      */
     public static void alertAcceptOrDismiss(Boolean isAccept){
         if(isAccept){
-            driver.switchTo().alert().accept();
+            getDriver().switchTo().alert().accept();
         }else{
-            driver.switchTo().alert().dismiss();
+            getDriver().switchTo().alert().dismiss();
         }
     }
 

@@ -53,22 +53,22 @@ public class ManagerNewManager extends BaseTestConfiguration {
      */
     public static void fillInAllFields(String fNameTest, String lNameTest,String emailTest, String loginTest, String phoneTest, String skypeTest){
         //enter enterFirstLastName
-        driver.findElement(firstNameElement).clear();
-        driver.findElement(firstNameElement).sendKeys(fNameTest);
-        driver.findElement(lastNameElement).clear();
-        driver.findElement(lastNameElement).sendKeys(lNameTest);
+        getDriver().findElement(firstNameElement).clear();
+        getDriver().findElement(firstNameElement).sendKeys(fNameTest);
+        getDriver().findElement(lastNameElement).clear();
+        getDriver().findElement(lastNameElement).sendKeys(lNameTest);
         //enter Email
-        driver.findElement(emailElement).clear();
-        driver.findElement(emailElement).sendKeys(emailTest);
+        getDriver().findElement(emailElement).clear();
+        getDriver().findElement(emailElement).sendKeys(emailTest);
         //enter Login
-        driver.findElement(loginElement).clear();
-        driver.findElement(loginElement).sendKeys(loginTest);
+        getDriver().findElement(loginElement).clear();
+        getDriver().findElement(loginElement).sendKeys(loginTest);
         //enter Phone
-        driver.findElement(phoneElement).clear();
-        driver.findElement(phoneElement).sendKeys(phoneTest);
+        getDriver().findElement(phoneElement).clear();
+        getDriver().findElement(phoneElement).sendKeys(phoneTest);
         //enter Skype
-        driver.findElement(skypeElement).clear();
-        driver.findElement(skypeElement).sendKeys(skypeTest);
+        getDriver().findElement(skypeElement).clear();
+        getDriver().findElement(skypeElement).sendKeys(skypeTest);
     }
 
     /**
@@ -76,7 +76,7 @@ public class ManagerNewManager extends BaseTestConfiguration {
      */
     public static ArrayList<String> getCreatedManagerData(){
         ArrayList<String> managerArrayData = new ArrayList<>();
-        List<WebElement> managerData = driver.findElements(managerDataList);
+        List<WebElement> managerData = getDriver().findElements(managerDataList);
         for (int i = 0; i < managerData.size(); i++) {
             managerArrayData.add(managerData.get(i).getText());
         }

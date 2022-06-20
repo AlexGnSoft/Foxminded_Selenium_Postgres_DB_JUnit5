@@ -68,7 +68,7 @@ public class TicketsPage extends BaseTestConfiguration {
      */
     public ArrayList<String> getNamesOfStages(By webElements) {
         ArrayList<String> titleName = new ArrayList<>();
-        List<WebElement> titleNameList = driver.findElements(webElements);
+        List<WebElement> titleNameList = getDriver().findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
             titleName.add(titleNameList.get(i).getText());
         }
@@ -80,7 +80,7 @@ public class TicketsPage extends BaseTestConfiguration {
      * "OPEN", "DONE", "IN PROGRESS" stages are used in "if" method because there were are not unique selectors found
      */
     public static void printStages(By webElements) {
-        List<WebElement> stageNameList = driver.findElements(webElements);
+        List<WebElement> stageNameList = getDriver().findElements(webElements);
         for (int i = 0; i < stageNameList.size(); i++) {
             String text = stageNameList.get(i).getText();
             if (text.contains("OPEN") || text.contains("IN PROGRESS") || text.contains("DONE")) {
@@ -95,10 +95,10 @@ public class TicketsPage extends BaseTestConfiguration {
      * by clicking on every option until it reaches the searched one
      */
     public static void selectOptionOneByOne(By dropDownElement, String searchedVisibleText) {
-        Select select = new Select(driver.findElement(dropDownElement));
+        Select select = new Select(getDriver().findElement(dropDownElement));
         List<WebElement> options = select.getOptions();
         for (int i = 0; i < options.size(); i++) {
-            driver.findElement(dropDownElement).click();
+            getDriver().findElement(dropDownElement).click();
             options.get(i).click();
             if (options.get(i).getText().contains(searchedVisibleText)) {
                 break;
@@ -110,8 +110,8 @@ public class TicketsPage extends BaseTestConfiguration {
      * Method is used to select the 1st option from drop-down options list
      */
     public static void selectFirstOptionFromDropDownList(By dropDownElement) {
-        driver.findElement(dropDownElement).click();
-        Select select = new Select(driver.findElement(dropDownElement));
+        getDriver().findElement(dropDownElement).click();
+        Select select = new Select(getDriver().findElement(dropDownElement));
         select.getFirstSelectedOption().isDisplayed();
     }
 
@@ -119,7 +119,7 @@ public class TicketsPage extends BaseTestConfiguration {
      * Method is used to select the last option from drop-down options list
      */
     public static void selectLastOptionFromDropDownList(By dropDownElement) {
-        Select select = new Select(driver.findElement(dropDownElement));
+        Select select = new Select(getDriver().findElement(dropDownElement));
         int optionsSize = select.getOptions().size();
         select.selectByIndex(optionsSize - 1);
     }
@@ -128,22 +128,22 @@ public class TicketsPage extends BaseTestConfiguration {
      * Method clicks on calendar months, hours, minutes and random accessible date
      */
     public static void selectDateInCalendar() {
-        driver.findElement(calendarDataPicker).click();
-        driver.findElement(selectNextMonth).click();
-        driver.findElement(selectPreviousMonth).click();
+        getDriver().findElement(calendarDataPicker).click();
+        getDriver().findElement(selectNextMonth).click();
+        getDriver().findElement(selectPreviousMonth).click();
 
-        List<WebElement> hoursPickers = driver.findElements(hoursPickerList);
+        List<WebElement> hoursPickers = getDriver().findElements(hoursPickerList);
         for (WebElement hours : hoursPickers) {
             hours.click();
         }
 
-        List<WebElement> minutesPickers = driver.findElements(minutePickerList);
+        List<WebElement> minutesPickers = getDriver().findElements(minutePickerList);
         for (WebElement minutes : minutesPickers) {
             minutes.click();
         }
 
         //a list of webElements with accessible dates
-        List<WebElement> accessibleCalendarDates = driver.findElements(accessibleCalendarDatesList);
+        List<WebElement> accessibleCalendarDates = getDriver().findElements(accessibleCalendarDatesList);
 
         //in a loop we click on a random and accessible date in a calendar
         Random random;
@@ -158,7 +158,7 @@ public class TicketsPage extends BaseTestConfiguration {
      * Method uploads a file from certain directory on your PC
      */
     public static void fileUpload(String filePath) {
-        WebElement uploadBtn = driver.findElement(selectFiltersBtn);
+        WebElement uploadBtn = getDriver().findElement(selectFiltersBtn);
         uploadBtn.click();
         uploadBtn.sendKeys(filePath);
     }

@@ -10,8 +10,8 @@ public class OpenPage extends BaseTestConfiguration{
     public static final By homePage = By.xpath("//div[@class='main-panel']");
 
     public static void makeSignIn(String username, String pass) {
-        driver.findElement(login).sendKeys(username);
-        driver.findElement(password).sendKeys(pass);
-        driver.findElement(signInButton).click();
+        getDriver().findElement(login).sendKeys(username);
+        getDriver().findElement(password).sendKeys(pass);
+        getDriver().findElement(signInButton).click();
     }
 }

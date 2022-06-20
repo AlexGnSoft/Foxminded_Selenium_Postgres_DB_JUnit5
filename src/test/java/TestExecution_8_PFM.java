@@ -6,12 +6,13 @@ import pageobjects.OpenPage_PFM;
 
 public class TestExecution_8_PFM extends BaseTestConfiguration{
 
+
     @Test
     public void openApplication(){
         // Go to application Login page
         openBrowser();
 
-        OpenPage_PFM.using(driver);
+        OpenPage_PFM.using(getDriver());
 
         //Verify that login page is visible
         Assertions.assertTrue(OpenPage_PFM.isLoginPageBodyVisible());
@@ -23,7 +24,7 @@ public class TestExecution_8_PFM extends BaseTestConfiguration{
         openBrowser();
 
         // Sing in test
-        OpenPage_PFM.using(driver)
+        OpenPage_PFM.using(getDriver())
                 .setLogin(PropertiesFile.getLoginCredentials())
                         .setPassword(PropertiesFile.getPasswordCredentials())
                                 .clickSing();

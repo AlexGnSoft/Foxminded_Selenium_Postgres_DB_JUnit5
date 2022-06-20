@@ -74,7 +74,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
 
         //Due to bug on FE side of home page we reload the home page
         GlobalPages.sleepWait(3000);
-        driver.navigate().refresh();
+        getDriver().navigate().refresh();
         GlobalPages.sleepWait(3000);
 
         //Print text of ID from Tickets page
@@ -92,7 +92,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
 
         //Due to bug on FE side of home page we reload the home page
         GlobalPages.sleepWait(3000);
-        driver.navigate().refresh();
+        getDriver().navigate().refresh();
         GlobalPages.sleepWait(3000);
 
         //Print text of ID from Tickets page
@@ -110,7 +110,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
 
         //Due to bug on FE side of home page we reload the home page
         GlobalPages.sleepWait(3000);
-        driver.navigate().refresh();
+        getDriver().navigate().refresh();
         GlobalPages.sleepWait(3000);
 
         //Print text of assigned list from Tickets page
@@ -127,7 +127,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
 
         //Due to bug on FE side of home page we reload the home page
         GlobalPages.sleepWait(3000);
-        driver.navigate().refresh();
+        getDriver().navigate().refresh();
         GlobalPages.sleepWait(3000);
 
         //Print text of stage list from Tickets page
