@@ -61,7 +61,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Select manager
         TicketsPage.selectOptionOneByOne(TicketsPage.drpManager, managerName);
 
-        //Upload file from pc
+        //Upload file
         TicketsPage.fileUpload(pathToTheFileOnPc);
 
         //Submit new ticker data

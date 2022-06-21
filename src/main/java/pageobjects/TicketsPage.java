@@ -4,16 +4,18 @@ import config.BaseTestConfiguration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import pageobjects.Builder_Singleton_Strategy.Strategy_Pattern.ISearchStrategy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class TicketsPage extends BaseTestConfiguration {
+public class TicketsPage extends BaseTestConfiguration implements ISearchStrategy {
 
     public static final By ticketsTab = By.xpath("//a[@id='menu-tickets']");
     public static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
-    public static final By searchField = By.xpath("//input[@type='search']");
-    public static final By searchButton = By.xpath("//i[@class='search-bar_icon material-icons']");
+    public static final By searchField = By.xpath("//input[@id='search-bar']");
+    public static final By searchBtn = By.xpath("//button[@id='search-bar-submit']");
+    public static final By searchResultPage = By.xpath("//div[@class='card-content']");
     public static final By languageBtn = By.xpath("//a[concat(@class,'language_button') and @id='current-language']");
     public static final By allCategoriesBtn = By.xpath("//li[contains(@class,'select-category')]/a[contains(@class,'dropdown-toggle')]");
     public static final By notificationsBtn = By.xpath("//a[@class='dropdown-toggle']/i[text()='notifications']");
@@ -161,6 +163,12 @@ public class TicketsPage extends BaseTestConfiguration {
         WebElement uploadBtn = getDriver().findElement(selectFiltersBtn);
         uploadBtn.click();
         uploadBtn.sendKeys(filePath);
+    }
+
+    @Override
+    public void search(String searchFor) {
+        getDriver().findElement(searchField).sendKeys(searchFor);
+        GlobalPages.click(searchBtn);
     }
 }
 
