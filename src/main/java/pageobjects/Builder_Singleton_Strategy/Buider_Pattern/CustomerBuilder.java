@@ -74,7 +74,7 @@ public class CustomerBuilder {
      * if age is < then ageLimit - such a visitor can not enter a club
      * if age is >= then ageLimit - such a visitor can enter a club
      */
-    public static Boolean  isCustomerCanEnterNightClud(String firstName, String lastName, int age){
+    public static Boolean isCustomerCanEnterNightClud(String firstName, String lastName, int age){
         int ageLimit = 18;
 
         if(age >=ageLimit){

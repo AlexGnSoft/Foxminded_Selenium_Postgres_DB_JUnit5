@@ -11,7 +11,7 @@ import java.time.Duration;
 public class BaseTestConfiguration {
     protected static PropertiesFile propertiesFile;
 
-    //Singleton approache for driver instance
+    //Singleton approach for driver instance
     private static WebDriver driver;
 
     public static WebDriver getDriver() {

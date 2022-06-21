@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pageobjects.*;
 
-public class TestExecution_15 extends BaseTestConfiguration {
+public class TestExecution_14_1 extends BaseTestConfiguration {
 
     @Test
     public void searchCreatedDepartment() {
