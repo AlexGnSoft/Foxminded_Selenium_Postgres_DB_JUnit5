@@ -10,7 +10,7 @@ import pageobjects.TicketsPage;
 public class TextExecution_9 extends BaseTestConfiguration{
 
     @Test
-    public void returnTitleByCategoryRazrabotka(){
+    public void testReturnTitleByCategoryRazrabotka(){
         //Test data
         final String razrabotka = "РАЗРАБОТКА";
 
@@ -28,7 +28,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
     }
 
     @Test
-    public void returnTitleByCategoryFinance(){
+    public void testReturnTitleByCategoryFinance(){
         //Test data
         final String finance = "ФИНАНСЫ";
 
@@ -46,7 +46,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
     }
 
     @Test
-    public void returnIDsByPriority(){
+    public void testReturnIDsByPriority(){
         //Test data
         final String priority = "P3";
 
@@ -64,7 +64,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
     }
 
     @Test
-    public void printIdValue() {
+    public void testPrintIdValue() {
 
         // Go to application Login page
         openBrowser();
@@ -82,7 +82,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
     }
 
     @Test
-    public void printTitleValue() {
+    public void testPrintTitleValue() {
 
         // Go to application Login page
         openBrowser();
@@ -100,7 +100,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
     }
 
     @Test
-    public void printAssigneeValue() {
+    public void testPrintAssigneeValue() {
 
         // Go to application Login page
         openBrowser();
@@ -118,7 +118,7 @@ public class TextExecution_9 extends BaseTestConfiguration{
     }
 
     @Test
-    public void printStagesValue() {
+    public void testPrintStagesValue() {
         // Go to application Login page
         openBrowser();
 

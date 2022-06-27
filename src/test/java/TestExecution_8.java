@@ -8,7 +8,7 @@ import pageobjects.OpenPage;
 public class TestExecution_8 extends BaseTestConfiguration{
 
     @Test
-    public void openApplication(){
+    public void testOpenApplication(){
         // Go to application Login page
         openBrowser();
 
@@ -17,7 +17,7 @@ public class TestExecution_8 extends BaseTestConfiguration{
     }
 
     @Test
-    public void closeApplication(){
+    public void testCloseApplication(){
         // Go to application Login page
         openBrowser();
 
@@ -26,7 +26,7 @@ public class TestExecution_8 extends BaseTestConfiguration{
     }
 
     @Test
-    public void signIn() {
+    public void testSignIn() {
         // Go to application Login page
         openBrowser();
 

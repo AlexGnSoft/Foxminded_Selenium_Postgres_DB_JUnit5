@@ -8,7 +8,7 @@ import utils.RandomDataGenerator;
 public class TestExecution_12 extends BaseTestConfiguration {
 
     @Test
-    public void createNewManager() {
+    public void testCreateNewManager() {
         //Test data
         String department = "Комната добра";
         int srtLength = 7;

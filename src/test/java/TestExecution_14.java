@@ -5,7 +5,7 @@ import pageobjects.Builder_Singleton_Strategy.Buider_Pattern.CustomerBuilder;
 public class TestExecution_14 {
 
     @Test
-    public void checkNameCapitalization() {
+    public void testCheckNameCapitalization() {
         //Test data
         String fName = "Jose";
         String lName = "Aveiro";
@@ -29,7 +29,7 @@ public class TestExecution_14 {
     }
 
     @Test
-    public void accessByAgeCheck(){
+    public void testAccessByAgeCheck(){
         //Test data
         String fName = "Antonio";
         String lName = "Rodrigo";

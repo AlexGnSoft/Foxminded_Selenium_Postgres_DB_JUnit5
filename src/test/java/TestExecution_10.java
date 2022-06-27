@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class TestExecution_10 extends BaseTestConfiguration {
 
     @Test
-    public void createNewTicket() {
+    public void testCreateNewTicket() {
         //Test data
         String ticketTitle = "My ticket from automation 5";
         String description = "My description to the ticket";
@@ -74,7 +74,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
     }
 
     @Test
-    public void createNewDepartmentWithoutAdditionalInfo() {
+    public void testCreateNewDepartmentWithoutAddInfo() {
         //Test data
         String departmentTitle = "My department 1";
 
@@ -103,7 +103,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
     }
 
     @Test
-    public void createNewDepartmentWithAdditionalInfo() {
+    public void testCreateNewDepartmentWithAddInfo() {
         //Test data
         String departmentTitle = "My department 2";
         String phone = "+4634342424";
@@ -150,7 +150,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
     }
 
     @Test
-    public void createNewDepartmentAndDeleteCreatedDepartment() {
+    public void testCreateNewDepartmentAndDeleteCreatedDepartment() {
         //Test data
         String departmentTitle = "My department 14";
 
@@ -193,7 +193,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
     }
 
     @Test
-    public void createNewContactWithoutAdditionalInfo() {
+    public void testCreateNewContactWithoutAddInfo() {
         // Test data
         String FName = "First Name";
         String LName = "Last Name";
@@ -239,7 +239,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
     }
 
     @Test
-    public void createNewContactWithAdditionalInfo() {
+    public void testCreateNewContactWithAddInfo() {
         // Test data
         String FName = "First Name";
         String LName = "Last Name";

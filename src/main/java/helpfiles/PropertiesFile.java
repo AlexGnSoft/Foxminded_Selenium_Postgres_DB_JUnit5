@@ -71,4 +71,35 @@ public class PropertiesFile {
         if(explicitWait != null) return Long.parseLong(explicitWait);
         else throw new RuntimeException("explicitWait is not specified in the config.properties file.");
     }
+
+    public static String getDataBaseUrl() {
+        String db_url = properties.getProperty("db_host");
+        if(db_url != null) return db_url;
+        else throw new RuntimeException("database is not specified in the config.properties file.");
+    }
+
+    public static String getDataBasePort() {
+        String db_port = properties.getProperty("db_port");
+        if(db_port != null) return db_port;
+        else throw new RuntimeException("database port is not specified in the config.properties file.");
+    }
+
+    public static String getDataBaseName() {
+        String db_name = properties.getProperty("db_name");
+        if(db_name != null) return db_name;
+        else throw new RuntimeException("database name is not specified in the config.properties file.");
+    }
+
+    public String getDataBaseLogin() {
+        String db_user = properties.getProperty("db_user");
+        if(db_user != null) return db_user;
+        else throw new RuntimeException("database login is not specified in the config.properties file.");
+    }
+
+    public String getDataBasePassword() {
+        String db_password = properties.getProperty("db_password");
+        if(db_password != null) return db_password;
+        else throw new RuntimeException("database password is not specified in the config.properties file.");
+    }
+
 }

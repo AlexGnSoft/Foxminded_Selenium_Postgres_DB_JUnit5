@@ -7,7 +7,7 @@ import pageobjects.*;
 public class TestExecution_14_1 extends BaseTestConfiguration {
 
     @Test
-    public void searchCreatedDepartment() {
+    public void testSearchCreatedDepartment() {
         //Test data
         String departmentTitle = "My department 103";
 
@@ -41,7 +41,7 @@ public class TestExecution_14_1 extends BaseTestConfiguration {
     }
 
     @Test
-    public void searchCreatedTicket() {
+    public void testSearchCreatedTicket() {
         //Test data
         String ticketTitle = "My ticket from automation 8";
         String description = "My description to the ticket";
