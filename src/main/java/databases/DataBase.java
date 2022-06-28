@@ -41,7 +41,7 @@ public class DataBase {
                 resultString = rs.getString(columnIndex);
             }
 
-            System.out.println(resultString);
+//            System.out.println(resultString);
 
         } catch (Exception e) {
             System.out.println("Close connection");
@@ -59,6 +59,7 @@ public class DataBase {
      */
     public ArrayList<String> getListOfValues(String query) throws SQLException {
         ArrayList<String> columnFields = new ArrayList<>();
+
         Connection connection = null;
 
         //open connection here
@@ -70,21 +71,21 @@ public class DataBase {
         // get column count
         int columnCount = rsmd.getColumnCount();
         // print column Label
-        for (int i = 1; i <=columnCount ; ++i) {
-            System.out.print(rsmd.getColumnLabel(i) + "\t\t\t\t");
-        }
-        System.out.println();
-        System.out.println();
+//        for (int i = 1; i <=columnCount ; ++i) {
+//            System.out.print(rsmd.getColumnLabel(i) + "\t\t\t\t");
+//        }
+//        System.out.println();
+//        System.out.println();
 
-        // print column Values
+        // get and print(optional) column Values
         while (resultSet.next()) {
             for (int i = 1; i <= columnCount; ++i) {
                 String columnValue = resultSet.getString(i);
-                System.out.print(columnValue + "\t\t\t\t");
+//                System.out.print(columnValue + "\t\t\t\t");
                 String str = rsmd.getColumnLabel(i) + ": " + columnValue;
                 columnFields.add(str);
             }
-            System.out.println();
+//            System.out.println();
 
             if (!connection.isClosed()) {
                 connection.close();
@@ -138,8 +139,9 @@ public class DataBase {
     public static void main (String[]args) throws SQLException {
         DataBase db = new DataBase();
         PropertiesFile propertiesFile = new PropertiesFile();
-//        db.getListOfValues("select * from ticket");
-        db.getMapDataFromDataBase(db.getResultSet("select * from ticket"), "description");
+
+        db.getListOfValues("select * from ticket");
+
     }
 }
 

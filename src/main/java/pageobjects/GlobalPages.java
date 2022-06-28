@@ -193,6 +193,5 @@ public class GlobalPages extends BaseTestConfiguration {
                 checkBox.click();
             }
         }
-
     }
 }
