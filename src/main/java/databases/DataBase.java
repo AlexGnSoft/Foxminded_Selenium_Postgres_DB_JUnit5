@@ -1,14 +1,11 @@
 package databases;
 
 import helpfiles.PropertiesFile;
-import org.openqa.selenium.WebElement;
-import org.postgresql.core.SqlCommand;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Map;
 
 public class DataBase {
     /**
@@ -84,7 +81,7 @@ public class DataBase {
             for (int i = 1; i <= columnCount; ++i) {
                 String columnValue = resultSet.getString(i);
                 System.out.print(columnValue + "\t\t\t\t");
-                String str = rsmd.getColumnName(i) + ": " + columnValue;
+                String str = rsmd.getColumnLabel(i) + ": " + columnValue;
                 columnFields.add(str);
             }
             System.out.println();
@@ -97,17 +94,52 @@ public class DataBase {
     }
 
     /**
-     * Method is used to get a Map
+     * Method is used to get resultSet, to be used when needed by Map method.
      */
-//        public static HashMap<String, String> getMap () {
-//
-//        }
+    public ResultSet getResultSet(String query) throws SQLException {
+        ResultSet resultSet;
+        Connection connection = null;
 
+        //open connection here
+        PropertiesFile propertiesFile = new PropertiesFile();
+        connection = getConnection(propertiesFile.getDataBaseLogin(), propertiesFile.getDataBasePassword());
+        Statement statement = connection.createStatement();
+        resultSet = statement.executeQuery(query);
+
+        return resultSet;
+    }
+
+    /**
+     * Method is used to return a Map
+     */
+    public Map<String, List<Object>> getMapDataFromDataBase(ResultSet resultSet, String key) throws SQLException {
+        ResultSetMetaData md = resultSet.getMetaData();
+        int columns = md.getColumnCount();
+        Map<String, List<Object>> map = new HashMap<>(columns);
+
+        for (int i = 1; i <= columns; ++i) {
+            map.put(md.getColumnName(i), new ArrayList<>());
+        }
+        while (resultSet.next()) {
+            for (int i = 1; i <= columns; ++i) {
+                map.get(md.getColumnName(i)).add(resultSet.getObject(i));
+
+            }
+        }
+
+        //print to console values from the Map
+        for (int i = 0; i < map.size(); i++) {
+            System.out.println(map.get(key));
+        }
+
+        return map;
+    }
 
     public static void main (String[]args) throws SQLException {
         DataBase db = new DataBase();
         PropertiesFile propertiesFile = new PropertiesFile();
-        db.getListOfValues("select * from ticket");
+//        db.getListOfValues("select * from ticket");
+        db.getMapDataFromDataBase(db.getResultSet("select * from ticket"), "description");
     }
 }
 
