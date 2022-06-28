@@ -1,6 +1,8 @@
 package databases;
 
 import helpfiles.PropertiesFile;
+
+import javax.xml.stream.util.StreamReaderDelegate;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,13 +37,13 @@ public class DataBase {
             PropertiesFile propertiesFile = new PropertiesFile();
             connection = getConnection(propertiesFile.getDataBaseLogin(), propertiesFile.getDataBasePassword());
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query + tableName);
+            ResultSet rs = statement.executeQuery(query + " " +tableName);
 
             if (rs.next()) {
                 resultString = rs.getString(columnIndex);
             }
 
-//            System.out.println(resultString);
+            System.out.println(resultString);
 
         } catch (Exception e) {
             System.out.println("Close connection");
@@ -59,7 +61,6 @@ public class DataBase {
      */
     public ArrayList<String> getListOfValues(String query) throws SQLException {
         ArrayList<String> columnFields = new ArrayList<>();
-
         Connection connection = null;
 
         //open connection here
@@ -85,7 +86,7 @@ public class DataBase {
                 String str = rsmd.getColumnLabel(i) + ": " + columnValue;
                 columnFields.add(str);
             }
-//            System.out.println();
+            System.out.println();
 
             if (!connection.isClosed()) {
                 connection.close();
@@ -124,7 +125,6 @@ public class DataBase {
         while (resultSet.next()) {
             for (int i = 1; i <= columns; ++i) {
                 map.get(md.getColumnName(i)).add(resultSet.getObject(i));
-
             }
         }
 
@@ -139,9 +139,14 @@ public class DataBase {
     public static void main (String[]args) throws SQLException {
         DataBase db = new DataBase();
         PropertiesFile propertiesFile = new PropertiesFile();
-
-        db.getListOfValues("select * from ticket");
-
+        ArrayList<String> listOfValues = db.getListOfValues("select*from department");
+        for (int i = 0; i < listOfValues.size(); i++) {
+            if(listOfValues.get(i).contains("TestEmail@Test.com")){
+                System.out.println("OK");
+            }else {
+                System.out.println("False");
+            }
+        }
     }
 }
 

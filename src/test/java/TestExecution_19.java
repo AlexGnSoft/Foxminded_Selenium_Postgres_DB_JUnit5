@@ -3,11 +3,9 @@ import databases.DataBase;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pageobjects.GlobalPages;
-import pageobjects.OpenPage;
-import pageobjects.TicketsPage;
+import org.openqa.selenium.By;
+import pageobjects.*;
 import utils.RandomDataGenerator;
-
 import java.sql.SQLException;
 
 public class TestExecution_19 extends BaseTestConfiguration {
@@ -74,8 +72,96 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.clickOnVisibleElement(TicketsPage.submitBtn);
 
         //Compare UI and DB
-        db.getListOfValues(sqlQuery).contains(randomTitle);
-        db.getListOfValues(sqlQuery).contains(randomDescription);
-        db.getMapDataFromDataBase(db.getResultSet(sqlQuery), keyMapValue).containsValue(randomTitle);
+//        System.out.println(db.getStringValue(sqlQuery, "ticket", 9).equals("TestTitle2"));
+
+//        db.getListOfValues(sqlQuery).contains(randomTitle);
+//        db.getListOfValues(sqlQuery).contains(randomDescription);
+//        db.getMapDataFromDataBase(db.getResultSet(sqlQuery), keyMapValue).containsValue(randomTitle);
+    }
+
+    @Test
+    public void testUIAndDataBaseCreteNewDepartment() throws SQLException{
+        //Test data
+        DataBase db = new DataBase();
+        RandomDataGenerator rd = new RandomDataGenerator();
+        String randomDepartmentTitle = rd.randomString(15, false, false, true);
+        String sqlQuery = "select*from department";
+        String keyMapValue = "name";
+
+        // Go to application Login page
+        openBrowser();
+
+        //Make log in
+        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
+
+        //Open sidebar
+        GlobalPages.openLeftSideTab();
+
+        //Click on Departments tab > 'New Department+' button > Wait for page to be visible
+        GlobalPages.clickOnVisibleElement(MenuDashboard.departmentsTab);
+        GlobalPages.clickOnVisibleElement(DepartmentsNewDepPage.newDepartmentBtn);
+        GlobalPages.pageIsVisible(DepartmentsNewDepPage.newDepartmentPage);
+
+        //Fill in department title
+        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.titleField, randomDepartmentTitle);
+
+        //Click on Submit button
+        GlobalPages.click(DepartmentsNewDepPage.submitBtn);
+
+        //Compare UI and DB
+        db.getListOfValues(sqlQuery).contains(randomDepartmentTitle);
+        db.getMapDataFromDataBase(db.getResultSet(sqlQuery), keyMapValue).containsValue(randomDepartmentTitle);
+    }
+
+    @Test
+    public void testUIAndDataBaseCreateNewContact() throws SQLException{
+        // Test data
+        DataBase db = new DataBase();
+        RandomDataGenerator rd = new RandomDataGenerator();
+        String randomFName = "VanDamPeredam";
+//        String randomFName = rd.randomString(10, false, false, true);
+        String randomLName = rd.randomString(15, false, false, true);
+        String randomEmail = rd.randomString(15, true, false, false);
+        String sqlQuery = "select*from contact";
+        String keyMapValue = "first_name";
+
+        // Go to application Login page
+        openBrowser();
+
+        //Make log in
+        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
+
+        //Open sidebar
+        GlobalPages.openLeftSideTab();
+
+        //Click on Companies tab > 'New Company+' button > Wait for page to be visible
+        GlobalPages.clickOnVisibleElement(MenuDashboard.contactsTab);
+        GlobalPages.click(ContactsNewContactPage.newContactBtn);
+        GlobalPages.pageIsVisible(ContactsNewContactPage.newContactPage);
+
+        //Fill in First Name, Last Name, Email, Login, select Company
+        GlobalPages.enterDataToTheField(ContactsNewContactPage.firstNameField, randomFName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, randomLName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, randomEmail);
+
+        //Click on Check-boxes if it's not checked. Finding element is test is a temporary solution.
+        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
+        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//input[@name='notificationOnNewComment']")));
+        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+
+        //Select radio button if it's not already selected. Finding element is test is a temporary solution.
+        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='0']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='1']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='2']")));
+        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='3']")));
+
+        //Click Submit button
+        GlobalPages.click(ContactsNewContactPage.submitBtn);
+        GlobalPages.sleepWait(5000);
+
+        //Compare UI and DB
+
+
     }
 }

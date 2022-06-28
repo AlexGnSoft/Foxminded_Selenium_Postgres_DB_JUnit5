@@ -236,6 +236,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Verify presence of entered data on Contacts page
         GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList).contains(FName + " " + LName);
         GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList).contains(email);
+
     }
 
     @Test

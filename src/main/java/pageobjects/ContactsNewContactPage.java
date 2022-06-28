@@ -47,7 +47,7 @@ public class ContactsNewContactPage {
 //    public static final WebElement thirdServiceLevelRadioBtn = driver.findElement(By.xpath("//input[@value='2']"));
 //    public static final WebElement zeroServiceLevelRadioBtn = driver.findElement(By.xpath("//input[@value='3']"));
 
-    public static final By submitBtn = By.xpath("//button[@type='submit' and @id='search-bar-submit']");
+    public static final By submitBtn = By.xpath("//button[@id='contact-form-submit']");
     public static final By cancelBtn = By.xpath("//button[@id='contact-form-cancel']");
 
     /**
