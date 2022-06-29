@@ -13,10 +13,10 @@ public class TestExecution_10 extends BaseTestConfiguration {
     @Test
     public void testCreateNewTicket() {
         //Test data
-        String ticketTitle = "My ticket from automation 5";
+        String ticketTitle = "My ticket from automation 15";
         String description = "My description to the ticket";
         String stage = "IN PROGRESS";
-        String departmentName = "Комната добра";
+        String departmentName = "Посетители";
         String contactName = "Drozdh Udahvxadb";
         int indexOfOption = 4;
         String managerName = "Ярослав Коваленко";
@@ -53,7 +53,9 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.selectDataFromDropDownListByIndex(TicketsPage.drpPriority, indexOfOption);
 
         //Select random, but accessible date in the calendar
-        TicketsPage.selectDateInCalendar();
+//        TicketsPage.selectDateInCalendar();
+
+        GlobalPages.sleepWait(2000);
 
         //Select department by first option in the drop-down list
         GlobalPages.selectFromDropDownListByVisibleText(TicketsPage.drpDepartment, TicketsPage.drpDepartmentOptions, departmentName);
@@ -195,8 +197,8 @@ public class TestExecution_10 extends BaseTestConfiguration {
     @Test
     public void testCreateNewContactWithoutAddInfo() {
         // Test data
-        String FName = "First Name";
-        String LName = "Last Name";
+        String FName = "First Name3";
+        String LName = "Last Name3";
         String email = "xxx@gmail.com";
 
         // Go to application Login page
@@ -230,13 +232,14 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='2']")));
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='3']")));
 
+        GlobalPages.sleepWait(5000);
+
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);
 
         //Verify presence of entered data on Contacts page
         GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList).contains(FName + " " + LName);
         GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList).contains(email);
-
     }
 
     @Test
@@ -244,7 +247,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         // Test data
         String FName = "First Name";
         String LName = "Last Name";
-        String email = "xxx@gmail.com";
+        String email = "xxxxxx@gmail.com";
         String country = "Universe";
         String city = "Paradise";
         String street = "this is my street";
@@ -292,6 +295,8 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='1']")));
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='2']")));
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='3']")));
+
+        GlobalPages.sleepWait(5000);
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);

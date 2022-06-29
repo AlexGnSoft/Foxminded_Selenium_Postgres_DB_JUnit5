@@ -1,8 +1,6 @@
 package databases;
 
 import helpfiles.PropertiesFile;
-
-import javax.xml.stream.util.StreamReaderDelegate;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +26,7 @@ public class DataBase {
     /**
      * Method is used to get a single value from the database
      */
-    public String getStringValue(String query, String tableName, int columnIndex) throws SQLException {
+    public String getSingleStringValue(String query, int columnIndex) throws SQLException {
         String resultString = null;
         Connection connection = null;
 
@@ -37,7 +35,7 @@ public class DataBase {
             PropertiesFile propertiesFile = new PropertiesFile();
             connection = getConnection(propertiesFile.getDataBaseLogin(), propertiesFile.getDataBasePassword());
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query + " " +tableName);
+            ResultSet rs = statement.executeQuery(query);
 
             if (rs.next()) {
                 resultString = rs.getString(columnIndex);
@@ -72,11 +70,11 @@ public class DataBase {
         // get column count
         int columnCount = rsmd.getColumnCount();
         // print column Label
-//        for (int i = 1; i <=columnCount ; ++i) {
+//        for (int i = 1; i <= columnCount; ++i) {
 //            System.out.print(rsmd.getColumnLabel(i) + "\t\t\t\t");
 //        }
-//        System.out.println();
-//        System.out.println();
+        System.out.println();
+        System.out.println();
 
         // get and print(optional) column Values
         while (resultSet.next()) {
@@ -93,6 +91,22 @@ public class DataBase {
             }
         }
         return columnFields;
+    }
+
+    /**
+     * Method is used to check whether data isPresent in ArrayList of DataBase
+     */
+    public Boolean stringIsPresentInArray(String sqlQuery, String searchedString) throws SQLException {
+        DataBase db = new DataBase();
+        boolean isPresent = false;
+        ArrayList<String> listOfDataFromDb = db.getListOfValues(sqlQuery);
+        for (int i = 1; i < listOfDataFromDb.size(); i++) {
+            if (listOfDataFromDb.get(i).contains(searchedString)) {
+                isPresent = true;
+            }
+        }
+        System.out.println(isPresent);
+        return isPresent;
     }
 
     /**
@@ -129,24 +143,36 @@ public class DataBase {
         }
 
         //print to console values from the Map
-        for (int i = 0; i < map.size(); i++) {
-            System.out.println(map.get(key));
-        }
-
+//        for (int i = 0; i < map.size(); i++) {
+//            System.out.println(map.get(key));
+//        }
         return map;
     }
 
-    public static void main (String[]args) throws SQLException {
+
+    /**
+     * Method is used to check whether data isPresent in a Map from DataBase
+     */
+    public Boolean stringIsPresentInMap(String sqlQuery, String key, String searchedString) throws SQLException {
         DataBase db = new DataBase();
-        PropertiesFile propertiesFile = new PropertiesFile();
-        ArrayList<String> listOfValues = db.getListOfValues("select*from department");
-        for (int i = 0; i < listOfValues.size(); i++) {
-            if(listOfValues.get(i).contains("TestEmail@Test.com")){
-                System.out.println("OK");
-            }else {
-                System.out.println("False");
+        boolean isPresent = false;
+
+        Map<String, List<Object>> mapDataFromDataBase = db.getMapDataFromDataBase(db.getResultSet(sqlQuery), key);
+
+        for (int i = 1; i < mapDataFromDataBase.size(); i++) {
+            if (mapDataFromDataBase.get(key).contains(searchedString)) {
+                isPresent = true;
             }
         }
+//        System.out.println("This is searched title: " + searchedString);
+//        System.out.println("This is actual status, from the map: " + isPresent);
+        return isPresent;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        DataBase db = new DataBase();
+        PropertiesFile propertiesFile = new PropertiesFile();
+        System.out.println(db.stringIsPresentInArray("select*from contact", "ffffff"));
     }
 }
 

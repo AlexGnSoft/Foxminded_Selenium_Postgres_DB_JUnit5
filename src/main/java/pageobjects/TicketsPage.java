@@ -58,7 +58,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
     public static final By selectPreviousMonth = By.xpath("//span[@class='fa fa-angle-left']");
     public static final By minutePickerList = By.xpath("//div[@class='ui-minute-picker']/a[@class='ng-tns-c10-2']");
     public static final By hoursPickerList = By.xpath("//div[@class='ui-hour-picker']/a[@class='ng-tns-c10-2']");
-    public static final By drpDepartment = By.cssSelector("#department");
+    public static final By drpDepartment = By.xpath("//div/select[@id='department']");
     public static final By drpDepartmentOptions = By.xpath("//select[@id='department']");
     public static final By drpManager = By.cssSelector("#manager");
     public static final By selectFiltersBtn = By.xpath("//div[@class='col-sm-10']/button[@class='btn btn-success btn-outline']");

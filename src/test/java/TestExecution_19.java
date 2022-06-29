@@ -3,7 +3,6 @@ import databases.DataBase;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import pageobjects.*;
 import utils.RandomDataGenerator;
 import java.sql.SQLException;
@@ -23,8 +22,8 @@ public class TestExecution_19 extends BaseTestConfiguration {
         int indexOfOption = 4;
         String managerName = "Ярослав Коваленко";
         String pathToTheFileOnPc = "src/main/java/helpfiles/Ukraine-Sign.jpeg";
-        String sqlQuery = "select*from ticket";
-        String keyMapValue = "title";
+        String sqlQuery = "select * from ticket";
+        String keyMap = "title";
 
         // Go to application Login page
         openBrowser();
@@ -57,7 +56,10 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.selectDataFromDropDownListByIndex(TicketsPage.drpPriority, indexOfOption);
 
         //Select random, but accessible date in the calendar
-        TicketsPage.selectDateInCalendar();
+//        TicketsPage.selectDateInCalendar();
+
+        //Select department by first option in the drop-down list
+        GlobalPages.sleepWait(2000);
 
         //Select department by first option in the drop-down list
         GlobalPages.selectFromDropDownListByVisibleText(TicketsPage.drpDepartment, TicketsPage.drpDepartmentOptions, departmentName);
@@ -72,11 +74,9 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.clickOnVisibleElement(TicketsPage.submitBtn);
 
         //Compare UI and DB
-//        System.out.println(db.getStringValue(sqlQuery, "ticket", 9).equals("TestTitle2"));
-
-//        db.getListOfValues(sqlQuery).contains(randomTitle);
-//        db.getListOfValues(sqlQuery).contains(randomDescription);
-//        db.getMapDataFromDataBase(db.getResultSet(sqlQuery), keyMapValue).containsValue(randomTitle);
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomDescription));
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomTitle));
+        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomTitle));
     }
 
     @Test
@@ -86,7 +86,7 @@ public class TestExecution_19 extends BaseTestConfiguration {
         RandomDataGenerator rd = new RandomDataGenerator();
         String randomDepartmentTitle = rd.randomString(15, false, false, true);
         String sqlQuery = "select*from department";
-        String keyMapValue = "name";
+        String keyMap = "name";
 
         // Go to application Login page
         openBrowser();
@@ -109,8 +109,8 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.click(DepartmentsNewDepPage.submitBtn);
 
         //Compare UI and DB
-        db.getListOfValues(sqlQuery).contains(randomDepartmentTitle);
-        db.getMapDataFromDataBase(db.getResultSet(sqlQuery), keyMapValue).containsValue(randomDepartmentTitle);
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomDepartmentTitle));
+        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomDepartmentTitle));
     }
 
     @Test
@@ -118,12 +118,11 @@ public class TestExecution_19 extends BaseTestConfiguration {
         // Test data
         DataBase db = new DataBase();
         RandomDataGenerator rd = new RandomDataGenerator();
-        String randomFName = "VanDamPeredam";
-//        String randomFName = rd.randomString(10, false, false, true);
+        String randomFName = rd.randomString(10, false, false, true);
         String randomLName = rd.randomString(15, false, false, true);
         String randomEmail = rd.randomString(15, true, false, false);
         String sqlQuery = "select*from contact";
-        String keyMapValue = "first_name";
+        String keyMap = "first_name";
 
         // Go to application Login page
         openBrowser();
@@ -144,24 +143,19 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, randomLName);
         GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, randomEmail);
 
-        //Click on Check-boxes if it's not checked. Finding element is test is a temporary solution.
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//input[@name='notificationOnNewComment']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        GlobalPages.sleepWait(3000);
 
-        //Select radio button if it's not already selected. Finding element is test is a temporary solution.
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='0']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='1']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='2']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='3']")));
+        //Scroll down the page to see the buttons on bottom of the page
+        BaseTestConfiguration.scrollDown();
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);
-        GlobalPages.sleepWait(5000);
+        GlobalPages.sleepWait(3000);
 
         //Compare UI and DB
-
-
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomFName));
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomLName));
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomEmail));
+        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomFName));
     }
 }

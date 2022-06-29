@@ -3,6 +3,7 @@ package config;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -61,5 +62,10 @@ public class BaseTestConfiguration {
     @AfterEach
     public void tearDown(){
         driver.quit();
+    }
+
+    public static void scrollDown(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,1000)");
     }
 }
