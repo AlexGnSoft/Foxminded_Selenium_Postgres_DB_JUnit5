@@ -1,20 +1,22 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
-import databases.DataBase;
 import helpfiles.PropertiesFile;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GlobalPages extends BaseTestConfiguration {
+
+    private static final Logger log = LogManager.getLogger(DepartmentsNewDepPage.class.getName());
 
     /**
      * Method is used to close email popo-up and open ledft side bar, to be able to click on any category
@@ -22,6 +24,7 @@ public class GlobalPages extends BaseTestConfiguration {
     public static void openLeftSideTab(){
         GlobalPages.click(MenuDashboard.closeButton);
         GlobalPages.click(MenuDashboard.minimizeSideBarBtn);
+        log.log(Level.INFO, "openLeftSideTab method");
     }
 
     /**
@@ -37,6 +40,7 @@ public class GlobalPages extends BaseTestConfiguration {
     public static void clickOnVisibleElement(By element){
         WebElement webElement = getDriver().findElement(element);
         waitExplicitly(webElement).click();
+        log.log(Level.INFO, "clickOnVisibleElement method");
     }
 
     /**
@@ -45,6 +49,8 @@ public class GlobalPages extends BaseTestConfiguration {
     public static Boolean pageIsVisible(By webElement){
         new WebDriverWait(getDriver(), Duration.ofSeconds(propertiesFile.getExplicitWait()))
                 .until(ExpectedConditions.presenceOfElementLocated(webElement));
+
+        log.log(Level.INFO, "pageIsVisible method");
 
         return true;
     }
@@ -55,6 +61,8 @@ public class GlobalPages extends BaseTestConfiguration {
     public static void enterDataToTheField(By webElement, String data) {
         getDriver().findElement(webElement).clear();
         getDriver().findElement(webElement).sendKeys(data);
+
+        log.log(Level.INFO, "enterDataToTheField method");
     }
 
     /**
@@ -63,6 +71,8 @@ public class GlobalPages extends BaseTestConfiguration {
     public static Boolean navigateBackAndForth(By webElement) {
         getDriver().navigate().back();
         getDriver().navigate().forward();
+        log.log(Level.INFO, "navigateBackAndForth method");
+
         return pageIsVisible(webElement);
     }
 
@@ -75,6 +85,9 @@ public class GlobalPages extends BaseTestConfiguration {
         if (element.getAttribute("placeholder").contains(expectPlaceHolderText)) {
             actualPlaceholder = true;
         }
+
+        log.log(Level.INFO, "placeHolderIsVisible method");
+
         return actualPlaceholder;
     }
 
@@ -85,6 +98,8 @@ public class GlobalPages extends BaseTestConfiguration {
         new WebDriverWait(getDriver(), Duration.ofSeconds(propertiesFile.getExplicitWait()))
                 .until(ExpectedConditions.visibilityOf(webElement));
 
+        log.log(Level.INFO, "waitExplicitly method");
+
         return webElement;
     }
 
@@ -93,6 +108,7 @@ public class GlobalPages extends BaseTestConfiguration {
      */
     public static void waitImplicitly(){
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(PropertiesFile.getImplicitWait()));
+        log.log(Level.INFO, "waitImplicitly method");
     }
 
     /**
@@ -104,6 +120,7 @@ public class GlobalPages extends BaseTestConfiguration {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        log.log(Level.INFO, "sleepWait method");
     }
 
     /**
@@ -117,6 +134,9 @@ public class GlobalPages extends BaseTestConfiguration {
         for (int i = 0; i < titleNameList.size(); i++) {
             titleName.add(titleNameList.get(i).getText());
         }
+
+        log.log(Level.INFO, "getNamesOfAnyColumns method");
+
         return titleName;
     }
 
@@ -126,6 +146,7 @@ public class GlobalPages extends BaseTestConfiguration {
     public static void clickOnTheFirstElementInAList(By webElements){
         List<WebElement> webElementList = getDriver().findElements(webElements);
         webElementList.get(0).click();
+        log.log(Level.INFO, "clickOnTheFirstElementInAList method");
     }
 
     /**
@@ -138,6 +159,7 @@ public class GlobalPages extends BaseTestConfiguration {
         for (int i = 0; i < titleNameList.size(); i++) {
             System.out.println(titleNameList.get(i).getText());
         }
+        log.log(Level.INFO, "printValueOfColumn method");
     }
 
     /**
@@ -148,6 +170,7 @@ public class GlobalPages extends BaseTestConfiguration {
         GlobalPages.sleepWait(2000);
         Select select = new Select((getDriver().findElement(drpOptions)));
         select.selectByVisibleText(searchedVisibleText);
+        log.log(Level.INFO, "selectFromDropDownListByVisibleText method");
     }
 
     /**
@@ -158,6 +181,7 @@ public class GlobalPages extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
         Select select = new Select((getDriver().findElement(dropDownElement)));
         select.selectByIndex(searchedElementIndex);
+        log.log(Level.INFO, "selectDataFromDropDownListByIndex method");
     }
 
     /**
@@ -171,6 +195,7 @@ public class GlobalPages extends BaseTestConfiguration {
         }else{
             getDriver().switchTo().alert().dismiss();
         }
+        log.log(Level.INFO, "alertAcceptOrDismiss method");
     }
 
 
@@ -182,6 +207,7 @@ public class GlobalPages extends BaseTestConfiguration {
         if (!checkBox.isSelected()) {
             checkBox.click();
         }
+        log.log(Level.INFO, "checkCheckboxStatusAndClick method");
     }
 
     /**
@@ -196,5 +222,6 @@ public class GlobalPages extends BaseTestConfiguration {
                 checkBox.click();
             }
         }
+        log.log(Level.INFO, "checkRadioButtonStatusAndSelect method");
     }
 }

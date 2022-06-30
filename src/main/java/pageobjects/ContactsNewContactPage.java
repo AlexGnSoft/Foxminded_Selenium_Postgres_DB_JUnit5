@@ -1,8 +1,12 @@
 package pageobjects;
 
+import config.BaseTestConfiguration;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-public class ContactsNewContactPage {
+public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By newContactBtn = By.xpath("//button[@id='new-contact']");
     public static final By newContactPage = By.xpath("//div[@class='card-content']");
     public static final By fullNameList = By.xpath("//tbody/tr/td/a");
@@ -50,6 +54,8 @@ public class ContactsNewContactPage {
     public static final By submitBtn = By.xpath("//button[@class='btn btn-success btn-outline']");
     public static final By cancelBtn = By.xpath("//button[@id='contact-form-cancel']");
 
+    private static final Logger log = LogManager.getLogger(ContactsNewContactPage.class.getName());
+
     /**
      * Method fill in all the fields
      */
@@ -64,6 +70,7 @@ public class ContactsNewContactPage {
         GlobalPages.enterDataToTheField(ContactsNewContactPage.roomNumberField, roomNumber);
         GlobalPages.enterDataToTheField(ContactsNewContactPage.skypeField, skype);
         GlobalPages.enterDataToTheField(ContactsNewContactPage.jobPositionField, jobPosition);
+        log.log(Level.INFO, "fillInAllFields method");
     }
 }
 

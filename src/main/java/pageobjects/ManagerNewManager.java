@@ -1,6 +1,9 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
@@ -34,6 +37,8 @@ public class ManagerNewManager extends BaseTestConfiguration {
     public static final By profileDataCreated = By.xpath("//div[@class='col-sm-7']/p");
     public static final By managerDataList = By.cssSelector(".text-left");
 
+    private static final Logger log = LogManager.getLogger(ManagerNewManager.class.getName());
+
     /**
      * Method saves data to HashMap
      */
@@ -44,6 +49,8 @@ public class ManagerNewManager extends BaseTestConfiguration {
         data.put("email", emailTest);
         data.put("skype", skypeTest);
         data.put("name", nameTest);
+
+        log.log(Level.INFO, "saveManagerData method");
 
         return data;
     }
@@ -69,6 +76,8 @@ public class ManagerNewManager extends BaseTestConfiguration {
         //enter Skype
         getDriver().findElement(skypeElement).clear();
         getDriver().findElement(skypeElement).sendKeys(skypeTest);
+
+        log.log(Level.INFO, "fillInAllFields method");
     }
 
     /**
@@ -80,6 +89,9 @@ public class ManagerNewManager extends BaseTestConfiguration {
         for (int i = 0; i < managerData.size(); i++) {
             managerArrayData.add(managerData.get(i).getText());
         }
+
+        log.log(Level.INFO, "getCreatedManagerData method");
+
         return managerArrayData;
     }
 }

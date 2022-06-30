@@ -1,6 +1,9 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -65,6 +68,8 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
     public static final By submitBtn = By.cssSelector("#submit-btn");
     public static final By accessibleCalendarDatesList = By.xpath("//td[@class='ng-tns-c10-3']/a[@class='ui-state-default ng-tns-c10-3']");
 
+    private static final Logger log = LogManager.getLogger(TicketsPage.class.getName());
+
     /**
      * Method returns a list of Stage names using getText() method.
      */
@@ -73,7 +78,11 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
         List<WebElement> titleNameList = getDriver().findElements(webElements);
         for (int i = 0; i < titleNameList.size(); i++) {
             titleName.add(titleNameList.get(i).getText());
+
         }
+
+        log.log(Level.INFO, "getNamesOfStages method");
+
         return titleName;
     }
 
@@ -89,6 +98,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
                 System.out.println(text);
             }
         }
+        log.log(Level.INFO, "printStages method");
     }
 
 
@@ -106,6 +116,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
                 break;
             }
         }
+        log.log(Level.INFO, "selectOptionOneByOne method");
     }
 
     /**
@@ -115,6 +126,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
         getDriver().findElement(dropDownElement).click();
         Select select = new Select(getDriver().findElement(dropDownElement));
         select.getFirstSelectedOption().isDisplayed();
+        log.log(Level.INFO, "selectFirstOptionFromDropDownList method");
     }
 
     /**
@@ -124,6 +136,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
         Select select = new Select(getDriver().findElement(dropDownElement));
         int optionsSize = select.getOptions().size();
         select.selectByIndex(optionsSize - 1);
+        log.log(Level.INFO, "selectLastOptionFromDropDownList method");
     }
 
     /**
@@ -154,6 +167,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
             random.nextInt(accessibleCalendarDates.size());
             accessibleCalendarDates.get(i).click();
         }
+        log.log(Level.INFO, "selectDateInCalendar method");
     }
 
     /**
@@ -163,12 +177,14 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
         WebElement uploadBtn = getDriver().findElement(selectFiltersBtn);
         uploadBtn.click();
         uploadBtn.sendKeys(filePath);
+        log.log(Level.INFO, "fileUpload method");
     }
 
     @Override
     public void search(String searchFor) {
         getDriver().findElement(searchField).sendKeys(searchFor);
         GlobalPages.click(searchBtn);
+        log.log(Level.INFO, "search method");
     }
 }
 

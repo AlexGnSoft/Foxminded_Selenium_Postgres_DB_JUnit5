@@ -1,13 +1,15 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MenuDashboard extends BaseTestConfiguration {
-
     public static final By homePagePanel = By.xpath("//div[@class='main-panel']");
     public static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
     public static final By dashboardTab = By.xpath("//a[@id='menu-dashboard']");
@@ -24,6 +26,8 @@ public class MenuDashboard extends BaseTestConfiguration {
     public static final By needImmediateReactionButton = By.xpath("//tickets-block/div[@id='accordion1']");
     public static final By closeButton = By.cssSelector("button.close");
 
+    private static final Logger log = LogManager.getLogger(MenuDashboard.class.getName());
+
     /**
      * Method is used to get to NeedImmediateReactionPage
      */
@@ -32,6 +36,8 @@ public class MenuDashboard extends BaseTestConfiguration {
         GlobalPages.click(minimizeSideBarBtn);
         GlobalPages.click(dashboardTab);
         GlobalPages.click(needImmediateReactionButton);
+
+        log.log(Level.INFO, "getToNeedImmediateReactionPage method");
     }
 
     /**
@@ -50,6 +56,9 @@ public class MenuDashboard extends BaseTestConfiguration {
         for (int j = 0; j < titleName.size(); j++) {
             System.out.println(titleName.get(j));
         }
+
+        log.log(Level.INFO, "returnTitleNameByCategory method");
+
         return titleName;
     }
 
@@ -69,6 +78,9 @@ public class MenuDashboard extends BaseTestConfiguration {
         for (int j = 0; j < ids.size(); j++) {
             System.out.println(ids.get(j));
         }
+
+        log.log(Level.INFO, "returnIDsByPriority method");
+
         return ids;
     }
 }

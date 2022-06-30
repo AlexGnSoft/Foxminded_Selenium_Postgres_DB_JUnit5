@@ -1,8 +1,15 @@
 package utils;
 
+import config.BaseTestConfiguration;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Random;
 
-public class RandomDataGenerator {
+public class RandomDataGenerator extends BaseTestConfiguration {
+
+    private static final Logger log = LogManager.getLogger(RandomDataGenerator.class.getName());
 
     /**
      * Method is used to generate random Boolean state
@@ -30,6 +37,7 @@ public class RandomDataGenerator {
         }
         randomIntSequence = sb.toString();
 
+        log.log(Level.INFO, "randomInt method");
         return randomIntSequence;
     }
 
@@ -80,7 +88,7 @@ public class RandomDataGenerator {
         }else{
             System.out.println("Please, select a type of random string");
         }
-
+        log.log(Level.INFO, "randomString method");
         return randomString;
     }
 }

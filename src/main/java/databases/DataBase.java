@@ -1,13 +1,20 @@
 package databases;
 
+import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DataBase {
+public class DataBase extends BaseTestConfiguration {
+
+    private static final Logger log = LogManager.getLogger(DataBase.class.getName());
+
     /**
      * Method is used to establish connection with database (tickets_hub_foxminded)
      */
@@ -20,6 +27,7 @@ public class DataBase {
         } else {
             System.out.println("Connection to database'tickets_hub_foxminded' is FAILED");
         }
+        log.log(Level.INFO, "getConnection method");
         return conn;
     }
 
@@ -51,6 +59,7 @@ public class DataBase {
                 System.out.println();
             }
         }
+        log.log(Level.INFO, "getSingleStringValue method");
         return resultString;
     }
 
@@ -90,6 +99,7 @@ public class DataBase {
                 connection.close();
             }
         }
+        log.log(Level.INFO, "getListOfValues method");
         return columnFields;
     }
 
@@ -105,7 +115,7 @@ public class DataBase {
                 isPresent = true;
             }
         }
-        System.out.println(isPresent);
+        log.log(Level.INFO, "getListOfValues method");
         return isPresent;
     }
 
@@ -122,6 +132,7 @@ public class DataBase {
         Statement statement = connection.createStatement();
         resultSet = statement.executeQuery(query);
 
+        log.log(Level.INFO, "getResultSet method");
         return resultSet;
     }
 
@@ -146,6 +157,7 @@ public class DataBase {
 //        for (int i = 0; i < map.size(); i++) {
 //            System.out.println(map.get(key));
 //        }
+        log.log(Level.INFO, "getMapDataFromDataBase method");
         return map;
     }
 
@@ -166,6 +178,7 @@ public class DataBase {
         }
 //        System.out.println("This is searched title: " + searchedString);
 //        System.out.println("This is actual status, from the map: " + isPresent);
+        log.log(Level.INFO, "stringIsPresentInMap method");
         return isPresent;
     }
 

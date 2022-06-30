@@ -1,5 +1,8 @@
 package pageobjects;
 import config.BaseTestConfiguration;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import pageobjects.Builder_Singleton_Strategy.Strategy_Pattern.ISearchStrategy;
 
@@ -30,6 +33,8 @@ public class DepartmentsNewDepPage extends BaseTestConfiguration implements ISea
     public static final By searchBtn = By.xpath("//button[@id='search-bar-submit']");
     public static final By searchResultPage = By.xpath("//div[@class='card-content']");
 
+    private static final Logger log = LogManager.getLogger(DepartmentsNewDepPage.class.getName());
+
     public static void fillInAllFields(String phone, String skype, String website, String email, String country, String city, String street, String building, String zipCode, String roomNumber){
         GlobalPages.click(DepartmentsNewDepPage.additionalInfoBtn);
         GlobalPages.enterDataToTheField(DepartmentsNewDepPage.phoneField, phone);
@@ -42,11 +47,13 @@ public class DepartmentsNewDepPage extends BaseTestConfiguration implements ISea
         GlobalPages.enterDataToTheField(DepartmentsNewDepPage.buildingField, building);
         GlobalPages.enterDataToTheField(DepartmentsNewDepPage.zipCodeField, zipCode);
         GlobalPages.enterDataToTheField(DepartmentsNewDepPage.roomNumberField, roomNumber);
+        log.log(Level.INFO, "fillInAllFields method");
     }
 
     @Override
     public void search(String searchFor) {
         getDriver().findElement(searchField).sendKeys(searchFor);
         GlobalPages.click(searchBtn);
+        log.log(Level.INFO, "search method");
     }
 }
