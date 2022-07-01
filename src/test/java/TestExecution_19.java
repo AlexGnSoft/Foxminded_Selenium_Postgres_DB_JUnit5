@@ -146,7 +146,7 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
 
         //Scroll down the page to see the buttons on bottom of the page
-        BaseTestConfiguration.scrollDown();
+        GlobalPages.scrollDown();
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);
@@ -157,5 +157,6 @@ public class TestExecution_19 extends BaseTestConfiguration {
         Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomLName));
         Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomEmail));
         Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomFName));
+
     }
 }

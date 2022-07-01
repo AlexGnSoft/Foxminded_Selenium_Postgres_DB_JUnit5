@@ -1,9 +1,6 @@
 package config;
 
 import helpfiles.PropertiesFile;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,14 +11,12 @@ import java.time.Duration;
 
 public class BaseTestConfiguration {
     protected static PropertiesFile propertiesFile;
-    //create an instance for Logger
-    private static final Logger log = LogManager.getLogger(BaseTestConfiguration.class.getName());
 
     //Singleton approach for driver instance
     private static WebDriver driver;
 
     public static WebDriver getDriver() {
-        log.log(Level.INFO, "getDriver method");
+//        log.log(Level.INFO, "getDriver method");
         return driver;
     }
 
@@ -50,16 +45,6 @@ public class BaseTestConfiguration {
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(propertiesFile.getImplicitWait()));
-        log.log(Level.INFO, "createDriver method");
-    }
-
-
-    /**
-     * Method open an application
-     */
-    public void openBrowser(){
-        driver.get(propertiesFile.getApplicationUrl());
-        log.log(Level.INFO, "openBrowser method");
     }
 
     /**
@@ -70,12 +55,20 @@ public class BaseTestConfiguration {
     @AfterEach
     public void tearDown(){
         driver.quit();
-        log.log(Level.INFO, "tearDown method");
     }
 
+    /**
+     * Method open an application
+     */
+    public void openBrowser(){
+        driver.get(propertiesFile.getApplicationUrl());
+    }
+
+    /**
+     * Method scrolls cursor down on a page
+     */
     public static void scrollDown(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
-        log.log(Level.INFO, "scrollDown method");
     }
 }
