@@ -74,9 +74,9 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.clickOnVisibleElement(TicketsPage.submitBtn);
 
         //Compare UI and DB
-        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomDescription));
-        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomTitle));
-        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomTitle));
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomDescription), "Description isn't found in DB");
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomTitle), "Title isn't found in DB");
+        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomTitle), "Title isn't found in DB");
     }
 
     @Test
@@ -109,8 +109,8 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.click(DepartmentsNewDepPage.submitBtn);
 
         //Compare UI and DB
-        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomDepartmentTitle));
-        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomDepartmentTitle));
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomDepartmentTitle), "Title isn't found in DB");
+        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomDepartmentTitle), "Title isn't found in DB");
     }
 
     @Test
@@ -153,10 +153,9 @@ public class TestExecution_19 extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
 
         //Compare UI and DB
-        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomFName));
-        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomLName));
-        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomEmail));
-        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomFName));
-
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery,randomFName), "First name isn't found in DB");
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomLName), "Last name isn't found in DB");
+        Assertions.assertTrue(db.stringIsPresentInArray(sqlQuery, randomEmail), "Email isn't found in DB");
+        Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomFName), "First name isn't found in DB");
     }
 }

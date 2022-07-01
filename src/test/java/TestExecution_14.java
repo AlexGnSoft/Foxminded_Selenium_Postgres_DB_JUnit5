@@ -24,8 +24,8 @@ public class TestExecution_14 {
 //        System.out.println(customer);
 //        System.out.println(builder.getAge());
 
-        Assertions.assertTrue(CustomerBuilder.isNamesStartsFromCapital(builder.getFirstName()));
-        Assertions.assertTrue(CustomerBuilder.isNamesStartsFromCapital(builder.getLastName()));
+        Assertions.assertTrue(CustomerBuilder.isNamesStartsFromCapital(builder.getFirstName()), "Name does not start from the capital");
+        Assertions.assertTrue(CustomerBuilder.isNamesStartsFromCapital(builder.getLastName()), "Name does not start from the capital");
     }
 
     @Test
@@ -40,7 +40,11 @@ public class TestExecution_14 {
                 .setLastName(lName)
                 .setAge(age);
 
-        Assertions.assertTrue(CustomerBuilder.isCustomerCanEnterNightClud(builder.getFirstName(), builder.getLastName(), builder.getAge()));
+        Assertions.assertTrue(
+                CustomerBuilder.isCustomerCanEnterNightClud(builder.getFirstName(),
+                        builder.getLastName(),
+                        builder.getAge()),
+                "The customer can not enter");
     }
 }
 

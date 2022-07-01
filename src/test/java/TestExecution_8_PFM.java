@@ -15,7 +15,7 @@ public class TestExecution_8_PFM extends BaseTestConfiguration{
         OpenPage_PFM.using(getDriver());
 
         //Verify that login page is visible
-        Assertions.assertTrue(OpenPage_PFM.isLoginPageBodyVisible());
+        Assertions.assertTrue(OpenPage_PFM.isLoginPageBodyVisible(), "Login page is not visible");
     }
 
     @Test
@@ -30,6 +30,6 @@ public class TestExecution_8_PFM extends BaseTestConfiguration{
                                 .clickSing();
 
         //Verify that home page is visible
-        Assertions.assertTrue(OpenPage_PFM.isHomePageBodyVisible());
+        Assertions.assertTrue(OpenPage_PFM.isHomePageBodyVisible(), "Home page is not visible");
     }
 }

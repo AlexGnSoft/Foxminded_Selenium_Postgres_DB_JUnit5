@@ -37,7 +37,7 @@ public class TestExecution_14_1 extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
 
         //Verify that Search Result page is visible
-        Assertions.assertTrue(GlobalPages.pageIsVisible(DepartmentsNewDepPage.searchResultPage));
+        Assertions.assertTrue(GlobalPages.pageIsVisible(DepartmentsNewDepPage.searchResultPage), "Search result page is not visible");
     }
 
     @Test
@@ -103,6 +103,6 @@ public class TestExecution_14_1 extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
 
         //Verify that Search Result page is visible
-        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.searchResultPage));
+        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.searchResultPage), "Search result page is not visible");
     }
 }
