@@ -12,9 +12,9 @@ public class DepartmentsNewDepPage extends BaseTestConfiguration implements ISea
     public static final By newDepartmentBtn = By.xpath("//button[@id='new-department']");
     public static final By newDepartmentPage = By.xpath("//div[@class='card col-md-8']");
     public static final By deleteBtn = By.cssSelector("a[title='Delete']");
-    public static final By depTitleList = By.xpath("//tbody/tr/td/a[@href]");
-    public static final By depPhoneList = By.xpath("//tbody/tr/td");
-    public static final By depEmailList = By.xpath("//tbody/tr/td");
+    public static final By depTitleList = By.xpath("//table/tbody/tr/td/a");
+    public static final By depPhoneList = By.xpath("//table/tbody/tr/td");
+    public static final By depEmailList = By.xpath("//table/tbody/tr/td");
     public static final By titleField = By.xpath("//input[@name='name']");
     public static final By additionalInfoBtn = By.xpath("//a[@id='department-form-additional-info']");
     public static final By phoneField = By.xpath("//input[@name='phone']");

@@ -9,8 +9,8 @@ import org.openqa.selenium.By;
 public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By newContactBtn = By.xpath("//button[@id='new-contact']");
     public static final By newContactPage = By.xpath("//div[@class='card-content']");
-    public static final By fullNameList = By.xpath("//tbody/tr/td/a");
-    public static final By emailList = By.xpath("//tbody/tr/td/a");
+    public static final By fullNameList = By.xpath("//tbody/tr/td");
+    public static final By emailList = By.xpath("//tbody/tr/td");
     public static final By firstNameField = By.xpath("//input[@name='firstName']");
     public static final By lastNameField = By.xpath("//input[@name='lastName']");
     public static final By emailField = By.xpath("//input[@name='email']");

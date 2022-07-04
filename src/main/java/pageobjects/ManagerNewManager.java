@@ -35,7 +35,7 @@ public class ManagerNewManager extends BaseTestConfiguration {
     public static final By submitBtn = By.cssSelector("#manager-form-submit");
     public static final By cancelBtn = By.cssSelector("#manager-form-cancel");
     public static final By profileDataCreated = By.xpath("//div[@class='col-sm-7']/p");
-    public static final By managerDataList = By.cssSelector(".text-left");
+    public static final By managerDataList = By.xpath("//table/tbody/tr/td");
 
     private static final Logger log = LogManager.getLogger(ManagerNewManager.class.getName());
 

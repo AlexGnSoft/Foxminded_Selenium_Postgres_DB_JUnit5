@@ -5,15 +5,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import pageobjects.*;
-import java.util.ArrayList;
-
 
 public class TestExecution_10 extends BaseTestConfiguration {
 
     @Test
     public void testCreateNewTicket() {
         //Test data
-        String ticketTitle = "My ticket from automation 15";
+        String ticketTitle = "My ticket from automation 24";
         String description = "My description to the ticket";
         String stage = "IN PROGRESS";
         String departmentName = "Посетители";
@@ -68,17 +66,23 @@ public class TestExecution_10 extends BaseTestConfiguration {
 
         //Submit new ticker data
         GlobalPages.clickOnVisibleElement(TicketsPage.submitBtn);
+        GlobalPages.sleepWait(1000);
+
+        //Refresh the page
+        getDriver().navigate().refresh();
+        GlobalPages.sleepWait(2000);
 
         //Verify presence of entered data on Tickets page
-        GlobalPages.getNamesOfAnyColumns(TicketsPage.titleList).contains(ticketTitle);
-        GlobalPages.getNamesOfAnyColumns(TicketsPage.stageList).contains(stage);
-        GlobalPages.getNamesOfAnyColumns(TicketsPage.assigneeList).contains(contactName);
+
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(TicketsPage.titleList), ticketTitle));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(TicketsPage.stageList), stage));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(TicketsPage.ticketCompanyList), contactName));
     }
 
     @Test
     public void testCreateNewDepartmentWithoutAddInfo() {
         //Test data
-        String departmentTitle = "My department 1";
+        String departmentTitle = "My department 2";
 
         // Go to application Login page
         openBrowser();
@@ -100,14 +104,19 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Click on Submit button
         GlobalPages.click(DepartmentsNewDepPage.submitBtn);
 
+        //Refresh the page
+        getDriver().navigate().refresh();
+        GlobalPages.sleepWait(2000);
+
         //Verify presence of entered data on Departments page
-        GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList).contains(departmentTitle);
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray
+                (GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), departmentTitle));
     }
 
     @Test
     public void testCreateNewDepartmentWithAddInfo() {
         //Test data
-        String departmentTitle = "My department 2";
+        String departmentTitle = "My department 8";
         String phone = "+4634342424";
         String skype = "alex";
         String website = "alex.com";
@@ -144,11 +153,15 @@ public class TestExecution_10 extends BaseTestConfiguration {
 
         //Click on Submit button
         GlobalPages.click(DepartmentsNewDepPage.submitBtn);
+//
+//        //Refresh the page
+//        getDriver().navigate().refresh();
+        GlobalPages.sleepWait(2000);
 
         //Verify presence of entered data on Departments page
-        GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList).contains(departmentTitle);
-        GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depPhoneList).contains(phone);
-        GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depEmailList).contains(email);
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList),departmentTitle));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depPhoneList),phone));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depEmailList),email));
     }
 
     @Test
@@ -177,7 +190,8 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.click(DepartmentsNewDepPage.submitBtn);
 
         //Verify presence of entered data on Departments page
-        GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList).contains(departmentTitle);
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray
+                (GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), departmentTitle));
 
         //Click on Delete button to delete created department
         GlobalPages.click(DepartmentsNewDepPage.deleteBtn);
@@ -188,18 +202,17 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Thread sleep waiter
         GlobalPages.sleepWait(3000);
 
-        ArrayList<String> namesOfAnyColumns = GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList);
-        for (String title2 : namesOfAnyColumns) {
-            Assertions.assertFalse(title2.contains(departmentTitle));
-        }
+        //Verify absence of entered data on Departments page
+        Assertions.assertFalse(GlobalPages.stringIsPresentInArray
+                (GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), departmentTitle));
     }
 
     @Test
     public void testCreateNewContactWithoutAddInfo() {
         // Test data
-        String FName = "First Name3";
-        String LName = "Last Name3";
-        String email = "xxx@gmail.com";
+        String FName = "My First Name4";
+        String LName = "My Last Name4";
+        String email = "copypust@gmail.com";
 
         // Go to application Login page
         openBrowser();
@@ -231,33 +244,33 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='1']")));
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='2']")));
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='3']")));
-
-        GlobalPages.sleepWait(5000);
+        GlobalPages.sleepWait(3000);
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);
+        GlobalPages.sleepWait(2000);
 
         //Verify presence of entered data on Contacts page
-        GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList).contains(FName + " " + LName);
-        GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList).contains(email);
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList), FName + " " + LName));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.emailList), email));
     }
 
     @Test
     public void testCreateNewContactWithAddInfo() {
         // Test data
-        String FName = "First Name";
-        String LName = "Last Name";
-        String email = "xxxxxx@gmail.com";
-        String country = "Universe";
-        String city = "Paradise";
+        String FName = "FNameXY";
+        String LName = "LNameYX";
+        String email = "xyxyxyxyx@gmail.com";
+        String country = "Uni";
+        String city = "Parad";
         String street = "this is my street";
-        String building = "777";
-        String zipCode = "12345";
-        String roomNumber = "000";
-        String phone = "+4634342424";
-        String skype = "alex";
-        String website = "alex.com";
-        String jobPosition = "QA Automation";
+        String building = "7777";
+        String zipCode = "123456";
+        String roomNumber = "0000";
+        String phone = "+46343424241";
+        String skype = "alexx";
+        String website = "alexx.com";
+        String jobPosition = "QA AutomationJava";
 
         // Go to application Login page
         openBrowser();
@@ -295,15 +308,15 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='1']")));
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='2']")));
         GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='3']")));
-
-        GlobalPages.sleepWait(5000);
+        GlobalPages.sleepWait(3000);
 
         //Click Submit button
         GlobalPages.click(ContactsNewContactPage.submitBtn);
+        GlobalPages.sleepWait(2000);
 
         //Verify presence of entered data on Contacts page
-        GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList).contains(FName + " " + LName);
-        GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList).contains(email);
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList), FName + " " + LName));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.emailList), email));
     }
 }
 

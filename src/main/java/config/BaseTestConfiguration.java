@@ -1,17 +1,12 @@
 package config;
 
 import helpfiles.PropertiesFile;
-import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.io.File;
 import java.time.Duration;
 
 public class BaseTestConfiguration {
@@ -59,6 +54,22 @@ public class BaseTestConfiguration {
      */
     @AfterEach
     public void tearDown(){
+//        ITestResult result
+//        Date currentDate = new Date();
+//        String screenShotFileName = currentDate.toString()
+//                .replace(" ", "-")
+//                .replace(":", "-")
+//                .replace("WEST-", "");
+//
+//        String classAndMethodName = result.getClass().getName(); // fetching class and test method name
+//
+//        try{
+//            File screenshotFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
+//            String path = "src/main/java/testdata/" + screenShotFileName + classAndMethodName+".png";
+//            FileUtils.copyFile(screenshotFile, new File(path));
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
         driver.quit();
     }
 

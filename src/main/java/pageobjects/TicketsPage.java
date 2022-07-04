@@ -1,6 +1,7 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
+import helpfiles.PropertiesFile;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,6 +47,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
     public static final By previousBtn = By.xpath("//a[@aria-label='Previous page']");
     public static final By idList = By.cssSelector("td[width='80px']");
     public static final By titleList = By.cssSelector(".ticket_title");
+    public static final By ticketCompanyList = By.cssSelector(".ticket_company");
     public static final By assigneeList = By.cssSelector(".ticket_assignee");
     public static final By stageList = By.cssSelector("td[width='130px']");
     public static final By createTicketPage = By.cssSelector("div[class='container-fluid']");
@@ -181,11 +183,35 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
         log.log(Level.INFO, "fileUpload method");
     }
 
+
     @Override
     public void search(String searchFor) {
         getDriver().findElement(searchField).sendKeys(searchFor);
         GlobalPages.click(searchBtn);
         log.log(Level.INFO, "search method");
+    }
+
+    public static void main(String[] args) {
+        BaseTestConfiguration bs = new BaseTestConfiguration();
+        bs.createDriver();
+        bs.openBrowser();
+        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
+
+        GlobalPages.sleepWait(2000);
+
+        //Open sidebar
+        GlobalPages.openLeftSideTab();
+
+        //Click on Departments tab > 'New Department+' button > Wait for page to be visible
+        GlobalPages.clickOnVisibleElement(MenuDashboard.departmentsTab);
+
+        GlobalPages.sleepWait(1000);
+
+        String ticketTitle = "My department 7";
+
+        System.out.println("This is a result: "+ GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), ticketTitle));
+
+        getDriver().close();
     }
 }
 

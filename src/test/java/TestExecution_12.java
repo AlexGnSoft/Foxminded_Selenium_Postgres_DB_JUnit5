@@ -1,5 +1,6 @@
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import pageobjects.*;
@@ -23,6 +24,8 @@ public class TestExecution_12 extends BaseTestConfiguration {
         String rndLogin = generator.randomString(srtLength, false, true, false);
         String rndSkype = generator.randomString(srtLength, false, true, false);
         String rndPhone = generator.randomInt(phoneRange, quantityOfPhoneDigits);
+
+        String randomFullName = rndFName + " " + rndLName;
 
         // Go to application Login page
         openBrowser();
@@ -57,10 +60,16 @@ public class TestExecution_12 extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
 
         //Data validation
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("name"));
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("phone"));
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("skype"));
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("email"));
-        ManagerNewManager.getCreatedManagerData().contains(ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName+rndLName).get("login"));
+        String name = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("name");
+        String phone = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("phone");
+        String skype = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("skype");
+        String email = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("email");
+        String login = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("login");
+
+        Assertions.assertEquals(randomFullName, name);
+        Assertions.assertEquals(rndPhone, phone);
+        Assertions.assertEquals(rndSkype, skype);
+        Assertions.assertEquals(rndEmail, email);
+        Assertions.assertEquals(rndLogin, login);
     }
 }

@@ -136,9 +136,9 @@ public class GlobalPages extends BaseTestConfiguration {
         }
 
         log.log(Level.INFO, "getNamesOfAnyColumns method");
-
         return titleName;
     }
+
 
     /**
      * Method is used to click on the first element in a list
@@ -223,5 +223,25 @@ public class GlobalPages extends BaseTestConfiguration {
             }
         }
         log.log(Level.INFO, "checkRadioButtonStatusAndSelect method");
+    }
+
+    /**
+     * Method is used to verify that searched string isPresent is array of strings
+     */
+
+    public static Boolean stringIsPresentInArray(ArrayList<String> stringArrayList, String searchedString) {
+        boolean isPresent = false;
+        for (int i = 0; i < stringArrayList.size(); i++) {
+            if (stringArrayList.get(i).contains(searchedString)) {
+                isPresent = true;
+            }
+        }
+        log.log(Level.INFO, "stringIsPresentInArray method");
+
+        for (int i = 0; i < stringArrayList.size(); i++) {
+            System.out.println(stringArrayList.get(i));
+        }
+
+        return isPresent;
     }
 }

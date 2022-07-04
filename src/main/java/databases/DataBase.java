@@ -115,7 +115,7 @@ public class DataBase extends BaseTestConfiguration {
                 isPresent = true;
             }
         }
-        log.log(Level.INFO, "getListOfValues method");
+        log.log(Level.INFO, "stringIsPresentInArray method");
         return isPresent;
     }
 
