@@ -3,10 +3,15 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.By;
 import pageobjects.*;
+import utils.ScreenshotWatcher;
 
 public class TestExecution_10 extends BaseTestConfiguration {
+
+    @RegisterExtension
+    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
     @Test
     public void testCreateNewTicket() {

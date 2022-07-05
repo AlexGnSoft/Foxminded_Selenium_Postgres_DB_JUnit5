@@ -8,7 +8,7 @@ import pageobjects.*;
 import utils.RandomDataGenerator;
 import utils.ScreenshotWatcher;
 
-public class TestExecution_12 extends BaseTestConfiguration {
+public class TestExecution_21 extends BaseTestConfiguration {
 
     @RegisterExtension
     ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
@@ -17,8 +17,8 @@ public class TestExecution_12 extends BaseTestConfiguration {
     public void testCreateNewManager() {
         //Test data
         String department = "Комната добра";
-        int srtLength = 7;
-        int phoneRange = 9;
+        int srtLength = 8;
+        int phoneRange = 10;
         int quantityOfPhoneDigits = 10;
 
         //Generating random data
@@ -76,5 +76,38 @@ public class TestExecution_12 extends BaseTestConfiguration {
         Assertions.assertEquals(rndSkype, skype);
         Assertions.assertEquals(rndEmail, email);
         Assertions.assertEquals(rndLogin, login);
+    }
+
+    @Test
+    public void testCreateNewDepartmentWithoutAddInfo() {
+        //Test data
+        String departmentTitle = "My department 4";
+
+        // Go to application Login page
+        openBrowser();
+
+        //Make log in
+        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
+
+        //Open sidebar
+        GlobalPages.openLeftSideTab();
+
+        //Click on Departments tab > 'New Department+' button > Wait for page to be visible
+        GlobalPages.clickOnVisibleElement(MenuDashboard.departmentsTab);
+        GlobalPages.clickOnVisibleElement(DepartmentsNewDepPage.newDepartmentBtn);
+        GlobalPages.pageIsVisible(DepartmentsNewDepPage.newDepartmentPage);
+
+        //Fill in department title
+        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.titleField, departmentTitle);
+
+        //Click on Submit button
+        GlobalPages.click(DepartmentsNewDepPage.submitBtn);
+
+        //Refresh the page
+        GlobalPages.sleepWait(2000);
+
+        //Verify presence of entered data on Departments page
+        Assertions.assertNotNull(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), departmentTitle));
     }
 }

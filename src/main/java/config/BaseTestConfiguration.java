@@ -3,11 +3,15 @@ package config;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import utils.ScreenshotWatcher;
+
 import java.time.Duration;
+
 
 public class BaseTestConfiguration {
     protected static PropertiesFile propertiesFile;
@@ -26,10 +30,10 @@ public class BaseTestConfiguration {
      * Method creates webDriver and run test on a certain browser, depending on set browser in PropertiesFile class.
      */
     @BeforeEach
-    public void createDriver(){
+    public void createDriver() {
         propertiesFile = new PropertiesFile();
 
-        switch(propertiesFile.getBrowser()){
+        switch (propertiesFile.getBrowser()) {
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", propertiesFile.getDriverPathChrome());
                 driver = new ChromeDriver();
@@ -52,39 +56,36 @@ public class BaseTestConfiguration {
      * '@AfterAll' method is only executed once for a given test class.
      * Method quit the whole browser session along with all the associated browser windows, tabs and pop-ups.
      */
+
+
     @AfterEach
-    public void tearDown(){
-//        ITestResult result
-//        Date currentDate = new Date();
-//        String screenShotFileName = currentDate.toString()
-//                .replace(" ", "-")
-//                .replace(":", "-")
-//                .replace("WEST-", "");
-//
-//        String classAndMethodName = result.getClass().getName(); // fetching class and test method name
-//
-//        try{
-//            File screenshotFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
-//            String path = "src/main/java/testdata/" + screenShotFileName + classAndMethodName+".png";
-//            FileUtils.copyFile(screenshotFile, new File(path));
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
+    public void tearDown() {
+        ScreenshotWatcher watcher5 = new ScreenshotWatcher(driver, "src/main/java/testdata");
+        watcher5.captureScreenshot(driver, "myFileName");
         driver.quit();
     }
 
     /**
      * Method open an application
      */
-    public void openBrowser(){
+    public void openBrowser() {
         driver.get(propertiesFile.getApplicationUrl());
     }
 
     /**
      * Method scrolls cursor down on a page
      */
-    public static void scrollDown(){
+    public static void scrollDown() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
     }
+
+    /**
+     * Method is used to taker screenshots
+     */
+
+//    String className = this.getClass().getSimpleName();
+    @RegisterExtension
+    ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "target/surefire-reports");
 }
+
