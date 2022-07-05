@@ -2,12 +2,9 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.By;
 import pageobjects.*;
 import utils.RandomDataGenerator;
-import utils.ScreenshotWatcher;
 
 public class TestExecution_21 extends BaseTestConfiguration {
 
