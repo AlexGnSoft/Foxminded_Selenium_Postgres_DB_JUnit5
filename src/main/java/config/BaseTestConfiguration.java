@@ -60,8 +60,9 @@ public class BaseTestConfiguration {
 
     @AfterEach
     public void tearDown() {
+        String className = this.getClass().getSimpleName();
         ScreenshotWatcher watcher5 = new ScreenshotWatcher(driver, "src/main/java/testdata");
-        watcher5.captureScreenshot(driver, "myFileName");
+        watcher5.captureScreenshot(driver, className);
         driver.quit();
     }
 
