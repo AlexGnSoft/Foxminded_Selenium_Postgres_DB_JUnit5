@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import pageobjects.GlobalPages;
 import pageobjects.OpenPage;
 
-
 public class TestExecution_8 extends BaseTestConfiguration{
 
     @Test

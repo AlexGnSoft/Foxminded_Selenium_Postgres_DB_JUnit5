@@ -54,8 +54,6 @@ public class BaseTestConfiguration {
      * '@AfterAll' method is only executed once for a given test class.
      * Method quit the whole browser session along with all the associated browser windows, tabs and pop-ups.
      */
-
-
     @AfterEach
     public void tearDown(TestInfo testInfo) {
         String className = this.getClass().getSimpleName();
@@ -82,4 +80,3 @@ public class BaseTestConfiguration {
         js.executeScript("window.scrollBy(0,1000)");
     }
 }
-
