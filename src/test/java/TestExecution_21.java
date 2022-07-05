@@ -2,6 +2,7 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.By;
 import pageobjects.*;
@@ -10,11 +11,12 @@ import utils.ScreenshotWatcher;
 
 public class TestExecution_21 extends BaseTestConfiguration {
 
+    //To be able to take ScreenShots:
     @RegisterExtension
     ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
     @Test
-    public void testCreateNewManager() {
+    public void testCreateNewManager(TestInfo testInfo) {
         //Test data
         String department = "Комната добра";
         int srtLength = 8;
@@ -76,6 +78,9 @@ public class TestExecution_21 extends BaseTestConfiguration {
         Assertions.assertEquals(rndSkype, skype);
         Assertions.assertEquals(rndEmail, email);
         Assertions.assertEquals(rndLogin, login);
+
+        //Take ScreenShot
+        watcher.captureScreenshot(getDriver(), testInfo.getDisplayName());
     }
 
     @Test

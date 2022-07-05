@@ -28,7 +28,7 @@ public class TestExecution_8 extends BaseTestConfiguration{
         openBrowser();
 
         // Close the application
-        tearDown();
+//        tearDown();
     }
 
     @Test

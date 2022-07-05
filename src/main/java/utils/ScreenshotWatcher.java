@@ -52,10 +52,10 @@ public class ScreenshotWatcher implements TestWatcher {
         System.out.println("This test is Successful");
     }
 
-    public void captureScreenshot(WebDriver driver, String fileName) {
+    public void captureScreenshot(WebDriver driver, String screenShotName) {
         try {
             new File(path).mkdirs();
-            try ( FileOutputStream out = new FileOutputStream(path + File.separator + "screenshot-" + fileName + ".png")) {
+            try ( FileOutputStream out = new FileOutputStream(path + File.separator + screenShotName + ".png")) {
                 out.write(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
             }
         } catch (IOException | WebDriverException e) {

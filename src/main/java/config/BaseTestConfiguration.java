@@ -3,6 +3,7 @@ package config;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -59,10 +60,13 @@ public class BaseTestConfiguration {
 
 
     @AfterEach
-    public void tearDown() {
+    public void tearDown(TestInfo testInfo) {
         String className = this.getClass().getSimpleName();
-        ScreenshotWatcher watcher5 = new ScreenshotWatcher(driver, "src/main/java/testdata");
-        watcher5.captureScreenshot(driver, className);
+        String methodName = testInfo.getDisplayName();
+        String screenShotName = className + " - " + methodName;
+
+        ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "src/main/java/testdata");
+        watcher.captureScreenshot(driver, screenShotName);
         driver.quit();
     }
 
