@@ -1,17 +1,12 @@
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import pageobjects.GlobalPages;
 import pageobjects.MenuDashboard;
 import pageobjects.OpenPage;
 import pageobjects.TicketsPage;
-import utils.ScreenshotWatcher;
 
 public class TextExecution_9 extends BaseTestConfiguration{
-
-    @RegisterExtension
-    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
     @Test
     public void testReturnTitleByCategoryRazrabotka(){

@@ -2,14 +2,9 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import pageobjects.*;
-import utils.ScreenshotWatcher;
 
 public class TestExecution_14_1 extends BaseTestConfiguration {
-
-    @RegisterExtension
-    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
     @Test
     public void testSearchCreatedDepartment() {

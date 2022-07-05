@@ -1,14 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import pageobjects.Builder_Singleton_Strategy.Buider_Pattern.CustomerBuilder;
-import utils.ScreenshotWatcher;
-import static config.BaseTestConfiguration.getDriver;
 
 public class TestExecution_14 {
-
-    @RegisterExtension
-    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
     @Test
     public void testCheckNameCapitalization() {

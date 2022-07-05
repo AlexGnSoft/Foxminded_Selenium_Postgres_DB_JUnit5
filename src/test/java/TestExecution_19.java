@@ -3,17 +3,11 @@ import databases.DataBase;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import pageobjects.*;
 import utils.RandomDataGenerator;
-import utils.ScreenshotWatcher;
-
 import java.sql.SQLException;
 
 public class TestExecution_19 extends BaseTestConfiguration {
-
-    @RegisterExtension
-    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
     @Test
     public void testUIAndDataBaseCreateNewTicket() throws SQLException {

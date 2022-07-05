@@ -62,7 +62,7 @@ public class BaseTestConfiguration {
         String methodName = testInfo.getDisplayName();
         String screenShotName = className + " - " + methodName;
 
-        ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "src/main/java/testdata");
+        ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "screenshots");
         watcher.captureScreenshot(driver, screenShotName);
         driver.quit();
     }
