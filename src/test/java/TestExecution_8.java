@@ -10,8 +10,8 @@ import utils.ScreenshotWatcher;
 
 public class TestExecution_8 extends BaseTestConfiguration{
 
-    @RegisterExtension
-    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
+//    @RegisterExtension
+//    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
     @Test
     public void testOpenApplication() {

@@ -12,11 +12,11 @@ import utils.ScreenshotWatcher;
 public class TestExecution_21 extends BaseTestConfiguration {
 
     //To be able to take ScreenShots:
-    @RegisterExtension
-    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
+//    @RegisterExtension
+//    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
     @Test
-    public void testCreateNewManager(TestInfo testInfo) {
+    public void testCreateNewManager() {
         //Test data
         String department = "Комната добра";
         int srtLength = 8;
@@ -78,9 +78,6 @@ public class TestExecution_21 extends BaseTestConfiguration {
         Assertions.assertEquals(rndSkype, skype);
         Assertions.assertEquals(rndEmail, email);
         Assertions.assertEquals(rndLogin, login);
-
-        //Take ScreenShot
-        watcher.captureScreenshot(getDriver(), testInfo.getDisplayName());
     }
 
     @Test

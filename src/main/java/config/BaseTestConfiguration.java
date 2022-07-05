@@ -4,15 +4,12 @@ import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import utils.ScreenshotWatcher;
-
 import java.time.Duration;
-
 
 public class BaseTestConfiguration {
     protected static PropertiesFile propertiesFile;
@@ -84,13 +81,5 @@ public class BaseTestConfiguration {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
     }
-
-    /**
-     * Method is used to taker screenshots
-     */
-
-//    String className = this.getClass().getSimpleName();
-    @RegisterExtension
-    ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "target/surefire-reports");
 }
 

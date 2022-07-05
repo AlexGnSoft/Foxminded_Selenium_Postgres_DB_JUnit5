@@ -18,7 +18,7 @@ import org.openqa.selenium.WebDriverException;
  * to use, add the following to your JUnit5 tests:
  *
  * @RegisterExtension
- * ScreenshotWatcher5 watcher = new ScreenshotWatcher5(driver, "target/surefire-reports");
+ * ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "target/surefire-reports");
  *
  */
 public class ScreenshotWatcher implements TestWatcher {
