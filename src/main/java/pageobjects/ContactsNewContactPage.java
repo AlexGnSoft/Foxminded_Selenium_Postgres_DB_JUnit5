@@ -20,11 +20,9 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By loginField = By.xpath("//input[@name='login']");
     public static final By companyDropDownList = By.xpath("//select[@id='companySelect' and @name='companyId']");
     public static final By firstNameIsRequiredAlert = By.xpath("//div[contains(text(),'First name is required')]");
-    public static final By firstNameFieldCanNotContainsOnlySpacesAlert = By.xpath("//div[@class='alert alert-danger']/div[2]"); //to get it you need to enter 1 digit in the field to invoke alert...
     public static final By firstNameMinValueAlert = By.xpath("//div[contains(text(),'First name must be at least 2 characters')]");
     public static final By firstNameMaxValueAlert = By.xpath("//div[contains(text(),'First name cannot be more than 25 characters')]");
     public static final By lastNameIsRequiredAlert = By.xpath("//div[contains(text(),'Last Name is required')]");
-    public static final By lastNameFieldCanNotContainsOnlySpacesAlert = By.xpath("//div[@class='alert alert-danger']/div[2]");  //to get it you need to enter 1 digit in the field to invoke alert.
     public static final By lastNameMinValueAlert = By.xpath("//div[contains(text(),'Last name must be at least 2 characters')]");
     public static final By lastNameMaxValueAlert = By.xpath("//div[contains(text(),'Last name cannot be more than 25 characters')]");
     public static final By emailISRequiredAlert = By.xpath("//div[contains(text(),'Email is required')]");
@@ -33,6 +31,7 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By loginMinValueAlert = By.xpath("//div[contains(text(),'Login must be at least 4 characters long')]");
     public static final By loginMaxValueAlert = By.xpath("//div[contains(text(),'Login cannot be more than 50 characters long')]]");
     public static final By loginCanContainOnlyAlert = By.xpath("//div[contains(text(),'Login can contain only')]");
+    public static final By ticketPrefixAlert = By.xpath("//div[contains(text(),'Tickets prefix must be from 3 to 6 characters long')]");
     public static final By addInfoBtn = By.xpath("//a[@id='addition-info']");
     public static final By countryField = By.xpath("//input[@name='country']");
     public static final By streetField = By.xpath("//input[@name='street']");

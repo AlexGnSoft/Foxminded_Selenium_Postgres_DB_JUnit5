@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import pageobjects.*;
 import utils.RandomDataGenerator;
 
+import java.util.Locale;
+
 public class TestExecution_21 extends BaseTestConfiguration {
 
     //To be able to take ScreenShots:
@@ -13,7 +15,7 @@ public class TestExecution_21 extends BaseTestConfiguration {
 
     @Test
     public void testCreateNewManager() {
-        //Test data (1)
+        //Test data
         String department = "Комната добра";
         int srtLength = 8;
         int phoneRange = 10;
@@ -23,18 +25,11 @@ public class TestExecution_21 extends BaseTestConfiguration {
         RandomDataGenerator generator = new RandomDataGenerator();
         String rndFName = generator.randomString(srtLength, false, false, true);
         String rndLName = generator.randomString(srtLength, false, false, true);
-        String rndEmail = generator.randomString(srtLength, true, false, false);
+        String rndEmail = generator.randomString(srtLength, true, false, false).replace(" RESEND EMAIL FOR CONFIRMATION", "").toLowerCase(Locale.ROOT);
         String rndLogin = generator.randomString(srtLength, false, true, false);
         String rndSkype = generator.randomString(srtLength, false, true, false);
         String rndPhone = generator.randomInt(phoneRange, quantityOfPhoneDigits);
         String randomFullName = rndFName + " " + rndLName;
-
-        //Test data (2)
-        String name = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("name");
-        String phone = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("phone");
-        String skype = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("skype");
-        String email = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("email");
-        String login = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("login");
 
         // Go to application Login page
         openBrowser();
@@ -69,11 +64,11 @@ public class TestExecution_21 extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
 
         //Data validation
-        Assertions.assertEquals(randomFullName, name);
-        Assertions.assertEquals(rndPhone, phone);
-        Assertions.assertEquals(rndSkype, skype);
-        Assertions.assertEquals(rndEmail, email);
-        Assertions.assertEquals(rndLogin, login);
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ManagerNewManager.profileDataCreated), randomFullName));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ManagerNewManager.profileDataCreated), rndEmail));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ManagerNewManager.profileDataCreated), rndLogin));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ManagerNewManager.profileDataCreated), rndSkype));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ManagerNewManager.profileDataCreated), rndPhone));
     }
 
     @Test

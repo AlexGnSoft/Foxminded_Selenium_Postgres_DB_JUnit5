@@ -35,6 +35,7 @@ public class ManagerNewManager extends BaseTestConfiguration {
     public static final By submitBtn = By.cssSelector("#manager-form-submit");
     public static final By cancelBtn = By.cssSelector("#manager-form-cancel");
     public static final By profileDataCreated = By.xpath("//div[@class='col-sm-7']/p");
+    public static final By profileEmail = By.xpath("div[@class='col-sm-7']/p[contains(text(),'d@vyexs5y.com')]");
     public static final By managerDataList = By.xpath("//table/tbody/tr/td");
     public static final By checkboxesList = By.xpath("//label[@class='manager-form-checkbox_label2']/span/span");
     private static final Logger log = LogManager.getLogger(ManagerNewManager.class.getName());
@@ -108,5 +109,8 @@ public class ManagerNewManager extends BaseTestConfiguration {
         }
         log.log(Level.INFO, "checkCheckboxStatusAndClick method");
     }
+
+
+
 }
 
