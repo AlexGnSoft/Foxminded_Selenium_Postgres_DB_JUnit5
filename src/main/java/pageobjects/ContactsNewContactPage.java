@@ -5,6 +5,9 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By newContactBtn = By.xpath("//button[@id='new-contact']");
@@ -41,19 +44,9 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By roomNumberField = By.xpath("//input[@name='roomNumber']");
     public static final By skypeField = By.xpath("//input[@name='skype']");
     public static final By jobPositionField = By.xpath("//input[@name='jobPosition']");
-
-//    public static WebElement notificationOnStageChangeCheckBox = driver.findElement(By.xpath("//label/input[@id='notify-on-stage-change']"));
-//    public static WebElement notificationOnDoneStageCheckBox = driver.findElement(By.xpath("//input[@name='notificationOnDoneStage']"));
-//    public static WebElement notificationOnNewCommentCheckBox = driver.findElement(By.xpath("//input[@name='notificationOnNewComment']"));
-
-//    public static final WebElement firstServiceLevelRadioBtn = driver.findElement(By.xpath("//input[@value='0']"));
-//    public static final WebElement secondServiceLevelRadioBtn = driver.findElement(By.xpath("//input[@value='1']"));
-//    public static final WebElement thirdServiceLevelRadioBtn = driver.findElement(By.xpath("//input[@value='2']"));
-//    public static final WebElement zeroServiceLevelRadioBtn = driver.findElement(By.xpath("//input[@value='3']"));
-
+    public static final By radioButtonList = By.xpath("//input[@type='radio']");
     public static final By submitBtn = By.xpath("//button[@class='btn btn-success btn-outline']");
     public static final By cancelBtn = By.xpath("//button[@id='contact-form-cancel']");
-
     private static final Logger log = LogManager.getLogger(ContactsNewContactPage.class.getName());
 
     /**
@@ -71,6 +64,20 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
         GlobalPages.enterDataToTheField(ContactsNewContactPage.skypeField, skype);
         GlobalPages.enterDataToTheField(ContactsNewContactPage.jobPositionField, jobPosition);
         log.log(Level.INFO, "fillInAllFields method");
+    }
+
+    /**
+     * Method is used to check radioButtons status.
+     * If not selected > we click
+     */
+    public static void checkRadioButtonStatusAndSelect(){
+        List<WebElement> radioButtons = getDriver().findElements(radioButtonList);
+        for (int i = 0; i < radioButtons.size(); i++) {
+            if(!radioButtons.get(i).isSelected()){
+                radioButtons.get(i).click();
+            }
+        }
+        log.log(Level.INFO, "checkRadioButtonStatusAndSelect method");
     }
 }
 

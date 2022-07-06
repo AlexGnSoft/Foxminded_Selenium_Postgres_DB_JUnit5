@@ -2,7 +2,6 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import pageobjects.*;
 import utils.RandomDataGenerator;
 
@@ -14,7 +13,7 @@ public class TestExecution_21 extends BaseTestConfiguration {
 
     @Test
     public void testCreateNewManager() {
-        //Test data
+        //Test data (1)
         String department = "Комната добра";
         int srtLength = 8;
         int phoneRange = 10;
@@ -28,8 +27,14 @@ public class TestExecution_21 extends BaseTestConfiguration {
         String rndLogin = generator.randomString(srtLength, false, true, false);
         String rndSkype = generator.randomString(srtLength, false, true, false);
         String rndPhone = generator.randomInt(phoneRange, quantityOfPhoneDigits);
-
         String randomFullName = rndFName + " " + rndLName;
+
+        //Test data (2)
+        String name = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("name");
+        String phone = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("phone");
+        String skype = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("skype");
+        String email = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("email");
+        String login = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("login");
 
         // Go to application Login page
         openBrowser();
@@ -53,8 +58,8 @@ public class TestExecution_21 extends BaseTestConfiguration {
         GlobalPages.waitImplicitly();
         GlobalPages.selectFromDropDownListByVisibleText(ManagerNewManager.drpDepartment, ManagerNewManager.drpDepartmentOptions, department);
 
-        //Click on checkboxes (if not clicked). Finding element is test is a temporary solution.
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label[@class='manager-form-checkbox_label2']/span/span")));
+        //Click on checkboxes (if not clicked).
+        ManagerNewManager.checkCheckboxStatusAndClick();
 
         //click on Submit button
         GlobalPages.click(ManagerNewManager.submitBtn);
@@ -64,12 +69,6 @@ public class TestExecution_21 extends BaseTestConfiguration {
         GlobalPages.sleepWait(3000);
 
         //Data validation
-        String name = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("name");
-        String phone = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("phone");
-        String skype = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("skype");
-        String email = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("email");
-        String login = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("login");
-
         Assertions.assertEquals(randomFullName, name);
         Assertions.assertEquals(rndPhone, phone);
         Assertions.assertEquals(rndSkype, skype);

@@ -36,7 +36,7 @@ public class ManagerNewManager extends BaseTestConfiguration {
     public static final By cancelBtn = By.cssSelector("#manager-form-cancel");
     public static final By profileDataCreated = By.xpath("//div[@class='col-sm-7']/p");
     public static final By managerDataList = By.xpath("//table/tbody/tr/td");
-
+    public static final By checkboxesList = By.xpath("//label[@class='manager-form-checkbox_label2']/span/span");
     private static final Logger log = LogManager.getLogger(ManagerNewManager.class.getName());
 
     /**
@@ -93,6 +93,20 @@ public class ManagerNewManager extends BaseTestConfiguration {
         log.log(Level.INFO, "getCreatedManagerData method");
 
         return managerArrayData;
+    }
+
+    /**
+     * Method is used to check checkBox status.
+     * If not checked > we make it checked
+     */
+    public static void checkCheckboxStatusAndClick() {
+        List<WebElement> checkboxes = getDriver().findElements(checkboxesList);
+        for (int i = 0; i < checkboxes.size(); i++) {
+            if (!checkboxes.get(i).isSelected()) {
+                checkboxes.get(i).click();
+            }
+        }
+        log.log(Level.INFO, "checkCheckboxStatusAndClick method");
     }
 }
 

@@ -3,7 +3,6 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import pageobjects.*;
 
 public class TestExecution_10 extends BaseTestConfiguration {
@@ -73,7 +72,6 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.sleepWait(2000);
 
         //Verify presence of entered data on Tickets page
-
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(TicketsPage.titleList), ticketTitle));
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(TicketsPage.stageList), stage));
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(TicketsPage.ticketCompanyList), contactName));
@@ -210,9 +208,9 @@ public class TestExecution_10 extends BaseTestConfiguration {
     @Test
     public void testCreateNewContactWithoutAddInfo() {
         // Test data
-        String FName = "My First Name4";
-        String LName = "My Last Name4";
-        String email = "copypust@gmail.com";
+        String FName = "My FName5";
+        String LName = "LName5";
+        String email = "copypusr@gmail.com";
 
         // Go to application Login page
         openBrowser();
@@ -233,17 +231,11 @@ public class TestExecution_10 extends BaseTestConfiguration {
         GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, LName);
         GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, email);
 
-        //Click on Check-boxes if it's not checked. Finding element is test is a temporary solution.
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//input[@name='notificationOnNewComment']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        //Click on Check-boxes if it's not checked.
+        ManagerNewManager.checkCheckboxStatusAndClick();
 
-        //Select radio button if it's not already selected. Finding element is test is a temporary solution.
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='0']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='1']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='2']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='3']")));
+        //Select radio button if it's not already selected.
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect();
         GlobalPages.sleepWait(3000);
 
         //Click Submit button
@@ -259,8 +251,8 @@ public class TestExecution_10 extends BaseTestConfiguration {
     public void testCreateNewContactWithAddInfo() {
         // Test data
         String FName = "FNameXY";
-        String LName = "LNameYX";
-        String email = "xyxyxyxyx@gmail.com";
+        String LName = "NameYX";
+        String email = "xyxyxyxyxyy@gmail.com";
         String country = "Uni";
         String city = "Parad";
         String street = "this is my street";
@@ -297,17 +289,11 @@ public class TestExecution_10 extends BaseTestConfiguration {
         //Fill in all fields
         ContactsNewContactPage.fillInAllFields(country, street, zipCode, phone, website, city, building, roomNumber, skype, jobPosition);
 
-        //Click on Check-boxes if it's not checked. Finding element is test is a temporary solution.
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//input[@name='notificationOnDoneStage']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//input[@name='notificationOnNewComment']")));
-        GlobalPages.checkCheckboxStatusAndClick(getDriver().findElement(By.xpath("//label/input[@id='notify-on-stage-change']")));
+        //Click on Check-boxes if it's not checked.
+        ManagerNewManager.checkCheckboxStatusAndClick();
 
-        //Select radio button if it's not already selected. Finding element is test is a temporary solution.
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='0']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='1']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='2']")));
-        GlobalPages.checkRadioButtonStatusAndSelect(getDriver().findElement(By.xpath("//input[@value='3']")));
+        //Select radio button if it's not already selected.
+        ContactsNewContactPage.checkRadioButtonStatusAndSelect();
         GlobalPages.sleepWait(3000);
 
         //Click Submit button

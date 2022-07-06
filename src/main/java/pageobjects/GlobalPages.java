@@ -200,17 +200,6 @@ public class GlobalPages extends BaseTestConfiguration {
 
 
     /**
-     * Method is used to check checkBox status.
-     * If not checked > we make it checked
-     */
-    public static void checkCheckboxStatusAndClick(WebElement checkBox) {
-        if (!checkBox.isSelected()) {
-            checkBox.click();
-        }
-        log.log(Level.INFO, "checkCheckboxStatusAndClick method");
-    }
-
-    /**
      * Method is used to check radioButton status.
      * If not selected > we make it selected
      */
