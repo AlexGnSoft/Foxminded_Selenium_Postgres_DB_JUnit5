@@ -1689,3 +1689,15 @@
 [INFO ] 2022-07-06 11:59:05.759 [main] DepartmentsNewDepPage - stringIsPresentInArray method
 [INFO ] 2022-07-06 11:59:06.226 [main] DepartmentsNewDepPage - getNamesOfAnyColumns method
 [INFO ] 2022-07-06 11:59:06.227 [main] DepartmentsNewDepPage - stringIsPresentInArray method
+[INFO ] 2022-07-06 12:10:53.154 [main] OpenPage - makeSignIn method
+[INFO ] 2022-07-06 12:10:59.581 [main] DepartmentsNewDepPage - openLeftSideTab method
+[INFO ] 2022-07-06 12:10:59.809 [main] DepartmentsNewDepPage - waitExplicitly method
+[INFO ] 2022-07-06 12:11:00.220 [main] DepartmentsNewDepPage - clickOnVisibleElement method
+[INFO ] 2022-07-06 12:11:00.283 [main] DepartmentsNewDepPage - waitExplicitly method
+[INFO ] 2022-07-06 12:11:00.790 [main] DepartmentsNewDepPage - clickOnVisibleElement method
+[INFO ] 2022-07-06 12:11:00.890 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-06 12:11:01.258 [main] DepartmentsNewDepPage - enterDataToTheField method
+[INFO ] 2022-07-06 12:11:03.352 [main] DepartmentsNewDepPage - sleepWait method
+[INFO ] 2022-07-06 12:11:03.854 [main] DepartmentsNewDepPage - getNamesOfAnyColumns method
+[INFO ] 2022-07-06 12:11:04.080 [main] DepartmentsNewDepPage - getNamesOfAnyColumns method
+[INFO ] 2022-07-06 12:11:04.080 [main] DepartmentsNewDepPage - stringIsPresentInArray method
