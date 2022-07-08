@@ -106,7 +106,7 @@ public class DataBase extends BaseTestConfiguration {
     /**
      * Method is used to check whether data isPresent in ArrayList of DataBase
      */
-    public Boolean stringIsPresentInArray(String sqlQuery, String searchedString) throws SQLException {
+    public Boolean stringIsPresentInArrayOfDbData(String sqlQuery, String searchedString) throws SQLException {
         DataBase db = new DataBase();
         boolean isPresent = false;
         ArrayList<String> listOfDataFromDb = db.getListOfValues(sqlQuery);
@@ -185,7 +185,7 @@ public class DataBase extends BaseTestConfiguration {
     public static void main(String[] args) throws SQLException {
         DataBase db = new DataBase();
         PropertiesFile propertiesFile = new PropertiesFile();
-        System.out.println(db.stringIsPresentInArray("select*from contact", "ffffff"));
+        System.out.println(db.stringIsPresentInArrayOfDbData("select*from contact", "ffffff"));
     }
 }
 

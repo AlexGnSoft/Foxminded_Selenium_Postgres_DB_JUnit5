@@ -5,9 +5,12 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By newContactBtn = By.xpath("//button[@id='new-contact']");
@@ -18,6 +21,7 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By lastNameField = By.xpath("//input[@name='lastName']");
     public static final By emailField = By.xpath("//input[@name='email']");
     public static final By loginField = By.xpath("//input[@name='login']");
+    public static final By ticketPrefixField = By.xpath("//input[@id='ticketPrefix']");
     public static final By companyDropDownList = By.xpath("//select[@id='companySelect' and @name='companyId']");
     public static final By firstNameIsRequiredAlert = By.xpath("//div[contains(text(),'First name is required')]");
     public static final By firstNameMinValueAlert = By.xpath("//div[contains(text(),'First name must be at least 2 characters')]");
@@ -25,8 +29,10 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By lastNameIsRequiredAlert = By.xpath("//div[contains(text(),'Last Name is required')]");
     public static final By lastNameMinValueAlert = By.xpath("//div[contains(text(),'Last name must be at least 2 characters')]");
     public static final By lastNameMaxValueAlert = By.xpath("//div[contains(text(),'Last name cannot be more than 25 characters')]");
-    public static final By emailISRequiredAlert = By.xpath("//div[contains(text(),'Email is required')]");
+    public static final By emailIsRequiredAlert = By.xpath("//div[contains(text(),'Email is required')]");
     public static final By emailMustBeValidAlert = By.xpath("//div[contains(text(),'Email must be valid')]");
+    public static final By validAlertAbsence = By.xpath("//input[@class='form-control ng-dirty ng-touched ng-valid']");
+    public static final By emailValidAlertAbsence2 = By.xpath("//div[contains(text(),'Email is required')]");
     public static final By loginIsRequiredAlert = By.xpath("//div[contains(text(),'Login is required')]");
     public static final By loginMinValueAlert = By.xpath("//div[contains(text(),'Login must be at least 4 characters long')]");
     public static final By loginMaxValueAlert = By.xpath("//div[contains(text(),'Login cannot be more than 50 characters long')]]");
@@ -46,6 +52,7 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
     public static final By radioButtonList = By.xpath("//input[@type='radio']");
     public static final By submitBtn = By.xpath("//button[@class='btn btn-success btn-outline']");
     public static final By cancelBtn = By.xpath("//button[@id='contact-form-cancel']");
+
     private static final Logger log = LogManager.getLogger(ContactsNewContactPage.class.getName());
 
     /**
@@ -69,14 +76,36 @@ public class ContactsNewContactPage extends BaseTestConfiguration {
      * Method is used to check radioButtons status.
      * If not selected > we click
      */
-    public static void checkRadioButtonStatusAndSelect(){
+    public static void checkRadioButtonStatusAndSelect() {
         List<WebElement> radioButtons = getDriver().findElements(radioButtonList);
         for (int i = 0; i < radioButtons.size(); i++) {
-            if(!radioButtons.get(i).isSelected()){
+            if (!radioButtons.get(i).isSelected()) {
                 radioButtons.get(i).click();
             }
         }
         log.log(Level.INFO, "checkRadioButtonStatusAndSelect method");
+    }
+
+    /**
+     * Method is used to clear text in a field
+     */
+    public static void deleteEmailFromTheField() {
+        WebElement element = getDriver().findElement(emailField);
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+
+        log.log(Level.INFO, "deleteEmailFromTheField method");
+    }
+
+    /**
+     * Method is used to clear text in a field
+     */
+    public static void deleteLoginFromTheField() {
+        WebElement element = getDriver().findElement(loginField);
+        Actions actions = new Actions(getDriver());
+        actions.moveToElement(element).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+
+        log.log(Level.INFO, "deleteLoginFromTheField method");
     }
 }
 

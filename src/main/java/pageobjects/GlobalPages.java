@@ -6,13 +6,16 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class GlobalPages extends BaseTestConfiguration {
 
@@ -63,6 +66,20 @@ public class GlobalPages extends BaseTestConfiguration {
         getDriver().findElement(webElement).sendKeys(data);
 
         log.log(Level.INFO, "enterDataToTheField method");
+    }
+
+
+    /**
+     * Method is used to clear possible placeholder text and then fill in user data to the field
+     */
+    public static void enterDataToTheFieldAndDeleteIt(By webElement, String data) {
+        getDriver().findElement(webElement).clear();
+        getDriver().findElement(webElement).sendKeys(data);
+        GlobalPages.sleepWait(1000);
+        getDriver().findElement(webElement).clear();
+        GlobalPages.sleepWait(1000);
+
+        log.log(Level.INFO, "enterDataToTheFieldAndDeleteIt method");
     }
 
     /**
@@ -232,5 +249,30 @@ public class GlobalPages extends BaseTestConfiguration {
         }
 
         return isPresent;
+    }
+
+    /**
+     * Method is used to check whether webElement is visible
+     */
+    public static Boolean isElementVisible(By webElement) {
+        try{
+            getDriver().findElement(webElement);
+            return true;
+        }catch(NoSuchElementException e){
+            return false;
+        }
+    }
+
+    /**
+     * Method is used to check whether webElement is not visible
+     */
+    public static Boolean isValidationMessageIsCorrect(By webElement, String expectedText) {
+        boolean isTextCorrect = false;
+        if(getDriver().findElement(webElement).getText().contains(expectedText)){
+            isTextCorrect = true;
+        }else {
+            System.out.println("Actual text is: " + getDriver().findElement(webElement).getText());
+        }
+        return isTextCorrect;
     }
 }
