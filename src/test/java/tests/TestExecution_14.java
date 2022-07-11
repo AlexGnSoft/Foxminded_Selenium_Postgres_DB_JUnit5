@@ -1,3 +1,5 @@
+package tests;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pageobjects.Builder_Singleton_Strategy.Buider_Pattern.CustomerBuilder;

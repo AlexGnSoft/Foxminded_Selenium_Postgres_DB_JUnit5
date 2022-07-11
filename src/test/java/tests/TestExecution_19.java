@@ -1,3 +1,5 @@
+package tests;
+
 import config.BaseTestConfiguration;
 import databases.DataBase;
 import helpfiles.PropertiesFile;

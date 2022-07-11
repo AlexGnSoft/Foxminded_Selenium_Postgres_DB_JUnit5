@@ -1,3 +1,5 @@
+package tests.PackageB;
+
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Test;

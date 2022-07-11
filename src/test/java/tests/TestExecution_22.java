@@ -1,3 +1,5 @@
+package tests;
+
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
@@ -14,8 +16,8 @@ public class TestExecution_22 extends BaseTestConfiguration {
         RandomDataGenerator generator = new RandomDataGenerator();
         String FName = generator.randomString(10, false, false, true);
         String LName = generator.randomString(10, false, false, true);
-        String emailValid = generator.randomString(15,true, false, false).toLowerCase(Locale.ROOT);
-        String emailInvalid = generator.randomString(15,true, false, false).toLowerCase(Locale.ROOT).replace("@", "");
+        String emailValid = generator.randomString(15, true, false, false).toLowerCase(Locale.ROOT);
+        String emailInvalid = generator.randomString(15, true, false, false).toLowerCase(Locale.ROOT).replace("@", "");
         String fullName = FName + " " + LName;
         String oneLetter = "a";
         String twoLetters = "aB";
@@ -99,5 +101,8 @@ public class TestExecution_22 extends BaseTestConfiguration {
         Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.lastNameMinValueAlert));
         //Check pop-up text
         Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage.lastNameMinValueAlert, lastNameMinValueAlertText));
+        //Check that pop-up disappeared by entering valid data. Class 'ng-valid' is activated
+        GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, twoLetters);
+        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.validAlertAbsence));
     }
 }

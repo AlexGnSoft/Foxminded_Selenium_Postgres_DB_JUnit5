@@ -1,6 +1,9 @@
+package tests.PackageA;
+
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pageobjects.GlobalPages;
 import pageobjects.OpenPage;

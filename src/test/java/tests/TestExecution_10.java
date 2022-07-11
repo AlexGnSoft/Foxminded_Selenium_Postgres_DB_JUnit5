@@ -1,3 +1,4 @@
+package tests;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
