@@ -1,4 +1,4 @@
-package tests;
+package tests.Authorization;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;

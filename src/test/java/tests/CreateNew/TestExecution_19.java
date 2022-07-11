@@ -1,9 +1,10 @@
-package tests;
+package tests.CreateNew;
 
 import config.BaseTestConfiguration;
 import databases.DataBase;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pageobjects.*;
 import utils.RandomDataGenerator;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 
 public class TestExecution_19 extends BaseTestConfiguration {
 
+    @Tag("create_new_ticket")
     @Test
     public void testUIAndDataBaseCreateNewTicket() throws SQLException {
         //Test data
@@ -81,8 +83,9 @@ public class TestExecution_19 extends BaseTestConfiguration {
         Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomTitle), "Title isn't found in DB");
     }
 
+    @Tag("create_new_department")
     @Test
-    public void testUIAndDataBaseCreteNewDepartment() throws SQLException{
+    public void testUIAndDataBaseCreateNewDepartment() throws SQLException{
         //Test data
         DataBase db = new DataBase();
         RandomDataGenerator rd = new RandomDataGenerator();
@@ -115,6 +118,7 @@ public class TestExecution_19 extends BaseTestConfiguration {
         Assertions.assertTrue(db.stringIsPresentInMap(sqlQuery, keyMap, randomDepartmentTitle), "Title isn't found in DB");
     }
 
+    @Tag("create_new_contact")
     @Test
     public void testUIAndDataBaseCreateNewContact() throws SQLException{
         // Test data

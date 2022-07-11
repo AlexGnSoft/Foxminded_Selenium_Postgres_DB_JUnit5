@@ -1,4 +1,4 @@
-package tests;
+package tests.Contacts;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;

@@ -1,13 +1,15 @@
-package tests;
+package tests.Tickets;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pageobjects.*;
 
 public class TestExecution_10 extends BaseTestConfiguration {
 
+    @Tag("create_new_ticket")
     @Test
     public void testCreateNewTicket() {
         //Test data
@@ -78,6 +80,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(TicketsPage.ticketCompanyList), contactName));
     }
 
+    @Tag("create_new_department")
     @Test
     public void testCreateNewDepartmentWithoutAddInfo() {
         //Test data
@@ -112,6 +115,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
                 (GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), departmentTitle));
     }
 
+    @Tag("create_new_department")
     @Test
     public void testCreateNewDepartmentWithAddInfo() {
         //Test data
@@ -163,6 +167,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depEmailList),email));
     }
 
+    @Tag("create_new_department")
     @Test
     public void testCreateNewDepartmentAndDeleteCreatedDepartment() {
         //Test data
@@ -206,6 +211,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
                 (GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), departmentTitle));
     }
 
+    @Tag("create_new_contact")
     @Test
     public void testCreateNewContactWithoutAddInfo() {
         // Test data
@@ -248,6 +254,7 @@ public class TestExecution_10 extends BaseTestConfiguration {
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.emailList), email));
     }
 
+    @Tag("create_new_contact")
     @Test
     public void testCreateNewContactWithAddInfo() {
         // Test data

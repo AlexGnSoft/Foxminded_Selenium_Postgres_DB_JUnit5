@@ -1,13 +1,15 @@
-package tests;
+package tests.Departments;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pageobjects.*;
 
 public class TestExecution_14_1 extends BaseTestConfiguration {
 
+    @Tag("department")
     @Test
     public void testSearchCreatedDepartment() {
         //Test data
@@ -42,6 +44,7 @@ public class TestExecution_14_1 extends BaseTestConfiguration {
         Assertions.assertTrue(GlobalPages.pageIsVisible(DepartmentsNewDepPage.searchResultPage), "Search result page is not visible");
     }
 
+    @Tag("ticket")
     @Test
     public void testSearchCreatedTicket() {
         //Test data

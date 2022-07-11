@@ -1,8 +1,9 @@
-package tests;
+package tests.CreateNew;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pageobjects.*;
 import utils.RandomDataGenerator;
@@ -15,6 +16,7 @@ public class TestExecution_21 extends BaseTestConfiguration {
 //    @RegisterExtension
 //    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
 
+    @Tag("create_new_manager")
     @Test
     public void testCreateNewManager() {
         //Test data
@@ -73,6 +75,7 @@ public class TestExecution_21 extends BaseTestConfiguration {
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ManagerNewManager.profileDataCreated), rndPhone));
     }
 
+    @Tag("create_new_department")
     @Test
     public void testCreateNewDepartmentWithoutAddInfo() {
         //Test data

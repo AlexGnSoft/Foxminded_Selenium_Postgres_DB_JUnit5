@@ -1,4 +1,4 @@
-package tests.PackageB;
+package tests.Tickets;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
@@ -8,7 +8,7 @@ import pageobjects.MenuDashboard;
 import pageobjects.OpenPage;
 import pageobjects.TicketsPage;
 
-public class TextExecution_9 extends BaseTestConfiguration{
+public class TestExecution_9 extends BaseTestConfiguration{
 
     @Test
     public void testReturnTitleByCategoryRazrabotka(){

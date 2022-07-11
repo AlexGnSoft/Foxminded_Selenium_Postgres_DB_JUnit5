@@ -1,10 +1,11 @@
-package tests;
+package tests.Departments;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pageobjects.Builder_Singleton_Strategy.Buider_Pattern.CustomerBuilder;
 
 public class TestExecution_14 {
+
 
     @Test
     public void testCheckNameCapitalization() {

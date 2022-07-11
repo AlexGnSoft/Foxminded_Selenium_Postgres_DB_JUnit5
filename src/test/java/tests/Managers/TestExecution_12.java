@@ -1,14 +1,16 @@
-package tests;
+package tests.Managers;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pageobjects.*;
 import utils.RandomDataGenerator;
 
 public class TestExecution_12 extends BaseTestConfiguration {
 
+    @Tag("create_new_manager")
     @Test
     public void testCreateNewManager() {
         //Test data(1)

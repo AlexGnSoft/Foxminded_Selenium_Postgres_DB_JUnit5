@@ -1,15 +1,17 @@
-package tests.PackageA;
+package tests.Authorization;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import pageobjects.GlobalPages;
 import pageobjects.OpenPage;
 
 public class TestExecution_8 extends BaseTestConfiguration{
 
+    @Tag("production")
     @Test
     public void testOpenApplication() {
         // Go to application Login page
@@ -19,6 +21,7 @@ public class TestExecution_8 extends BaseTestConfiguration{
         Assertions.assertTrue(GlobalPages.pageIsVisible(OpenPage.loginPageBody), "Login page is not visible");
     }
 
+    @Tag("production")
     @Test
     public void testCloseApplication() {
         // Go to application Login page
@@ -28,6 +31,7 @@ public class TestExecution_8 extends BaseTestConfiguration{
 //        tearDown();
     }
 
+    @Tag("production")
     @Test
     public void testSignIn(){
         // Go to application Login page
