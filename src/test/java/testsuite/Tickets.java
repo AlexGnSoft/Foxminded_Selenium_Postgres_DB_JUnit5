@@ -1,12 +1,13 @@
 package testsuite;
 
 import org.junit.platform.suite.api.*;
-import tests.Tickets.TestExecution_9;
+import tests.Tickets.TicketsTest;
 
 @SuiteDisplayName("Tickets Test Suite")
 @SelectClasses(
-        {TestExecution_9.class}
+        {TicketsTest.class}
 )
+@IncludeTags("ticket")
 @Suite
 public class Tickets {
 

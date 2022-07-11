@@ -4,13 +4,13 @@ import org.junit.platform.suite.api.IncludeTags;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 import org.junit.platform.suite.api.SuiteDisplayName;
-import tests.Managers.ManagersTest;
+import tests.Departments.DepartmentsTest;
 
-@SuiteDisplayName("New Manager Test Suite")
+@SuiteDisplayName("Departments Test Suite")
 @SelectClasses(
-        {ManagersTest.class}
+        {DepartmentsTest.class}
 )
-@IncludeTags({"create_new_manager", "create_new_manager_db_test"})
+@IncludeTags("department")
 @Suite
-public class Managers_NewManager {
+public class Department {
 }

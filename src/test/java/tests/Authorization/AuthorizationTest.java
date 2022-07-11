@@ -4,12 +4,11 @@ import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import pageobjects.GlobalPages;
 import pageobjects.OpenPage;
 
-public class TestExecution_8 extends BaseTestConfiguration{
+public class AuthorizationTest extends BaseTestConfiguration{
 
     @Tag("production")
     @Test

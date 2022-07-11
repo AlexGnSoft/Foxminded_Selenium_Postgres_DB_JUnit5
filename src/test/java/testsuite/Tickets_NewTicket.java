@@ -1,16 +1,14 @@
 package testsuite;
 
 import org.junit.platform.suite.api.*;
-import tests.CreateNew.TestExecution_19;
-import tests.Tickets.TestExecution_10;
+import tests.Tickets.TicketsTest;
 
-@SuiteDisplayName("Tickets Test Suite")
-@SelectPackages({
-        "tests.Tickets", "CreateNew"})
+@SuiteDisplayName("New Ticket Test Suite")
 @SelectClasses(
-        {TestExecution_10.class, TestExecution_19.class}
+        {TicketsTest.class}
 )
-@IncludeTags("create_new_ticket")
+@IncludeTags(
+        {"create_new_ticket", "create_new_ticket_db_test"})
 @Suite
 public class Tickets_NewTicket {
 }

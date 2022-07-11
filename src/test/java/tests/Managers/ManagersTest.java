@@ -1,4 +1,4 @@
-package tests.CreateNew;
+package tests.Managers;
 
 import config.BaseTestConfiguration;
 import helpfiles.PropertiesFile;
@@ -10,11 +10,7 @@ import utils.RandomDataGenerator;
 
 import java.util.Locale;
 
-public class TestExecution_21 extends BaseTestConfiguration {
-
-    //To be able to take ScreenShots:
-//    @RegisterExtension
-//    ScreenshotWatcher watcher = new ScreenshotWatcher(getDriver(), "target/surefire-reports");
+public class ManagersTest extends BaseTestConfiguration {
 
     @Tag("create_new_manager")
     @Test
@@ -75,11 +71,31 @@ public class TestExecution_21 extends BaseTestConfiguration {
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ManagerNewManager.profileDataCreated), rndPhone));
     }
 
-    @Tag("create_new_department")
+    @Tag("create_new_manager_db_test")
     @Test
-    public void testCreateNewDepartmentWithoutAddInfo() {
-        //Test data
-        String departmentTitle = "My department 4";
+    public void testCreateNewManagerValidateDB() {
+        //Test data(1)
+        String department = "Комната добра";
+        int srtLength = 7;
+        int phoneRange = 9;
+        int quantityOfPhoneDigits = 10;
+
+        //Generating random data
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String rndFName = generator.randomString(srtLength, false, false, true);
+        String rndLName = generator.randomString(srtLength, false, false, true);
+        String rndEmail = generator.randomString(srtLength, true, false, false);
+        String rndLogin = generator.randomString(srtLength, false, true, false);
+        String rndSkype = generator.randomString(srtLength, false, true, false);
+        String rndPhone = generator.randomInt(phoneRange, quantityOfPhoneDigits);
+        String randomFullName = rndFName + " " + rndLName;
+
+        //Test data(2)
+        String name = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("name");
+        String phone = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("phone");
+        String skype = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("skype");
+        String email = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("email");
+        String login = ManagerNewManager.saveManagerData(rndPhone, rndLogin, rndEmail, rndSkype, rndFName + " " + rndLName).get("login");
 
         // Go to application Login page
         openBrowser();
@@ -91,21 +107,33 @@ public class TestExecution_21 extends BaseTestConfiguration {
         GlobalPages.openLeftSideTab();
 
         //Click on Departments tab > 'New Department+' button > Wait for page to be visible
-        GlobalPages.clickOnVisibleElement(MenuDashboard.departmentsTab);
-        GlobalPages.clickOnVisibleElement(DepartmentsNewDepPage.newDepartmentBtn);
-        GlobalPages.pageIsVisible(DepartmentsNewDepPage.newDepartmentPage);
+        GlobalPages.clickOnVisibleElement(MenuDashboard.managersTab);
+        GlobalPages.click(ManagerNewManager.newManagerBtn);
+        GlobalPages.pageIsVisible(ManagerNewManager.newManagerPage);
 
-        //Fill in department title
-        GlobalPages.enterDataToTheField(DepartmentsNewDepPage.titleField, departmentTitle);
+        // Fill in all manager's fields
+        ManagerNewManager.fillInAllFields(rndFName, rndLName, rndEmail,rndLogin, rndPhone, rndSkype);
 
-        //Click on Submit button
-        GlobalPages.click(DepartmentsNewDepPage.submitBtn);
+        //Click on Department drop-down and select an option
+        GlobalPages.click(ManagerNewManager.drpDepartment);
+        GlobalPages.waitImplicitly();
+        GlobalPages.selectFromDropDownListByVisibleText(ManagerNewManager.drpDepartment, ManagerNewManager.drpDepartmentOptions, department);
 
-        //Refresh the page
-        GlobalPages.sleepWait(2000);
+        //Click on Check-boxes if it's not checked.
+        ManagerNewManager.checkCheckboxStatusAndClick();
 
-        //Verify presence of entered data on Departments page
-        Assertions.assertNotNull(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList));
-        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), departmentTitle));
+        //click on Submit button
+        GlobalPages.click(ManagerNewManager.submitBtn);
+
+        //click on just created manager profile tab
+        GlobalPages.clickOnTheFirstElementInAList(ManagerNewManager.fullNameList);
+        GlobalPages.sleepWait(3000);
+
+        //Data validation
+        Assertions.assertEquals(randomFullName, name);
+        Assertions.assertEquals(rndPhone, phone);
+        Assertions.assertEquals(rndSkype, skype);
+        Assertions.assertEquals(rndEmail, email);
+        Assertions.assertEquals(rndLogin, login);
     }
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pageobjects.OpenPage_PFM;
 
-public class TestExecution_8_PFM extends BaseTestConfiguration{
+public class AuthorizationTest_PFactory extends BaseTestConfiguration{
 
     @Test
     public void testOpenApplication(){

@@ -1,14 +1,13 @@
 package testsuite;
 
 import org.junit.platform.suite.api.*;
-import tests.CreateNew.TestExecution_19;
-import tests.Tickets.TestExecution_10;
+import tests.Contacts.ContactsTest;
 
 @SuiteDisplayName("New Contact Test Suite")
 @SelectClasses(
-        {TestExecution_10.class, TestExecution_19.class}
+        {ContactsTest.class}
 )
-@IncludeTags("create_new_contact")
+@IncludeTags({"create_new_contact","create_new_contact_db_test", "create_new_contact_validation_test"})
 @Suite
 public class Contacts_NewContact {
 }
