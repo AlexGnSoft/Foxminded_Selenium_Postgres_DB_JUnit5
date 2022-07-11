@@ -12,7 +12,7 @@ import utils.RandomDataGenerator;
 import java.sql.SQLException;
 import java.util.Locale;
 
-public class ContactsTest extends BaseTestConfiguration {
+public class ContactsTest_Parametrized_Locator extends BaseTestConfiguration {
 
     @Tag("create_new_contact")
     @Test
@@ -33,28 +33,28 @@ public class ContactsTest extends BaseTestConfiguration {
 
         //Click on Companies tab > 'New Company+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.contactsTab);
-        GlobalPages.click(ContactsNewContactPage.newContactBtn);
-        GlobalPages.pageIsVisible(ContactsNewContactPage.newContactPage);
+        GlobalPages.click(ContactsNewContactPage_Param_Locator.newContactBtn);
+        GlobalPages.pageIsVisible(ContactsNewContactPage_Param_Locator.newContactPage);
 
         //Fill in First Name, Last Name, Email, Login, select Company
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.firstNameField, FName);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, LName);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, email);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.firstNameField, FName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.lastNameField, LName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.emailField, email);
 
         //Click on Check-boxes if it's not checked.
         ManagerNewManager.checkCheckboxStatusAndClick();
 
         //Select radio button if it's not already selected.
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect();
+        ContactsNewContactPage_Param_Locator.checkRadioButtonStatusAndSelect();
         GlobalPages.sleepWait(3000);
 
         //Click Submit button
-        GlobalPages.click(ContactsNewContactPage.submitBtn);
+        GlobalPages.click(ContactsNewContactPage_Param_Locator.submitBtn);
         GlobalPages.sleepWait(2000);
 
         //Verify presence of entered data on Contacts page
-        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList), FName + " " + LName));
-        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.emailList), email));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage_Param_Locator.fullNameList), FName + " " + LName));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage_Param_Locator.emailList), email));
     }
 
     @Tag("create_new_contact")
@@ -86,34 +86,34 @@ public class ContactsTest extends BaseTestConfiguration {
 
         //Click on Companies tab > 'New Company+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.contactsTab);
-        GlobalPages.clickOnVisibleElement(ContactsNewContactPage.newContactBtn);
-        GlobalPages.pageIsVisible(ContactsNewContactPage.newContactPage);
+        GlobalPages.clickOnVisibleElement(ContactsNewContactPage_Param_Locator.newContactBtn);
+        GlobalPages.pageIsVisible(ContactsNewContactPage_Param_Locator.newContactPage);
 
         //Fill in First Name, Last Name, Email, Login, select Company
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.firstNameField, FName);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, LName);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, email);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.firstNameField, FName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.lastNameField, LName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.emailField, email);
 
         //Click on 'Additional information+' button
-        GlobalPages.click(ContactsNewContactPage.addInfoBtn);
+        GlobalPages.click(ContactsNewContactPage_Param_Locator.addInfoBtn);
 
         //Fill in all fields
-        ContactsNewContactPage.fillInAllFields(country, street, zipCode, phone, website, city, building, roomNumber, skype, jobPosition);
+        ContactsNewContactPage_Param_Locator.fillInAllFields(country, street, zipCode, phone, website, city, building, roomNumber, skype, jobPosition);
 
         //Click on Check-boxes if it's not checked.
         ManagerNewManager.checkCheckboxStatusAndClick();
 
         //Select radio button if it's not already selected.
-        ContactsNewContactPage.checkRadioButtonStatusAndSelect();
+        ContactsNewContactPage_Param_Locator.checkRadioButtonStatusAndSelect();
         GlobalPages.sleepWait(3000);
 
         //Click Submit button
-        GlobalPages.click(ContactsNewContactPage.submitBtn);
+        GlobalPages.click(ContactsNewContactPage_Param_Locator.submitBtn);
         GlobalPages.sleepWait(2000);
 
         //Verify presence of entered data on Contacts page
-        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.fullNameList), FName + " " + LName));
-        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage.emailList), email));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage_Param_Locator.fullNameList), FName + " " + LName));
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContactPage_Param_Locator.emailList), email));
     }
 
     @Tag("create_new_contact_db_test")
@@ -139,13 +139,13 @@ public class ContactsTest extends BaseTestConfiguration {
 
         //Click on Companies tab > 'New Company+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.contactsTab);
-        GlobalPages.click(ContactsNewContactPage.newContactBtn);
-        GlobalPages.pageIsVisible(ContactsNewContactPage.newContactPage);
+        GlobalPages.click(ContactsNewContactPage_Param_Locator.newContactBtn);
+        GlobalPages.pageIsVisible(ContactsNewContactPage_Param_Locator.newContactPage);
 
         //Fill in First Name, Last Name, Email, Login, select Company
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.firstNameField, randomFName);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, randomLName);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, randomEmail);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.firstNameField, randomFName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.lastNameField, randomLName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.emailField, randomEmail);
 
         GlobalPages.sleepWait(3000);
 
@@ -153,7 +153,7 @@ public class ContactsTest extends BaseTestConfiguration {
         GlobalPages.scrollDown();
 
         //Click Submit button
-        GlobalPages.click(ContactsNewContactPage.submitBtn);
+        GlobalPages.click(ContactsNewContactPage_Param_Locator.submitBtn);
         GlobalPages.sleepWait(3000);
 
         //Compare UI and DB
@@ -175,7 +175,7 @@ public class ContactsTest extends BaseTestConfiguration {
         String fullName = FName + " " + LName;
         String oneLetter = "a";
         String twoLetters = "aB";
-        String threeLetters = "sdA";
+        String threeLetters = "sdS";
         String emailMustBeValidText = "Email must be valid";
         String emailIsRequiredText = "Email is required";
         String loginRequiredText = "Login is required";
@@ -193,70 +193,75 @@ public class ContactsTest extends BaseTestConfiguration {
 
         //Click on Companies tab > 'New Company+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.contactsTab);
-        GlobalPages.click(ContactsNewContactPage.newContactBtn);
-        GlobalPages.pageIsVisible(ContactsNewContactPage.newContactPage);
+        GlobalPages.click(ContactsNewContactPage_Param_Locator.newContactBtn);
+        GlobalPages.pageIsVisible(ContactsNewContactPage_Param_Locator.newContactPage);
 
         //Fill in First Name, Last Name, Email, Login, select Company
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.firstNameField, FName);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, LName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.firstNameField, FName);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.lastNameField, LName);
 
         /**
          * 'Tickets prefix must be from 3 to 6 characters long' test
          */
         //Check that pop-up is visible
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.ticketPrefixField, oneLetter);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.ticketPrefixField, twoLetters);
-        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.ticketPrefixAlert));
-        //Check correctness of the text
-        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage.ticketPrefixAlert, ticketPrefixAlertText));
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.ticketPrefixField, oneLetter);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.ticketPrefixField, twoLetters);
+
+        //Check that pop-up is visible by using parametrized locator
+        Assertions.assertTrue(GlobalPages.isElementVisible
+                (ContactsNewContactPage_Param_Locator.parametrizedLocator(ticketPrefixAlertText)));
+
+        //Check correctness of the text by using parametrized locator
+        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage_Param_Locator.parametrizedLocator(ticketPrefixAlertText), ticketPrefixAlertText));
         //Check that pop-up disappeared by entering valid data. Class 'ng-valid' is activated
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.ticketPrefixField, threeLetters);
-        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.validAlertAbsence));
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.ticketPrefixField, threeLetters);
+        GlobalPages.sleepWait(2000);
+        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage_Param_Locator.validAlertAbsence));
 
         /**
          * Email must be valid' test
          */
         //Fill in Invalid and valid Email and check validation message
         //Check that pop-up is present
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, emailInvalid);
-        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.emailMustBeValidAlert));
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.emailField, emailInvalid);
+        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage_Param_Locator.parametrizedLocator(emailMustBeValidText)));
         //Check correctness of the text
-        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage.emailMustBeValidAlert, emailMustBeValidText));
+        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage_Param_Locator.parametrizedLocator(emailMustBeValidText), emailMustBeValidText));
         //Check that pop-up disappeared by entering valid data. Class 'ng-valid' is activated
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, emailValid);
-        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.validAlertAbsence));
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.emailField, emailValid);
+        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage_Param_Locator.validAlertAbsence));
 
         /**
          * Email is required' test
          */
         //Fill in valid and no Email and check validation message 'Email is required' pop-up and the text
         //Check that pop-up is visible
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.emailField, emailValid);
-        ContactsNewContactPage.deleteEmailFromTheField();
-        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.emailValidAlertAbsence2));
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.emailField, emailValid);
+        ContactsNewContactPage_Param_Locator.deleteEmailFromTheField();
+        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage_Param_Locator.parametrizedLocator(emailIsRequiredText)));
         //Check correctness of the text
-        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage.emailIsRequiredAlert, emailIsRequiredText));
+        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage_Param_Locator.parametrizedLocator(emailIsRequiredText), emailIsRequiredText));
 
         /**
          * 'Login is required' test
          */
         //Check that pop-up is visible
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.loginField, emailValid);
-        ContactsNewContactPage.deleteLoginFromTheField();
-        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.loginIsRequiredAlert));
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.loginField, emailValid);
+        ContactsNewContactPage_Param_Locator.deleteLoginFromTheField();
+        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage_Param_Locator.parametrizedLocator(loginRequiredText)));
         //Check correctness of the text
-        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage.loginIsRequiredAlert, loginRequiredText));
+        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage_Param_Locator.parametrizedLocator(loginRequiredText), loginRequiredText));
 
         /**
          * 'Last name must be at least 2 characters long' test
          */
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, oneLetter);
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.lastNameField, oneLetter);
         //Check pop-up is visible
-        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.lastNameMinValueAlert));
+        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage_Param_Locator.parametrizedLocator(lastNameMinValueAlertText)));
         //Check pop-up text
-        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage.lastNameMinValueAlert, lastNameMinValueAlertText));
+        Assertions.assertTrue(GlobalPages.isValidationMessageIsCorrect(ContactsNewContactPage_Param_Locator.parametrizedLocator(lastNameMinValueAlertText), lastNameMinValueAlertText));
         //Check that pop-up disappeared by entering valid data. Class 'ng-valid' is activated
-        GlobalPages.enterDataToTheField(ContactsNewContactPage.lastNameField, twoLetters);
-        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage.validAlertAbsence));
+        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.lastNameField, twoLetters);
+        Assertions.assertTrue(GlobalPages.isElementVisible(ContactsNewContactPage_Param_Locator.validAlertAbsence));
     }
 }
