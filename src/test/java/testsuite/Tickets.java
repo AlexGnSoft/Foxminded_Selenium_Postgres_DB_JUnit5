@@ -7,7 +7,7 @@ import tests.Tickets.TicketsTest;
 @SelectClasses(
         {TicketsTest.class}
 )
-@IncludeTags("ticket")
+@IncludeTags({"ticket", "create_new_ticket", "create_new_ticket_db_test"})
 @Suite
 public class Tickets {
 

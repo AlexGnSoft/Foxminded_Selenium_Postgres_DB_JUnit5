@@ -10,7 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import java.util.List;
 
-
 public class ContactsNewContactPage_Param_Locator extends BaseTestConfiguration {
     public static final By newContactBtn = By.xpath("//button[@id='new-contact']");
     public static final By newContactPage = By.xpath("//div[@class='card-content']");

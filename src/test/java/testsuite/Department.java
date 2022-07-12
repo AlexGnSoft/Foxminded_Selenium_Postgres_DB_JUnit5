@@ -10,7 +10,7 @@ import tests.Departments.DepartmentsTest;
 @SelectClasses(
         {DepartmentsTest.class}
 )
-@IncludeTags("department")
+@IncludeTags({"department", "create_new_department", "create_new_department_db_test"})
 @Suite
 public class Department {
 }

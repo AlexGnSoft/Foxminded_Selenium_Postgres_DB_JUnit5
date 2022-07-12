@@ -9,5 +9,5 @@ import tests.Contacts.ContactsTest_Parametrized_Locator;
 )
 @IncludeTags({"create_new_contact","create_new_contact_db_test", "create_new_contact_validation_test"})
 @Suite
-public class Contacts_NewContact {
+public class Contacts {
 }

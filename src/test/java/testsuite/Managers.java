@@ -12,5 +12,5 @@ import tests.Managers.ManagersTest;
 )
 @IncludeTags({"create_new_manager", "create_new_manager_db_test"})
 @Suite
-public class Managers_NewManager {
+public class Managers {
 }
