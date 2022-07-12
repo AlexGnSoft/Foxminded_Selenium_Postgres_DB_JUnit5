@@ -10,7 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import java.util.List;
 
-public class ContactsNewContactPage_Param_Locator extends BaseTestConfiguration {
+public class ContactsNewContact_Param_Locator extends BaseTestConfiguration {
+    public static final By contactPage = By.xpath("//div[@class='container-fluid']");
     public static final By newContactBtn = By.xpath("//button[@id='new-contact']");
     public static final By newContactPage = By.xpath("//div[@class='card-content']");
     public static final By fullNameList = By.xpath("//tbody/tr/td");
@@ -35,23 +36,31 @@ public class ContactsNewContactPage_Param_Locator extends BaseTestConfiguration 
     public static final By radioButtonList = By.xpath("//input[@type='radio']");
     public static final By submitBtn = By.xpath("//button[@class='btn btn-success btn-outline']");
     public static final By cancelBtn = By.xpath("//button[@id='contact-form-cancel']");
+    public static final By editBtnList = By.xpath("//a[@title='Edit']");
+    public static final By editEmailBtn = By.xpath("//div[@class='several-emails_action-btns']");
+    public static final By editEmailField = By.xpath("//input[@id='email']");
+    public static final By emailOkBtn = By.xpath("//div[@class='col-sm-6']/button[@id='contact-form-submit']");
+    public static final By emailSuccessfullUpdateSign = By.xpath("//div[@class='btn-info']");
+    public static final By emailUpdated = By.xpath("//div[@class='several-emails_email']");
+    public static final By deleteBtnList = By.xpath("//a[@id='delete-btn']");
 
-    private static final Logger log = LogManager.getLogger(ContactsNewContactPage_Param_Locator.class.getName());
+
+    private static final Logger log = LogManager.getLogger(ContactsNewContact_Param_Locator.class.getName());
 
     /**
      * Method fill in all the fields
      */
     public static void fillInAllFields(String country, String street, String zipCode, String phone, String website, String city, String building, String roomNumber, String skype, String jobPosition) {
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.countryField, country);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.streetField, street);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.zipCodeField, zipCode);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.phoneField, phone);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.websiteField, website);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.cityField, city);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.buildingField, building);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.roomNumberField, roomNumber);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.skypeField, skype);
-        GlobalPages.enterDataToTheField(ContactsNewContactPage_Param_Locator.jobPositionField, jobPosition);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.countryField, country);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.streetField, street);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.zipCodeField, zipCode);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.phoneField, phone);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.websiteField, website);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.cityField, city);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.buildingField, building);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.roomNumberField, roomNumber);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.skypeField, skype);
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.jobPositionField, jobPosition);
         log.log(Level.INFO, "fillInAllFields method");
     }
 
@@ -97,5 +106,7 @@ public class ContactsNewContactPage_Param_Locator extends BaseTestConfiguration 
     public static By parametrizedLocator(String validationText){
         return By.xpath("//div[contains(text(),'" + validationText + "')]");
     }
+
+
 }
 

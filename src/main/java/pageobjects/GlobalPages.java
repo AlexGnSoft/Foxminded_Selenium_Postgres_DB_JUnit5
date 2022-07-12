@@ -66,7 +66,6 @@ public class GlobalPages extends BaseTestConfiguration {
         log.log(Level.INFO, "enterDataToTheField method");
     }
 
-
     /**
      * Method is used to clear possible placeholder text and then fill in user data to the field
      */
@@ -154,6 +153,19 @@ public class GlobalPages extends BaseTestConfiguration {
         return titleName;
     }
 
+    /**
+     * Method returns title names (of id, title, assignee, stage) using getText().
+     * As a parameter is receives a list of elements in a column
+     * from which we expect to get title names
+     */
+    public static String getNamesOfFirstTitleOfAnyColumns(By webElements) {
+        String firstTitleName = "";
+        List<WebElement> titleNameList = getDriver().findElements(webElements);
+        for (int i = 0; i < titleNameList.size(); i++) {
+            firstTitleName = titleNameList.get(0).getText();
+        }
+        return firstTitleName;
+    }
 
     /**
      * Method is used to click on the first element in a list
@@ -213,7 +225,6 @@ public class GlobalPages extends BaseTestConfiguration {
         log.log(Level.INFO, "alertAcceptOrDismiss method");
     }
 
-
     /**
      * Method is used to check radioButton status.
      * If not selected > we make it selected
@@ -261,7 +272,6 @@ public class GlobalPages extends BaseTestConfiguration {
         }
     }
 
-
     /**
      * Method is used to check whether webElement is not visible
      */
@@ -273,5 +283,14 @@ public class GlobalPages extends BaseTestConfiguration {
             System.out.println("Actual text is: " + getDriver().findElement(webElement).getText());
         }
         return isTextCorrect;
+    }
+
+    /**
+     * Method is used to return text field from single locator
+     */
+    public static String getTextFromLocator(By webElement){
+        String webElementText = getDriver().findElement(webElement).getText();
+
+        return webElementText;
     }
 }
