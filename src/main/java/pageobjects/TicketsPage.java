@@ -1,7 +1,6 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
-import helpfiles.PropertiesFile;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,10 +15,12 @@ import java.util.Random;
 public class TicketsPage extends BaseTestConfiguration implements ISearchStrategy {
 
     public static final By ticketsTab = By.xpath("//a[@id='menu-tickets']");
+    public static final By closeHeaderPopup = By.xpath("//button[@class='close']");
     public static final By minimizeSideBarBtn = By.xpath("//button[@id='minimizeSidebar']");
     public static final By searchField = By.xpath("//input[@id='search-bar']");
     public static final By searchBtn = By.xpath("//button[@id='search-bar-submit']");
     public static final By searchResultPage = By.xpath("//div[@class='card-content']");
+    public static final By ticketPage = By.xpath("//div[@class='main-panel']");
     public static final By languageBtn = By.xpath("//a[concat(@class,'language_button') and @id='current-language']");
     public static final By allCategoriesBtn = By.xpath("//li[contains(@class,'select-category')]/a[contains(@class,'dropdown-toggle')]");
     public static final By notificationsBtn = By.xpath("//a[@class='dropdown-toggle']/i[text()='notifications']");
@@ -49,6 +50,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
     public static final By ticketCompanyList = By.cssSelector(".ticket_company");
     public static final By assigneeList = By.cssSelector(".ticket_assignee");
     public static final By stageList = By.cssSelector("td[width='130px']");
+    public static final By categoryList = By.cssSelector("span[class='break-word fixed-span label label-info']");
     public static final By createTicketPage = By.cssSelector("div[class='container-fluid']");
     public static final By titleField = By.cssSelector("#title");
     public static final By descriptionField = By.cssSelector("textarea[id='description']");
@@ -58,6 +60,7 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
     public static final By drpContact = By.xpath("//div[@class='inline']");
     public static final By drpContactOptions = By.xpath("//select[@id='contactId']");
     public static final By drpPriority = By.cssSelector("#priority");
+    public static final By drpPriorityOptions = By.xpath("//select[@name='priority']");
     public static final By calendarDataPicker = By.cssSelector(".ui-datepicker-trigger.ui-calendar-button");
     public static final By selectNextMonth = By.xpath("//span[@class='fa fa-angle-right']");
     public static final By selectPreviousMonth = By.xpath("//span[@class='fa fa-angle-left']");
@@ -182,35 +185,11 @@ public class TicketsPage extends BaseTestConfiguration implements ISearchStrateg
         log.log(Level.INFO, "fileUpload method");
     }
 
-
     @Override
     public void search(String searchFor) {
         getDriver().findElement(searchField).sendKeys(searchFor);
         GlobalPages.click(searchBtn);
         log.log(Level.INFO, "search method");
-    }
-
-    public static void main(String[] args) {
-        BaseTestConfiguration bs = new BaseTestConfiguration();
-        bs.createDriver();
-        bs.openBrowser();
-        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
-
-        GlobalPages.sleepWait(2000);
-
-        //Open sidebar
-        GlobalPages.openLeftSideTab();
-
-        //Click on Departments tab > 'New Department+' button > Wait for page to be visible
-        GlobalPages.clickOnVisibleElement(MenuDashboard.departmentsTab);
-
-        GlobalPages.sleepWait(1000);
-
-        String ticketTitle = "My department 7";
-
-        System.out.println("This is a result: "+ GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(DepartmentsNewDepPage.depTitleList), ticketTitle));
-
-        getDriver().close();
     }
 }
 

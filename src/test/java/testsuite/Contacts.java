@@ -7,7 +7,7 @@ import tests.Contacts.ContactsTest_Parametrized_Locator;
 @SelectClasses(
         {ContactsTest_Parametrized_Locator.class}
 )
-@IncludeTags({"create_new_contact","create_new_contact_db_test", "create_new_contact_validation_test", "edit_contact"})
+@IncludeTags({"create_new_contact","create_new_contact_db_test", "create_new_contact_validation_test", "edit_contact", "delete_contact"})
 @Suite
 public class Contacts {
 }

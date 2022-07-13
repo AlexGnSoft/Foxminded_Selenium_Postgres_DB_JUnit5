@@ -60,6 +60,7 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method is used to clear possible placeholder text and then fill in user data to the field
      */
     public static void enterDataToTheField(By webElement, String data) {
+        GlobalPages.sleepWait(2000);
         getDriver().findElement(webElement).clear();
         getDriver().findElement(webElement).sendKeys(data);
 
@@ -204,7 +205,7 @@ public class GlobalPages extends BaseTestConfiguration {
      * Method is used to select any option by Index in drop-down options list
      */
     public static void selectDataFromDropDownListByIndex(By dropDownElement, int searchedElementIndex) {
-        getDriver().findElement(dropDownElement).click();
+//        getDriver().findElement(dropDownElement).click();
         GlobalPages.sleepWait(3000);
         Select select = new Select((getDriver().findElement(dropDownElement)));
         select.selectByIndex(searchedElementIndex);

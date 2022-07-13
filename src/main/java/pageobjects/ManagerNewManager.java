@@ -109,8 +109,5 @@ public class ManagerNewManager extends BaseTestConfiguration {
         }
         log.log(Level.INFO, "checkCheckboxStatusAndClick method");
     }
-
-
-
 }
 

@@ -106,7 +106,5 @@ public class ContactsNewContact_Param_Locator extends BaseTestConfiguration {
     public static By parametrizedLocator(String validationText){
         return By.xpath("//div[contains(text(),'" + validationText + "')]");
     }
-
-
 }
 

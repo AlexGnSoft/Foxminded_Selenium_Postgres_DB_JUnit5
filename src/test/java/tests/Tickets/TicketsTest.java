@@ -1,5 +1,6 @@
 package tests.Tickets;
 
+import com.sun.security.sasl.util.AbstractSaslImpl;
 import config.BaseTestConfiguration;
 import databases.DataBase;
 import helpfiles.PropertiesFile;
@@ -355,5 +356,58 @@ public class TicketsTest extends BaseTestConfiguration{
 
         //Print text of stage list from Tickets page
         TicketsPage.printStages(TicketsPage.stageList);
+    }
+
+    @Tag("edit_ticket")
+    @Test
+    public void testEditTicket() throws SQLException {
+        //Test data
+        DataBase db = new DataBase();
+        RandomDataGenerator generator = new RandomDataGenerator();
+        int indexOfCategory = Integer.parseInt(generator.randomInt(5, 1));
+        String rndTitle = generator.randomString(20, false, false, true);
+        String rndDescription = generator.randomString(40, false, false, true);
+        String priority = "P5";
+        String sqlQuery = "select * from ticket";
+
+        //Go to the application
+        openBrowser();
+
+        //Make log in
+        OpenPage.makeSignIn(PropertiesFile.getLoginCredentials(), PropertiesFile.getPasswordCredentials());
+        GlobalPages.sleepWait(2000);
+
+        //Refresh the page (bug on the FE > need to refresh several time for data to be loaded)
+        getDriver().navigate().refresh();
+        GlobalPages.sleepWait(2000);
+        getDriver().navigate().refresh();
+
+        //Verify that ticket page is visible
+        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.ticketPage));
+
+        //Click on "Edit" button for the first ticket in a list
+        GlobalPages.sleepWait(2000);
+        GlobalPages.clickOnTheFirstElementInAList(TicketsPage.editBtnList);
+        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.createTicketPage));
+
+        //Update title and description
+        GlobalPages.enterDataToTheField(TicketsPage.titleField, rndTitle);
+        GlobalPages.sleepWait(2000);
+        GlobalPages.enterDataToTheField(TicketsPage.descriptionField, rndDescription);
+
+        //Update category and priority
+        GlobalPages.selectDataFromDropDownListByIndex(TicketsPage.drpCategory, indexOfCategory);
+        GlobalPages.selectFromDropDownListByVisibleText(TicketsPage.drpPriority, TicketsPage.drpPriorityOptions,priority);
+
+        //Click "Submit" button
+        GlobalPages.click(TicketsPage.submitBtn);
+        Assertions.assertTrue(GlobalPages.pageIsVisible(TicketsPage.searchResultPage));
+        GlobalPages.sleepWait(2000);
+
+        //Validate that updated data is displayed on Tickets home page
+        Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(TicketsPage.titleList),rndTitle));
+
+        //Validate that updated data in dataBase
+        Assertions.assertTrue(db.stringIsPresentInArrayOfDbData(sqlQuery, rndTitle), "Title is not found in DB");
     }
 }

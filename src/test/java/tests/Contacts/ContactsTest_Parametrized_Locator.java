@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pageobjects.*;
-import testsuite.Contacts;
 import utils.RandomDataGenerator;
 import java.sql.SQLException;
 import java.util.Locale;
