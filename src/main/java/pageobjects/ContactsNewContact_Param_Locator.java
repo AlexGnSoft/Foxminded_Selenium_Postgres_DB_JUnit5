@@ -1,9 +1,11 @@
 package pageobjects;
 
 import config.BaseTestConfiguration;
+import helpfiles.PropertiesFile;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -17,6 +19,7 @@ public class ContactsNewContact_Param_Locator extends BaseTestConfiguration {
     public static final By fullNameList = By.xpath("//tbody/tr/td");
     public static final By emailList = By.xpath("//tbody/tr/td");
     public static final By firstNameField = By.xpath("//input[@name='firstName']");
+    public static final By firstNameSearchField = By.xpath("//input[@id='first-name']");
     public static final By lastNameField = By.xpath("//input[@name='lastName']");
     public static final By emailField = By.xpath("//input[@name='email']");
     public static final By loginField = By.xpath("//input[@name='login']");
@@ -43,6 +46,8 @@ public class ContactsNewContact_Param_Locator extends BaseTestConfiguration {
     public static final By emailSuccessfullUpdateSign = By.xpath("//div[@class='btn-info']");
     public static final By emailUpdated = By.xpath("//div[@class='several-emails_email']");
     public static final By deleteBtnList = By.xpath("//a[@id='delete-btn']");
+    public static final By filterBtn = By.xpath("//button[@id='search-contacts']");
+    public static final By searchResult = By.xpath("//tbody/tr/td[@class='break-word']");
 
 
     private static final Logger log = LogManager.getLogger(ContactsNewContact_Param_Locator.class.getName());

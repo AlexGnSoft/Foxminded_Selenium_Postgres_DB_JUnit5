@@ -274,6 +274,17 @@ public class GlobalPages extends BaseTestConfiguration {
     }
 
     /**
+     * Method is used to check whether webElement is visible on the page at all by using getPageSource() method
+     */
+    public static Boolean isElementVisibleOnPageSource(String searchedString) {
+        boolean isVisible = false;
+        if(getDriver().getPageSource().contains(searchedString)){
+            isVisible = true;
+        }
+        return isVisible;
+    }
+
+    /**
      * Method is used to check whether webElement is not visible
      */
     public static Boolean isValidationMessageIsCorrect(By webElement, String expectedText) {

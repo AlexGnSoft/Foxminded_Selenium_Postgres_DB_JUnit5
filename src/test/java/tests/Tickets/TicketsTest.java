@@ -1,6 +1,5 @@
 package tests.Tickets;
 
-import com.sun.security.sasl.util.AbstractSaslImpl;
 import config.BaseTestConfiguration;
 import databases.DataBase;
 import helpfiles.PropertiesFile;
@@ -21,8 +20,9 @@ public class TicketsTest extends BaseTestConfiguration{
     @Test
     public void testCreateNewTicket() {
         //Test data
-        String ticketTitle = "My ticket from automation 24";
-        String description = "My description to the ticket";
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String ticketTitle = generator.randomString(15, false, false, true);
+        String description = generator.randomString(15, false, false, true);
         String stage = "IN PROGRESS";
         String departmentName = "Посетители";
         String contactName = "Drozdh Udahvxadb";
@@ -163,8 +163,9 @@ public class TicketsTest extends BaseTestConfiguration{
     @Test
     public void testSearchCreatedTicket() {
         //Test data
-        String ticketTitle = "My ticket from automation 8";
-        String description = "My description to the ticket";
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String ticketTitle = generator.randomString(20, false, false, true);
+        String description = generator.randomString(25, false, false, true);
         String stage = "IN PROGRESS";
         String departmentName = "Комната добра";
         String contactName = "Drozdh Udahvxadb";

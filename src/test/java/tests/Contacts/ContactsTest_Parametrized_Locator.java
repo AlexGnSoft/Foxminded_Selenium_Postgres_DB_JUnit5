@@ -50,7 +50,7 @@ public class ContactsTest_Parametrized_Locator extends BaseTestConfiguration {
 
         //Click Submit button
         GlobalPages.click(ContactsNewContact_Param_Locator.submitBtn);
-        GlobalPages.sleepWait(2000);
+        GlobalPages.sleepWait(3000);
 
         //Verify presence of entered data on Contacts page
         Assertions.assertTrue(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContact_Param_Locator.emailList), randomEmail));
@@ -61,19 +61,20 @@ public class ContactsTest_Parametrized_Locator extends BaseTestConfiguration {
     @Test
     public void testCreateNewContactWithAddInfo() {
         // Test data
-        String FName = "FNameXY";
-        String LName = "NameYX";
-        String email = "xyxyxyxyxyy@gmail.com";
-        String country = "Uni";
-        String city = "Parad";
-        String street = "this is my street";
-        String building = "7777";
-        String zipCode = "123456";
-        String roomNumber = "0000";
-        String phone = "+46343424241";
-        String skype = "alexx";
-        String website = "alexx.com";
-        String jobPosition = "QA AutomationJava";
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String FName = generator.randomString(7, false, false, true);
+        String LName = generator.randomString(7, false, false, true);
+        String email = generator.randomString(5, true, false, false).toLowerCase(Locale.ROOT);
+        String country = generator.randomString(7, false, false, true);
+        String city = generator.randomString(7, false, false, true);
+        String street = generator.randomString(7, false, false, true);
+        String building = generator.randomInt(20,1);
+        String zipCode = generator.randomInt(9,5);
+        String roomNumber =  generator.randomInt(9,2);
+        String phone = generator.randomInt(9,10);
+        String skype = generator.randomString(7, false, true, false);
+        String website = generator.randomString(7, false, false, true);
+        String jobPosition = generator.randomString(7, false, false, true);
 
         // Go to application Login page
         openBrowser();
@@ -172,7 +173,6 @@ public class ContactsTest_Parametrized_Locator extends BaseTestConfiguration {
         String LName = generator.randomString(10, false, false, true);
         String emailValid = generator.randomString(15, true, false, false).toLowerCase(Locale.ROOT);
         String emailInvalid = generator.randomString(15, true, false, false).toLowerCase(Locale.ROOT).replace("@", "");
-        String fullName = FName + " " + LName;
         String oneLetter = "a";
         String twoLetters = "aB";
         String threeLetters = "sdS";
@@ -270,7 +270,7 @@ public class ContactsTest_Parametrized_Locator extends BaseTestConfiguration {
     public void testEditContact() {
         // Test data
         RandomDataGenerator generator = new RandomDataGenerator();
-        String randomEmail = generator.randomString(4,true, false, false).toLowerCase(Locale.ROOT);
+        String randomEmail = generator.randomString(4,true, false, false).toLowerCase(Locale.ROOT);;
         String randomLastName = generator.randomString(7,false, false, true);
         String randomFirstName = generator.randomString(6,false, false, true);
 
@@ -335,15 +335,22 @@ public class ContactsTest_Parametrized_Locator extends BaseTestConfiguration {
         GlobalPages.clickOnVisibleElement(MenuDashboard.contactsTab);
 
         //Find current full names and save to variable
-        GlobalPages.sleepWait(2000);
+        GlobalPages.sleepWait(1000);
         String namesOfFirstTitleOfAnyColumns = GlobalPages.getNamesOfFirstTitleOfAnyColumns(ContactsNewContact_Param_Locator.fullNameList);
+        String firstNameLetters = namesOfFirstTitleOfAnyColumns.substring(0, 5);
 
         //Click on the first contact Delete button
         GlobalPages.clickOnTheFirstElementInAList(ContactsNewContact_Param_Locator.deleteBtnList);
         GlobalPages.alertAcceptOrDismiss(true);
-        GlobalPages.sleepWait(2000);
+        GlobalPages.sleepWait(1000);
 
         //Verify that namesOfFirstTitleOfAnyColumns is not present in the list of contacts
         Assertions.assertFalse(GlobalPages.stringIsPresentInArray(GlobalPages.getNamesOfAnyColumns(ContactsNewContact_Param_Locator.fullNameList), namesOfFirstTitleOfAnyColumns));
+
+        //Verify that deleted contact is not present by using search module
+        GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.firstNameSearchField, firstNameLetters);
+        GlobalPages.click(ContactsNewContact_Param_Locator.filterBtn);
+        GlobalPages.sleepWait(1000);
+        Assertions.assertFalse(GlobalPages.isElementVisibleOnPageSource(firstNameLetters));
     }
 }

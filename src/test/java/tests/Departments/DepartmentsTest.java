@@ -14,6 +14,7 @@ import pageobjects.OpenPage;
 import utils.RandomDataGenerator;
 
 import java.sql.SQLException;
+import java.util.Locale;
 
 public class DepartmentsTest extends BaseTestConfiguration {
 
@@ -21,7 +22,8 @@ public class DepartmentsTest extends BaseTestConfiguration {
     @Test
     public void testCreateNewDepartmentWithoutAddInfo() {
         //Test data
-        String departmentTitle = "My department 2";
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String departmentTitle = generator.randomString(15, false, false, true);
 
         // Go to application Login page
         openBrowser();
@@ -56,17 +58,18 @@ public class DepartmentsTest extends BaseTestConfiguration {
     @Test
     public void testCreateNewDepartmentWithAddInfo() {
         //Test data
-        String departmentTitle = "My department 8";
-        String phone = "+4634342424";
-        String skype = "alex";
-        String website = "alex.com";
-        String email = "alex@gmail.com";
-        String country = "Universe";
-        String city = "Paradise";
-        String street = "this is my street";
-        String building = "777";
-        String zipCode = "12345";
-        String roomNumber = "000";
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String departmentTitle = generator.randomString(20, false, false, true);
+        String phone = generator.randomInt(9,10);
+        String skype = generator.randomString(10, false, false, true);
+        String website = generator.randomString(10, false, false, true);
+        String email = generator.randomString(10, false, false, true).toLowerCase(Locale.ROOT)+"@gmail.com";
+        String country = generator.randomString(10, false, false, true);
+        String city = generator.randomString(10, false, false, true);
+        String street = generator.randomString(10, false, false, true);
+        String building = generator.randomInt(100,3);
+        String zipCode = generator.randomInt(9,5);
+        String roomNumber = generator.randomInt(100,3);
 
         // Go to application Login page
         openBrowser();
@@ -108,7 +111,8 @@ public class DepartmentsTest extends BaseTestConfiguration {
     @Test
     public void testCreateNewDepartmentAndDeleteCreatedDepartment() {
         //Test data
-        String departmentTitle = "My department 14";
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String departmentTitle = generator.randomString(10, false, false, true);
 
         // Go to application Login page
         openBrowser();
@@ -187,7 +191,8 @@ public class DepartmentsTest extends BaseTestConfiguration {
     @Test
     public void testCreateNewDepartmentWithoutAddInfoV2() {
         //Test data
-        String departmentTitle = "My department 4";
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String departmentTitle = generator.randomString(10, false, false, true);
 
         // Go to application Login page
         openBrowser();
@@ -221,7 +226,8 @@ public class DepartmentsTest extends BaseTestConfiguration {
     @Test
     public void testSearchCreatedDepartment() {
         //Test data
-        String departmentTitle = "My department 103";
+        RandomDataGenerator generator = new RandomDataGenerator();
+        String departmentTitle = generator.randomString(10, false, false, true);
 
         // Go to application Login page
         openBrowser();
