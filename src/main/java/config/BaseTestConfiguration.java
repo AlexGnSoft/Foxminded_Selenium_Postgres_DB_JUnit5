@@ -7,8 +7,13 @@ import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import utils.ScreenshotWatcher;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 
 public class BaseTestConfiguration {
@@ -33,8 +38,20 @@ public class BaseTestConfiguration {
 
         switch (propertiesFile.getBrowser()) {
             case "chrome":
+               //in case we want to run our test in Docker:
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+                chromeOptions.setCapability("browserName", "chrome");
+
+                try {
+                    driver = new RemoteWebDriver(new URL(propertiesFile.getRemoteRunUrl()), chromeOptions);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+
                 System.setProperty("webdriver.chrome.driver", propertiesFile.getDriverPathChrome());
-                driver = new ChromeDriver();
+                //in case we want to run our test locally (activate driver = new ChromeDriver() and comment  ChromeOptions):
+//                driver = new ChromeDriver();
                 break;
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", propertiesFile.getDriverPathFireFox());
@@ -63,7 +80,10 @@ public class BaseTestConfiguration {
 
         ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "screenshots");
         watcher.captureScreenshot(driver, screenShotName);
-        driver.quit();
+
+        if(driver != null){
+            driver.quit();
+        }
     }
 
     /**

@@ -31,9 +31,15 @@ public class PropertiesFile {
     }
 
     public String getApplicationUrl() {
-        String url = properties.getProperty("url");
-        if(url != null) return url;
-        else throw new RuntimeException("browser is not specified in the config.properties file.");
+        String api_url = properties.getProperty("api_url");
+        if(api_url != null) return api_url;
+        else throw new RuntimeException("api_url is not specified in the config.properties file.");
+    }
+
+    public String getRemoteRunUrl() {
+        String remote_run_url = properties.getProperty("remote_run_url");
+        if(remote_run_url != null) return remote_run_url;
+        else throw new RuntimeException("remote_run_url is not specified in the config.properties file.");
     }
 
     public static String getLoginCredentials() {
