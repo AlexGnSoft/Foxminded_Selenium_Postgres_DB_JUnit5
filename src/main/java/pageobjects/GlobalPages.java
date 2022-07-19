@@ -244,7 +244,6 @@ public class GlobalPages extends BaseTestConfiguration {
     /**
      * Method is used to verify that searched string isPresent is array of strings
      */
-
     public static Boolean stringIsPresentInArray(ArrayList<String> stringArrayList, String searchedString) {
         boolean isPresent = false;
         for (int i = 0; i < stringArrayList.size(); i++) {

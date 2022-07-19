@@ -9,9 +9,12 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
+
+    <name>Selenium + Postgres DB + JUnit5 Example</name>
+    <description>Example usage of Selenium with Postgres DB and JUnit5</description>
 
     <dependencies>
         <dependency>

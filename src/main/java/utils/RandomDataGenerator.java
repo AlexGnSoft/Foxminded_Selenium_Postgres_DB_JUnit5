@@ -1,9 +1,8 @@
 package utils;
 
-import config.BaseTestConfiguration;
 import java.util.Random;
 
-public class RandomDataGenerator extends BaseTestConfiguration {
+public class RandomDataGenerator {
 
     /**
      * Method is used to generate random Boolean state

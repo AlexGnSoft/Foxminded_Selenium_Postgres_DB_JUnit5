@@ -49,6 +49,7 @@ public class BaseTestConfiguration {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(propertiesFile.getImplicitWait()));
     }
 
+
     /**
      * Method is used to signal that the annotated method should be executed after all tests in the current test class.
      * '@AfterAll' method is only executed once for a given test class.

@@ -40,7 +40,7 @@ public class ManagersTest extends BaseTestConfiguration {
         //Open sidebar
         GlobalPages.openLeftSideTab();
 
-        //Click on Departments tab > 'New Department+' button > Wait for page to be visible
+        //Click on Managers tab > 'New Manager+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.managersTab);
         GlobalPages.click(ManagerNewManager.newManagerBtn);
         GlobalPages.pageIsVisible(ManagerNewManager.newManagerPage);
@@ -48,7 +48,7 @@ public class ManagersTest extends BaseTestConfiguration {
         // Fill in all manager's fields
         ManagerNewManager.fillInAllFields(rndFName, rndLName, rndEmail,rndLogin, rndPhone, rndSkype);
 
-        //Click on Department drop-down and select an option
+        //Click on Managers drop-down and select an option
         GlobalPages.click(ManagerNewManager.drpDepartment);
         GlobalPages.waitImplicitly();
         GlobalPages.selectFromDropDownListByVisibleText(ManagerNewManager.drpDepartment, ManagerNewManager.drpDepartmentOptions, department);
@@ -106,7 +106,7 @@ public class ManagersTest extends BaseTestConfiguration {
         //Open sidebar
         GlobalPages.openLeftSideTab();
 
-        //Click on Departments tab > 'New Department+' button > Wait for page to be visible
+        //Click on Managers tab > 'New Manager+' button > Wait for page to be visible
         GlobalPages.clickOnVisibleElement(MenuDashboard.managersTab);
         GlobalPages.click(ManagerNewManager.newManagerBtn);
         GlobalPages.pageIsVisible(ManagerNewManager.newManagerPage);
@@ -114,7 +114,7 @@ public class ManagersTest extends BaseTestConfiguration {
         // Fill in all manager's fields
         ManagerNewManager.fillInAllFields(rndFName, rndLName, rndEmail,rndLogin, rndPhone, rndSkype);
 
-        //Click on Department drop-down and select an option
+        //Click on Managers drop-down and select an option
         GlobalPages.click(ManagerNewManager.drpDepartment);
         GlobalPages.waitImplicitly();
         GlobalPages.selectFromDropDownListByVisibleText(ManagerNewManager.drpDepartment, ManagerNewManager.drpDepartmentOptions, department);

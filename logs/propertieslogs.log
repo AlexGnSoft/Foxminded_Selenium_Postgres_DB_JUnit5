@@ -694,3 +694,15 @@
 [INFO ] 2022-07-14 16:44:35.462 [main] DepartmentsNewDepPage - sleepWait method
 [INFO ] 2022-07-14 16:44:35.889 [main] DepartmentsNewDepPage - enterDataToTheField method
 [INFO ] 2022-07-14 16:44:37.032 [main] DepartmentsNewDepPage - sleepWait method
+[INFO ] 2022-07-19 12:07:31.866 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:17:05.660 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:20:55.709 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:23:51.982 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:25:11.810 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:25:44.633 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:28:42.681 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:34:39.740 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:45:41.348 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:46:06.628 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:47:15.493 [main] DepartmentsNewDepPage - pageIsVisible method
+[INFO ] 2022-07-19 12:51:34.694 [main] DepartmentsNewDepPage - pageIsVisible method
