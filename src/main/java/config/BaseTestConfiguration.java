@@ -39,19 +39,19 @@ public class BaseTestConfiguration {
         switch (propertiesFile.getBrowser()) {
             case "chrome":
                //in case we want to run our test in Docker:
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-                chromeOptions.setCapability("browserName", "chrome");
-
-                try {
-                    driver = new RemoteWebDriver(new URL(propertiesFile.getRemoteRunUrl()), chromeOptions);
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
+//                ChromeOptions chromeOptions = new ChromeOptions();
+//                chromeOptions.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+//                chromeOptions.setCapability("browserName", "chrome");
+//
+//                try {
+//                    driver = new RemoteWebDriver(new URL(propertiesFile.getRemoteRunUrl()), chromeOptions);
+//                } catch (MalformedURLException e) {
+//                    e.printStackTrace();
+//                }
 
                 System.setProperty("webdriver.chrome.driver", propertiesFile.getDriverPathChrome());
                 //in case we want to run our test locally (activate driver = new ChromeDriver() and comment  ChromeOptions):
-//                driver = new ChromeDriver();
+                driver = new ChromeDriver();
                 break;
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", propertiesFile.getDriverPathFireFox());
