@@ -181,12 +181,6 @@ public class DataBase extends BaseTestConfiguration {
         log.log(Level.INFO, "stringIsPresentInMap method");
         return isPresent;
     }
-
-    public static void main(String[] args) throws SQLException {
-        DataBase db = new DataBase();
-        PropertiesFile propertiesFile = new PropertiesFile();
-        System.out.println(db.stringIsPresentInArrayOfDbData("select*from contact", "ffffff"));
-    }
 }
 
 

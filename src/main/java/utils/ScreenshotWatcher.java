@@ -12,7 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 
 /**
- *
  * @author steve
  *
  * to use, add the following to your JUnit5 tests:

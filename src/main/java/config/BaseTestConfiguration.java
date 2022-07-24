@@ -74,9 +74,10 @@ public class BaseTestConfiguration {
      */
     @AfterEach
     public void tearDown(TestInfo testInfo) {
+        //captureScreenshot screenshots (class name and test name):
         String className = this.getClass().getSimpleName();
-        String methodName = testInfo.getDisplayName();
-        String screenShotName = className + " - " + methodName;
+        String testName = testInfo.getDisplayName();
+        String screenShotName = className + " - " + testName;
 
         ScreenshotWatcher watcher = new ScreenshotWatcher(driver, "screenshots");
         watcher.captureScreenshot(driver, screenShotName);

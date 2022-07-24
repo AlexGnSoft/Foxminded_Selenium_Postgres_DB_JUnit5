@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -20,7 +21,7 @@ public class GlobalPages extends BaseTestConfiguration {
     private static final Logger log = LogManager.getLogger(DepartmentsNewDepPage.class.getName());
 
     /**
-     * Method is used to close email popo-up and open ledft side bar, to be able to click on any category
+     * Method is used to close email popo-up and open left sidebar, to be able to click on any category
      */
     public static void openLeftSideTab(){
         GlobalPages.click(MenuDashboard.closeButton);
