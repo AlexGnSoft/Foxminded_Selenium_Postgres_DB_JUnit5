@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Foxminded_Selenium_Postgres_DB_JUnit5" />
+        <module name="Foxminded_Selenium_Postgres_DB_JUnit5_SeleniumGrid_Docker" />
       </profile>
     </annotationProcessing>
   </component>

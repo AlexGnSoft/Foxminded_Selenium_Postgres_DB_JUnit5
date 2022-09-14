@@ -1,0 +1,11 @@
+testsuite/Managers.class
+tests/Managers/ManagersTest.class
+tests/Tickets/TicketsTest.class
+testsuite/Contacts.class
+tests/Authorization/AuthorizationTest_PFactory.class
+testsuite/Tickets.class
+tests/Contacts/ContactsTest_Parametrized_Locator.class
+testsuite/Authorization.class
+testsuite/Department.class
+tests/Departments/DepartmentsTest.class
+tests/Authorization/AuthorizationTest.class

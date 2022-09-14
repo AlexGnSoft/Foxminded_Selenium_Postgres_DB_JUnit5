@@ -53,7 +53,7 @@ public class ContactsNewContact_Param_Locator extends BaseTestConfiguration {
     private static final Logger log = LogManager.getLogger(ContactsNewContact_Param_Locator.class.getName());
 
     /**
-     * Method fill in all the fields
+     * Method fills in all the fields
      */
     public static void fillInAllFields(String country, String street, String zipCode, String phone, String website, String city, String building, String roomNumber, String skype, String jobPosition) {
         GlobalPages.enterDataToTheField(ContactsNewContact_Param_Locator.countryField, country);
